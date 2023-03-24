@@ -19,13 +19,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="text-center">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td class="text-left">Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
+                    <tr>
+                        <th scope="row" class="text-center">1</th>
+                        <td class="text-center">CT111</td>
+                        <td>Lập trình Hướng đối tượng</td>
+                        <td>
+                            Nguyễn Thanh Quyên<br>
+                            Nguyễn Văn A
+                        </td>
+                        <td class="text-center">2001</td>
+                        <td class="text-center">
+                            <a href="#"><i class="fa-solid fa-book"></i></a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

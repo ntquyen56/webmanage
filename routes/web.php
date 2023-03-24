@@ -72,6 +72,10 @@ Route::get ('/manage/registration_list', function(){
     return view('admin.registration_list');
 })->name('manage.registration_list');
 
+Route::get ('/manage/add_curriculum', function(){
+    return view('admin.add_curriculum');
+})->name('manage.add_curriculum');
+
 Route::get ('/manage/registration_curriculum_list', function(){
     return view('admin.registration_curriculum_list');
 })->name('manage.registration_curriculum_list');
