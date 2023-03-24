@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
 
 
         DB::table('users')->insert([
-            'name' => 'quyen',
-            'email' => 'quyen@cit.edu.vn',
+            'name' => 'quyen2',
+            'email' => 'quyen2@cit.edu.vn',
             'password' => Hash::make(123456789),
-            'group_id' => 2,
+            'group_id' => 10,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
 

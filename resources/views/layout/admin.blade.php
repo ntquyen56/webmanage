@@ -36,7 +36,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-2">THANH QUYEN</div>
+            <div class="sidebar-brand-text mx-2">{{Auth::user()->name}}</div>
         </a>
 
         <!-- Divider -->
@@ -107,7 +107,7 @@
             </div>
         </li>
 
-        
+
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
@@ -119,8 +119,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.add_user') }}">Thêm người dùng</a>
                     <a class="collapse-item" href="{{ route('manage.user') }}">Danh sách người dùng</a>
-                </div>               
-            </div>            
+                </div>
+            </div>
         </li>
 
         <li class="nav-item">
@@ -132,8 +132,8 @@
             <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.permission') }}">Danh sách quyền</a>
-                </div>               
-            </div>            
+                </div>
+            </div>
         </li>
 
         <li class="nav-item">
@@ -145,9 +145,9 @@
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.role') }}">Danh sách vai trò</a>
-                </div>               
-            </div>            
-        </li>    
+                </div>
+            </div>
+        </li>
     </ul>
     <!-- End of Sidebar -->
 
@@ -204,6 +204,14 @@
                                     </div>
                                 </form>
                             </div>
+                        </li>
+                        <li class="nav-item  no-arrow mx-1">
+                            <a href={{route('logout')}}
+                              >
+
+                                <div class="">Logout</div>
+                            </a>
+                            <!-- Dropdown - Alerts -->
                         </li>
 
                         <!-- Nav Item - Alerts -->
@@ -364,7 +372,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                   
+
 
                     @yield('child_page')
                     <!-- Content Row -->

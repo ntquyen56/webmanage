@@ -15,6 +15,8 @@ use App\Http\Controllers\AdminController;
 */
 
 // Client
+Route::prefix('/')->middleware('auth')->group(function () {
+
 Route::get('/', function () {
     return view('home');
 })->name("client");
@@ -42,78 +44,83 @@ Route::get('/calendar', function () {
 Route::get('/publish', function () {
     return view('publish');
 })->name("client.publish");
-
+});
 // Admin
-Route::get ('/manage', function(){
+    Route::prefix('manager')->middleware('admin')->group(function () {
+Route::get ('/', function(){
     return view('admin.dashboard');
 })->name("manager");
 
-Route::get ('/manage/dashboard', function(){
+Route::get ('/dashboard', function(){
     return view('admin.dashboard');
 })->name('manage.dashboard');
 
-Route::get ('/manage/user', function(){
+Route::get ('/user', function(){
     return view('admin.user');
 })->name('manage.user');
 
-Route::get ('/manage/add_user', function(){
+Route::get ('/add_user', function(){
     return view('admin.add_user');
 })->name('manage.add_user');
 
-Route::get ('/manage/detail_user', function(){
+Route::get ('/detail_user', function(){
     return view('admin.detail_user');
 })->name('manage.detail_user');
 
-Route::get ('/manage/edit_user', function(){
+Route::get ('/edit_user', function(){
     return view('admin.edit_user');
 })->name('manage.edit_user');
 
-Route::get ('/manage/registration_list', function(){
+Route::get ('/registration_list', function(){
     return view('admin.registration_list');
 })->name('manage.registration_list');
 
-Route::get ('/manage/registration_curriculum_list', function(){
+Route::get ('/registration_curriculum_list', function(){
     return view('admin.registration_curriculum_list');
 })->name('manage.registration_curriculum_list');
 
-Route::get ('/manage/registration_document_list', function(){
+Route::get ('/registration_document_list', function(){
     return view('admin.registration_document_list');
 })->name('manage.registration_document_list');
 
-Route::get ('/manage/acceptance_list', function(){
+Route::get ('/acceptance_list', function(){
     return view('admin.acceptance_list');
 })->name('manage.acceptance_list');
 
-Route::get ('/manage/acceptance_curriculum_list', function(){
+Route::get ('/acceptance_curriculum_list', function(){
     return view('admin.acceptance_curriculum_list');
 })->name('manage.acceptance_curriculum_list');
 
-Route::get ('/manage/acceptance_document_list', function(){
+Route::get ('/acceptance_document_list', function(){
     return view('admin.acceptance_document_list');
 })->name('manage.acceptance_document_list');
 
-Route::get ('/manage/publish_list', function(){
+Route::get ('/publish_list', function(){
     return view('admin.publish_list');
 })->name('manage.publish_list');
 
-Route::get ('/manage/publish_curriculum_list', function(){
+Route::get ('/publish_curriculum_list', function(){
     return view('admin.publish_curriculum_list');
 })->name('manage.publish_curriculum_list');
 
-Route::get ('/manage/publish_document_list', function(){
+Route::get ('/publish_document_list', function(){
     return view('admin.publish_document_list');
 })->name('manage.publish_document_list');
 
-Route::get ('/manage/permission', function(){
+Route::get ('/permission', function(){
     return view('admin.permission');
 })->name('manage.permission');
 
-Route::get ('/manage/role', function(){
+Route::get ('/role', function(){
     return view('admin.role');
 })->name('manage.role');
+    });
+
 
 // Backend
 
 Route::get('/login', [AdminController::class, 'index'])->name("login");
+Route::get('/logout', [AdminController::class, 'logout'])->name("logout");
+
 Route::post('/handleLogin', [AdminController::class, 'handleLogin'])->name("handleLogin");
-Route::get('/manage.dashboard', [AdminController::class, 'show_dashboard']);
+Route::get('/manager.dashboard', [AdminController::class, 'show_dashboard']);

@@ -13,7 +13,7 @@ class AdminController extends Controller
     public function show_dashboard(){
         return view('layout.admin');
     }
-    
+
 
     public function handleLogin(Request $request){
         $request->validate(
@@ -45,6 +45,13 @@ class AdminController extends Controller
 
 
 
+    }
+
+
+    public function logout (){
+        Auth::logout();
+
+        return redirect()->route('login');
     }
 
 }
