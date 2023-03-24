@@ -1,0 +1,31 @@
+.txt-header {
+    text-transform: uppercase;
+    margin: 1% 40% 2% 40%;
+    font-weight: 600;
+}
+
+/* detail_user */
+.main-detail {
+    border: black solid 3px;
+    width: 60%;
+    margin: 2px 20%;
+}
+.bd-info {
+    margin-top: 10px;
+    border-bottom: rgb(187, 186, 186) dashed 2px;
+}
+.text-inf {
+    font-size: 20px;
+    color: black;
+    font-weight: 500;
+}
+.text-tt {
+    font-size: 20px;
+    color: blue;
+    font-weight: 600;
+}
+
+/* edit_user */
+.txt-edit {
+    font-size: 20px;
+}

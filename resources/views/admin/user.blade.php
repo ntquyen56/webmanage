@@ -37,7 +37,7 @@
                     quyenb1910287@cit.edu.vn
                 </td>
                 <td>
-                    <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
+                    <a href="{{ route ('manage.detail_user') }}"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
                 </td>
                 <td>
                     <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"

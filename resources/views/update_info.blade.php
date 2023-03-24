@@ -2,7 +2,9 @@
 
 @section('child_page')
     <div class="row">
-        <h4 class="txt-header">Thêm người dùng</h4>
+        <div class="col-sm-12">
+            <h4 class="text-center text-uppercase fw-bold mb-5">Cập nhật thông tin</h4>
+        </div>
     </div>
     <form action="">
         <div class="row">
@@ -77,8 +79,8 @@
                         </div>     
                     </div>
                 </div>               
-                <div class="row" style="margin: 5% 40%;">
-                    <button type="button" class="btn btn-success">Thêm người dùng</button>
+                <div class="row" style="margin: 5% 45%;">
+                    <button type="button" class="btn btn-success">Cập nhật</button>
                 </div>           
             </div>            
             <div class="col-sm-1"></div>

@@ -14,13 +14,34 @@ use App\Http\Controllers\AdminController;
 |
 */
 
+// Client
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name("client");
 
 Route::get('/curriculum', function () {
     return view('curriculum');
 })->name("client.curriculum");
+
+Route::get('/propose', function () {
+    return view('propose');
+})->name("client.propose");
+
+Route::get('/update_info', function () {
+    return view('update_info');
+})->name("client.update_info");
+
+Route::get('/result', function () {
+    return view('result');
+})->name("client.result");
+
+Route::get('/calendar', function () {
+    return view('calendar');
+})->name("client.calendar");
+
+Route::get('/publish', function () {
+    return view('publish');
+})->name("client.publish");
 
 // Admin
 Route::get ('/manage', function(){
@@ -33,11 +54,19 @@ Route::get ('/manage/dashboard', function(){
 
 Route::get ('/manage/user', function(){
     return view('admin.user');
-})->name('manage.user');//lay cai name gan vaof route laf no chay toi day
+})->name('manage.user');
 
 Route::get ('/manage/add_user', function(){
     return view('admin.add_user');
 })->name('manage.add_user');
+
+Route::get ('/manage/detail_user', function(){
+    return view('admin.detail_user');
+})->name('manage.detail_user');
+
+Route::get ('/manage/edit_user', function(){
+    return view('admin.edit_user');
+})->name('manage.edit_user');
 
 Route::get ('/manage/registration_list', function(){
     return view('admin.registration_list');
