@@ -76,37 +76,13 @@ Route::get ('/manage/add_curriculum', function(){
     return view('admin.add_curriculum');
 })->name('manage.add_curriculum');
 
-Route::get ('/manage/registration_curriculum_list', function(){
-    return view('admin.registration_curriculum_list');
-})->name('manage.registration_curriculum_list');
-
-Route::get ('/manage/registration_document_list', function(){
-    return view('admin.registration_document_list');
-})->name('manage.registration_document_list');
-
 Route::get ('/manage/acceptance_list', function(){
     return view('admin.acceptance_list');
 })->name('manage.acceptance_list');
 
-Route::get ('/manage/acceptance_curriculum_list', function(){
-    return view('admin.acceptance_curriculum_list');
-})->name('manage.acceptance_curriculum_list');
-
-Route::get ('/manage/acceptance_document_list', function(){
-    return view('admin.acceptance_document_list');
-})->name('manage.acceptance_document_list');
-
 Route::get ('/manage/publish_list', function(){
     return view('admin.publish_list');
 })->name('manage.publish_list');
-
-Route::get ('/manage/publish_curriculum_list', function(){
-    return view('admin.publish_curriculum_list');
-})->name('manage.publish_curriculum_list');
-
-Route::get ('/manage/publish_document_list', function(){
-    return view('admin.publish_document_list');
-})->name('manage.publish_document_list');
 
 Route::get ('/manage/permission', function(){
     return view('admin.permission');
@@ -116,8 +92,23 @@ Route::get ('/manage/role', function(){
     return view('admin.role');
 })->name('manage.role');
 
-// Backend
+Route::get ('/manage/add_faculty', function(){
+    return view('admin.add_faculty');
+})->name('manage.add_faculty');
 
+Route::get ('/manage/faculty_list', function(){
+    return view('admin.faculty_list');
+})->name('manage.faculty_list');
+
+Route::get ('/manage/level_list', function(){
+    return view('admin.level_list');
+})->name('manage.level_list');
+
+Route::get ('/manage/add_level', function(){
+    return view('admin.add_level');
+})->name('manage.add_level');
+
+// Backend
 Route::get('/login', [AdminController::class, 'index'])->name("login");
 Route::post('/handleLogin', [AdminController::class, 'handleLogin'])->name("handleLogin");
 Route::get('/manage.dashboard', [AdminController::class, 'show_dashboard']);

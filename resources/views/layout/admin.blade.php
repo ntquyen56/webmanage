@@ -148,7 +148,33 @@
                     <a class="collapse-item" href="{{ route('manage.role') }}">Danh sách vai trò</a>
                 </div>               
             </div>            
+        </li>   
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản lý khoa</span>
+            </a>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('manage.faculty_list') }}">Danh sách khoa</a>
+                    <a class="collapse-item" href="{{ route('manage.add_faculty') }}">Thêm khoa</a>
+                </div>               
+            </div>            
         </li>    
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản lý trình độ</span>
+            </a>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('manage.level_list') }}">Danh sách trình độ</a>
+                    <a class="collapse-item" href="{{ route('manage.add_level') }}">Thêm trình độ</a>
+                </div>               
+            </div>            
+        </li>  
     </ul>
     <!-- End of Sidebar -->
 
