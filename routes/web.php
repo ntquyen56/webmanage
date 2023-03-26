@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\LevelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,17 +94,20 @@ Route::get ('/manage/role', function(){
     return view('admin.role');
 })->name('manage.role');
 
-Route::get ('/manage/add_faculty', function(){
+Route::get('/manage/add_faculty', function(){
     return view('admin.add_faculty');
 })->name('manage.add_faculty');
 
-Route::get ('/manage/faculty_list', function(){
-    return view('admin.faculty_list');
-})->name('manage.faculty_list');
+// Route::get ('/manage/faculty_list', function(){
+//     return view('admin.faculty_list')
+//     ;
+// })->name('manage.faculty_list');
 
-Route::get ('/manage/level_list', function(){
-    return view('admin.level_list');
-})->name('manage.level_list');
+Route::get ('/manage/faculty_list', [FacultyController::class, 'faculty_list'])->name('manage.faculty_list');
+
+// Route::get ('/manage/level_list', function(){
+//     return view('admin.level_list');
+// })->name('manage.level_list');
 
 Route::get ('/manage/add_level', function(){
     return view('admin.add_level');
@@ -112,3 +117,15 @@ Route::get ('/manage/add_level', function(){
 Route::get('/login', [AdminController::class, 'index'])->name("login");
 Route::post('/handleLogin', [AdminController::class, 'handleLogin'])->name("handleLogin");
 Route::get('/manage.dashboard', [AdminController::class, 'show_dashboard']);
+
+Route::post('/add_faculty', [FacultyController::class, 'add_khoa']);
+Route::get('/manage/edit_faculty/{id_khoa}', [FacultyController::class, 'edit_khoa']);
+Route::post('/update_faculty/{id_khoa}', [FacultyController::class, 'update_khoa']);
+Route::get('/manage/delete_faculty/{id_khoa}', [FacultyController::class, 'delete_khoa']);
+
+Route::get('/manage/level_list', [LevelController::class, 'level_list'])->name('manage.level_list');;
+Route::post('/add_level', [LevelController::class, 'add_trinhdo']);
+Route::get('/manage/edit_level/{id_trinhdo}', [LevelController::class, 'edit_trinhdo']);
+Route::post('/update_level/{id_trinhdo}', [LevelController::class, 'update_trinhdo']);
+Route::get('/manage/delete_level/{id_trinhdo}', [LevelController::class, 'delete_trinhdo']);
+
