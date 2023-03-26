@@ -68,9 +68,10 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
-                    <a class="collapse-item" href="{{ route ('manage.registration_list') }}">Danh sách đăng kí</a>
-                    <a class="collapse-item" href="{{ route ('manage.registration_curriculum_list') }}">Giáo trình đã đăng kí</a>
-                    <a class="collapse-item" href="{{ route ('manage.registration_document_list') }}">Tài liệu đã đăng kí</a>
+                    <a class="collapse-item" href="{{ route ('manage.registration_list') }}">Danh sách biên soạn</a>
+                    <a class="collapse-item" href="{{ route ('manage.add_curriculum') }}">Thêm giáo trình</a>
+                    {{-- <a class="collapse-item" href="{{ route ('manage.registration_curriculum_list') }}">Giáo trình đã đăng kí</a>
+                    <a class="collapse-item" href="{{ route ('manage.registration_document_list') }}">Tài liệu đã đăng kí</a> --}}
                 </div>
             </div>
         </li>
@@ -85,8 +86,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                     <a class="collapse-item" href="{{ route ('manage.acceptance_list') }}">Danh sách nghiệm thu</a>
-                    <a class="collapse-item" href="{{ route ('manage.acceptance_curriculum_list') }}">Giáo trình đăng kí NT</a>
-                    <a class="collapse-item" href="{{ route ('manage.acceptance_document_list') }}">Tài liệu đăng kí NT</a>
+                    {{-- <a class="collapse-item" href="{{ route ('manage.acceptance_curriculum_list') }}">Giáo trình đăng kí NT</a>
+                    <a class="collapse-item" href="{{ route ('manage.acceptance_document_list') }}">Tài liệu đăng kí NT</a> --}}
                 </div>
             </div>
         </li>
@@ -101,8 +102,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                     <a class="collapse-item" href="{{ route ('manage.publish_list') }}">Danh sách xuất bản</a>
-                    <a class="collapse-item" href="{{ route ('manage.publish_curriculum_list') }}">Giáo trình đã xuất bản</a>
-                    <a class="collapse-item" href="{{ route ('manage.publish_document_list') }}">Tài liệu đã xuất bản</a>
+                    {{-- <a class="collapse-item" href="{{ route ('manage.publish_curriculum_list') }}">Giáo trình đã xuất bản</a>
+                    <a class="collapse-item" href="{{ route ('manage.publish_document_list') }}">Tài liệu đã xuất bản</a> --}}
                 </div>
             </div>
         </li>
@@ -166,7 +167,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -177,7 +178,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

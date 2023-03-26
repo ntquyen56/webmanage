@@ -12,7 +12,10 @@ class UserController extends Controller
     public function createAccountUser(){
         try{
 
+            //pass = radom
+            //ádasdas
 
+            //save
 
 
 

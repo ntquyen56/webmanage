@@ -29,3 +29,19 @@
 .txt-edit {
     font-size: 20px;
 }
+
+/* add_curriculum */
+.group-main-pro {
+    margin: 20px 240px;
+    border: grey solid 2px;
+    border-radius: 4px;
+}
+.input-pr {
+    height: 35px;
+    border-radius: 5px;
+    border: black solid 2px;
+}
+.txt-add {
+    font-size: 20px;
+    font-weight: 600;
+}
