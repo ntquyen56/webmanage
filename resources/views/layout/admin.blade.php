@@ -12,7 +12,7 @@
     <title>Admin</title>
     <link href="{{asset('admins')}}/css/admin.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <!-- Custom fonts for this template-->
     <link href="{{asset('admins')}}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -146,9 +146,41 @@
             <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.role') }}">Danh sách vai trò</a>
+<<<<<<< HEAD
                 </div>
             </div>
         </li>
+=======
+                </div>               
+            </div>            
+        </li>   
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản lý khoa</span>
+            </a>
+            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('manage.faculty_list') }}">Danh sách khoa</a>
+                    <a class="collapse-item" href="{{ route('manage.add_faculty') }}">Thêm khoa</a>
+                </div>               
+            </div>            
+        </li>    
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản lý trình độ</span>
+            </a>
+            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('manage.level_list') }}">Danh sách trình độ</a>
+                    <a class="collapse-item" href="{{ route('manage.add_level') }}">Thêm trình độ</a>
+                </div>               
+            </div>            
+        </li>  
+>>>>>>> 21989622e1bdcfff282ed50ed2aa73c125c8d89e
     </ul>
     <!-- End of Sidebar -->
 
@@ -442,6 +474,30 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('admins')}}/js/demo/chart-area-demo.js"></script>
     <script src="{{asset('admins')}}/js/demo/chart-pie-demo.js"></script>
+    <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $('#mytable').DataTable({
+            language: {
+              search: "Tìm kiếm",
+              lengthMenu: "Số bản ghi trên 1 trang _MENU_ ",
+              info: "Bản ghi từ _START_ đến _END_ Tổng cộng _TOTAL_ bản ghi",
+              infoEmpty: "Khi không có dữ liệu, Hiển thị 0 bản ghi trong 0 tổng cộng 0 ",
+              infoFiltered: "(_MAX_)",
+              loadingRecords: "",
+              zeroRecords: "Không tìm thấy bản ghi phù hợp",
+              emptyTable: "Không có dữ liệu",
+              paginate: {
+                  first: "Trang đầu",
+                  previous: "Trang trước",
+                  next: "Trang sau",
+                  last: "Trang cuối"
+              },
+            },
+          });
+      });
+  </script>
+  {{--  --}}
 
 </body>
 

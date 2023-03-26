@@ -37,7 +37,7 @@ class AdminController extends Controller
 
         $user = Auth::user();
         if($user->group_id == 1){
-            return  redirect()->route('manager');
+            return  redirect()->route('manage.manager');
 
         }
 
