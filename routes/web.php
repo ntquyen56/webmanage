@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\CurriculumController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\LevelController;
 
@@ -20,9 +23,7 @@ use App\Http\Controllers\LevelController;
 // Client
 Route::prefix('/')->middleware('auth')->group(function () {
 
-    Route::get('/', function () {
-        return view('home');
-    })->name("client");
+    Route::get('/', [HomeController::class,'pageHome'])->name("client");
 
     Route::get('/curriculum', function () {
         return view('curriculum');
@@ -67,10 +68,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
             });
 
 
-        Route::get ('/manage/add_curriculum', function(){
-            return view('admin.add_curriculum');
-        })->name('manage.add_curriculum');
-
 
             Route::get ('/', function(){
                 return view('admin.dashboard');
@@ -80,13 +77,14 @@ Route::prefix('/')->middleware('auth')->group(function () {
                 return view('admin.dashboard');
             })->name('dashboard');
 
-            Route::get ('/user', function(){
-                return view('admin.user');
-            })->name('user');
 
-            Route::get ('/add_user', function(){
-                return view('admin.add_user');
-            })->name('add_user');
+            //user
+            Route::get ('/user', [UserController::class,'listUser'])->name('user');
+
+            Route::get ('/add_user',[UserController::class,'showFrom'])->name('add_user');
+            Route::post ('/handle_add_user',[UserController::class,'createAccountUser'])->name('handle_add_user');
+
+            //end user
 
             Route::get ('/detail_user', function(){
                 return view('admin.detail_user');
@@ -129,22 +127,20 @@ Route::prefix('/')->middleware('auth')->group(function () {
                 return view('admin.publish_document_list');
             })->name('publish_document_list');
 
-            Route::get ('/permission', function(){
-                return view('admin.permission');
-            })->name('permission');
+
+            //permisssion
+            Route::get ('/permission',[PermissionController::class,'listUser'] )->name('permission');
+            Route::post ('/handle_permission',[PermissionController::class,'handle_permission'] )->name('handle_permission');
+
+
+            //end permission
 
             Route::get ('/role', function(){
                 return view('admin.role');
             })->name('role');
     });
 
-Route::get ('/manage/publish_list', function(){
-    return view('admin.publish_list');
-})->name('manage.publish_list');
 
-Route::get ('/manage/permission', function(){
-    return view('admin.permission');
-})->name('manage.permission');
 
 
 

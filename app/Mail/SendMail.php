@@ -63,6 +63,6 @@ class SendMail extends Mailable
     // }
     public function build()
     {
-        return $this->subject('Mail from minhb1910259.com')->view('emails.sendMailCreateUser');
+        return $this->subject('Mail from thanhquyen')->view('emails.sendMailCreateUser');
     }
 }

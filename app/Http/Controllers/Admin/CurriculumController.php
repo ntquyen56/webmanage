@@ -15,6 +15,7 @@ class CurriculumController extends Controller
     //
     public function createaCurriculum(Request $req){
         try{
+
              $curriculum = new Curriculum();
              $curriculum->ma_gt = $req->magt;
              $curriculum->ten_gt = $req->tengt;

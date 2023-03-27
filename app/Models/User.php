@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    //relationship
+
+
+    function trinhdo(){
+        return  $this->belongsTo(Level::class,'id_trinhdo','id_trinhdo');
+    }
+
+    function khoa(){
+        return  $this->belongsTo(Faculty::class,'id_khoa','id_khoa');
+    }
 }

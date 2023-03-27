@@ -18,15 +18,11 @@
             <a href="{{ route ('manage.add_curriculum') }}">
                 <button type="button" class="btn btn-success">
                     <i class="fa-solid fa-plus"></i> Thêm giáo trình
-<<<<<<< HEAD
+
                 </button>
             </a>
         </div>
-=======
-                </button>  
-            </a>                     
-        </div>        
->>>>>>> 21989622e1bdcfff282ed50ed2aa73c125c8d89e
+
     </div>
     <table class="table table-bordered border-primary text-center mt-3" style="color: black;">
         <thead>

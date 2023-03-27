@@ -26,22 +26,37 @@
             </tr>
         </thead>
         <tbody>
+            @if($users->count()> 0)
+            @foreach ($users as $user)
             <tr>
                 <th scope="row">1</th>
-                <td>GV1234</td>
-                <td class="text-left">Nguyễn Thanh Quyên</td>      
+                <td>{{$user->magv ?? "khongcoma" }}</td>
+                <td class="text-left">{{$user->name}}</td>
                 <td>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <input type="checkbox" name="" id=""> Admin
+                    <form action={{route('manage.handle_permission')}} method="POST">
+                        @csrf
+                        <input type="hidden" name="id_user" value={{$user->id}}>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="radio" {{$user->group_id === 1 ? "checked" :""}} name="role" value="1"> Admin
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="radio" {{$user->group_id !== 1 ?"checked":""}} name="role" value= "10"> User
+                            </div>
+                            @if (Auth::user()->id != $user->id && $user->group_id ==1)
+
+                            <div class="col-sm-4">
+                                <button type="submit">Lưu</button>
+                            </div>
+                            @endif
                         </div>
-                        <div class="col-sm-6">
-                            <input type="checkbox" name="" id=""> User
-                        </div>
-                    </div>
-                </td>          
+                    </form>
+                </td>
             </tr>
-            
+            @endforeach
+            @endif
+
+
         </tbody>
     </table>
 @endsection
