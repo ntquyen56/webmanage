@@ -55,7 +55,7 @@
             <div class="col-6">
                 <div class="border border-secondary group">
                     <div class="row" style="margin: 6px 6px;">
-                        <div class="col-4 mt-2">
+                        <div class="col-3 mt-2">
                             <div class="gr-icon text-center">
                                 <a href="{{ route ('client.result') }}" style="text-decoration: none;">
                                     <i class="fa-solid fa-book-open" style="color: #54B435; font-size: 45px;"></i>
@@ -63,7 +63,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-4 mt-2">
+                        <div class="col-3 mt-2">
                             <div class="gr-icon text-center">
                                 <a href="{{ route ('client.calendar') }}" style="text-decoration: none;">
                                     <i class="fa-regular fa-calendar-days"style="color: #5DA7DB; font-size: 45px;"></i>
@@ -71,11 +71,19 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-4 mt-2">
+                        <div class="col-3 mt-2">
                             <div class="gr-icon text-center">
                                 <a href="{{ route ('client.publish') }}" style="text-decoration: none;">
                                     <i class="fa-solid fa-print" style="color: grey; font-size: 45px;"></i>
                                     <p class="text-hright">Xuất bản</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-3 mt-2">
+                            <div class="gr-icon text-center">
+                                <a href="#" style="text-decoration: none;">
+                                    <i class="fa-solid fa-user-pen"></i>
+                                    <p class="text-hright">Đăng kí</p>
                                 </a>
                             </div>
                         </div>
