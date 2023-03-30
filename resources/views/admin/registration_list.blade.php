@@ -18,15 +18,11 @@
             <a href="{{ route ('manage.add_curriculum') }}">
                 <button type="button" class="btn btn-success">
                     <i class="fa-solid fa-plus"></i> Thêm giáo trình
-<<<<<<< HEAD
+
                 </button>
             </a>
         </div>
-=======
-                </button>  
-            </a>                     
-        </div>        
->>>>>>> 21989622e1bdcfff282ed50ed2aa73c125c8d89e
+
     </div>
     <table class="table table-bordered border-primary text-center mt-3" style="color: black;">
         <thead>
@@ -47,7 +43,29 @@
                     <th scope="row">{{$curriculum->id}}</th>
                     <td>{{$curriculum->ma_gt}}</td>
                     <td class="text-left">{{$curriculum->ten_gt}}</td>
-                    <td>{{$curriculum->status == 0 ?"Chưa đăng ký" : "Đã đăng ký"}}</td>
+                    <td>{{strtotime($curriculum->status) > 0 && !empty($curriculum->status)  ?"Open":"Close"}}
+
+                    @if (strtotime($curriculum->status) < 0 ||  empty($curriculum->status))
+                        <form action="{{route('manage.handle_update_curriculum')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$curriculum->id}}">
+                            <input type="hidden" name="status" value="start">
+
+                            <button type="submit">Bắt đầu</button>
+                        </form>
+                    @endif
+
+                    @if (strtotime($curriculum->status) > 0 && !empty($curriculum->status))
+                        <form action="{{route('manage.handle_update_curriculum')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$curriculum->id}}">
+                            <input type="hidden" name="status" value="close">
+
+                            <button type="submit">Kết thúc</button>
+                        </form>
+                    @endif
+
+                    </td>
                     <td>
                         <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
                     </td>

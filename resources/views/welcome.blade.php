@@ -13,7 +13,9 @@
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
     <!-- Styles -->
@@ -39,14 +41,14 @@
                     hệ thống đăng kí biên soạn giáo trình
                 </div>
                 <div class="col-3 text-end mt-1">
-                    <a href="#" class="text-header"><button type="button" class="btn btn-sm btn-box mb-2 mt-1"
+                    <a href={{route('logout')}} class="text-header"><button type="button" class="btn btn-sm btn-box mb-2 mt-1"
                             style="font-weight:500;">
                             <i class="fa-solid fa-power-off" style="color: rgb(180, 23, 23)"></i>
                             Log out</button></a> <br>
                     <a href="{{ route('client') }}" class="text-header"><button type="button" class="btn btn-sm btn-box mb-1">
                             <i class="fa-solid fa-house" style="color: blue"></i>
                             Trang chủ</button></a> <br>
-                    <p class="text-header">Nguyen Thanh Quyen - B1910287</p>
+                    <p class="text-header">{{Auth::user()->name}} - {{Auth::user()->magv}}</p>
                     {{-- <a href="#" class="text-header"></a> --}}
                 </div>
                 <div class="col-1"></div>
@@ -107,14 +109,14 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="border border-secondary group">                        
+                    <div class="border border-secondary group">
                         <div class="row" style="margin: 6px 6px;">
                             <div class="col-4 mt-2">
                                 <div class="gr-icon text-center">
                                     <a href="#" style="text-decoration: none;">
                                         <i class="fa-solid fa-book-open" style="color: #54B435; font-size: 45px;"></i>
                                         <p class="text-hright">Kết quả biên soạn</p>
-                                    </a>                                    
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -122,7 +124,7 @@
                                     <a href="#" style="text-decoration: none;">
                                         <i class="fa-regular fa-calendar-days"style="color: #5DA7DB; font-size: 45px;"></i>
                                         <p class="text-hright">Lịch nghiệm thu</p>
-                                    </a>                                    
+                                    </a>
                                 </div>
                             </div>
                             <div class="col-4 mt-2">
@@ -193,7 +195,7 @@
                                 <a href="{{ route ('client.curriculum') }}">
                                     <button type="button" class="btn btn-light btn-sm btn-bs" style="color: black;">
                                         Xem thêm</button>
-                                </a>                                
+                                </a>
                             </div>
                             <div class="col-5 text-end mb-3">
                                 <button type="button" class="btn btn-success btn-sm btn-bs">

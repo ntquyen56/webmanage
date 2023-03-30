@@ -10,42 +10,42 @@
                     <div class="col-12">
                         <div class="row border-bt" style="margin-top: -5px;">
                             <div class="col-3 text-inf ">Mã GV</div>
-                            <div class="col-9 text-tt">GV12345</div>
+                            <div class="col-9 text-tt">{{$user->magv ?? "khongcoma"}}</div>
                         </div>
                         <div class="row border-bt">
                             <div class="col-3 text-inf">Họ tên GV</div>
-                            <div class="col-9 text-tt">Nguyễn Thanh Quyên</div>
+                            <div class="col-9 text-tt">{{$user->name}}</div>
                         </div>
                         <div class="row border-bt">
                             <div class="col-3 text-inf">Ngày sinh</div>
-                            <div class="col-9 text-tt">05/06/2001</div>
+                            <div class="col-9 text-tt">{{date('d-m-Y', strtotime($user->ngaysinh))}}</div>
                         </div>
                         <div class="row border-bt">
                             <div class="col-3 text-inf">Giới tính</div>
-                            <div class="col-9 text-tt">Nữ</div>
+                            <div class="col-9 text-tt">{{$user->gioitinh == 1 ?"Nam":"Nữ"}}</div>
                         </div>
                         <div class="row border-bt">
                             <div class="col-3 text-inf">Khoa</div>
-                            <div class="col-9 text-tt">Công nghệ thông tin</div>
+                            <div class="col-9 text-tt">{{$user->khoa->ten_khoa ?? "khongcokhoa"}}</div>
                         </div>
                         <div class="row border-bt">
                             <div class="col-3 text-inf">Trình độ</div>
-                            <div class="col-9 text-tt">Đại học</div>
+                            <div class="col-9 text-tt">{{$user->trinhdo->ten_trinhdo ?? "khongcotrinhdo"}}</div>
                         </div>
                         <div class="row border-bt">
                             <div class="col-3 text-inf">Địa chỉ</div>
-                            <div class="col-9 text-tt">Xã Tân An Hội, Huyện Mang Thít, tỉnh Vĩnh Long</div>
+                            <div class="col-9 text-tt">{{$user->diachi}}</div>
                         </div>
                         <div class="row border-bt">
                             <div class="col-3 text-inf">Liên hệ</div>
-                            <div class="col-9 text-tt">0364595601</div>
+                            <div class="col-9 text-tt">{{$user->lienhe}}</div>
                         </div>
                         <div class="row mt-3 mb-3">
                             <div class="col-12 text-center">
                                 <a href="{{ route ('client.update_info') }}">
                                     <button type="button" class="btn btn-warning" style="color: white">
                                         Cập nhật thông tin</button>
-                                </a>                                
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -90,43 +90,38 @@
                         <table class="table">
                             <thead>
                                 <th>Mã giáo trình</th>
-                                <th>Tên giáo trình</th>                                
+                                <th>Tên giáo trình</th>
                                 <th>Trạng thái</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="text-center">CT111</td>
-                                    <td>Cấu trúc dữ liệu</td>
-                                    {{-- <td class="text-center">
-                                        <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
-                                    </td> --}}
-                                    <td class="text-center">
-                                        <a href="#"><i class="fa-sharp fa-solid fa-check-double"
+                                @if (!empty($allGiaoTrinh) &&  $allGiaoTrinh->count() > 0 )
+                                    @foreach ($allGiaoTrinh as $giaotrinh)
+                                    <tr>
+                                        <td class="text-center">{{$giaotrinh->ma_gt}}</td>
+                                        <td>{{$giaotrinh->ten_gt}}</td>
+                                        {{-- <td class="text-center">
+                                            <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
+                                        </td> --}}
+                                        <td class="text-center">
+                                            @if ($giaotrinh->status == 0)
+                                            <a href="#"><i class="fa-sharp fa-solid fa-check-double"
+                                                style="color: red;"></i></a>
+                                            @else
+                                            <a href="#"><i class="fa-sharp fa-solid fa-check-double"
                                                 style="color: green;"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">CT222</td>
-                                    <td>Lập trình hướng đối tượng</td>
-                                    {{-- <td class="text-center">
-                                        <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
-                                    </td> --}}
-                                    <td class="text-center">
-                                        <a href="#"><i class="fa-sharp fa-solid fa-check-double"
-                                                style="color: green;"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">CT333</td>
-                                    <td>Quản lý dự án phần mềm</td>
-                                    {{-- <td class="text-center">
-                                        <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
-                                    </td> --}}
-                                    <td class="text-center">
-                                        <a href="#"><i class="fa-sharp fa-solid fa-check-double"
-                                                style="color: green;"></i></a>
-                                    </td>
-                                </tr>
+
+                                            @endif
+
+
+
+
+
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+
+
                             </tbody>
                         </table>
                     </div>
