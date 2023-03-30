@@ -16,6 +16,7 @@ class UserController extends Controller
     //
     public function  listUser (){
         $users = User::all();
+        $total_user = User::all()->count();
         return view('admin.user',compact('users'));
     }
 

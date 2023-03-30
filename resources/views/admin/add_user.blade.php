@@ -2,7 +2,9 @@
 
 @section('child_page')
     <div class="row">
-        <h4 class="txt-header">Thêm người dùng</h4>
+       <div class="col-sm-12 text-center text-uppercase mb-3">
+        <h4 class="">Thêm người dùng</h4>
+       </div>
     </div>
     <form action={{route('manage.handle_add_user')}} method="POST">
         @csrf

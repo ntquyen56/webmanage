@@ -10,41 +10,31 @@
                 <thead>
                     <tr class="text-uppercase text-center">
                         <th scope="col">STT</th>
-                        <th scope="col" style="width: 15%;">mã giáo trình</th>
+                        <th scope="col" style="width: 20%;">mã giáo trình</th>
                         <th scope="col">Tên giáo trình</th>
                         <th scope="col">Trạng thái</th>
-                        <th scope="col">Chi tiết</th>
+                        {{-- <th scope="col">Chi tiết</th> --}}
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row" class="text-center">1</th>
-                        <td class="text-center">CT111</td>
-                        <td class="text-left">Lập trình hướng đối tượng</td>
-                        <td class="text-center">
-                            {{-- <input type="checkbox" name="" id="" style="width: 20px;"> --}}
-                            <i class="fa-sharp fa-solid fa-check-double" style="color: green; font-size: 25px;"></i>
-                        </td>
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fa-solid fa-magnifying-glass-plus" style="color: #002B5B; font-size: 25px;"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-center">2</th>
-                        <td class="text-center">CT111</td>
-                        <td class="text-left">Lập trình hướng đối tượng</td>
-                        <td class="text-center">
-                            <input type="checkbox" name="" id="" style="width: 20px;">
-                            {{-- <i class="fa-sharp fa-solid fa-check-double" style="color: green; font-size: 25px;"></i> --}}
-                        </td>
-                        <td class="text-center">
-                            <a href="#">
-                                <i class="fa-solid fa-magnifying-glass-plus" style="color: #002B5B; font-size: 25px;"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @if ($allGiaoTrinh->count() > 0)
+                        @foreach ($allGiaoTrinh as $key=>$giaotrinh)
+                            <tr>
+                                <td>{{ $key+ 1 }}</td>
+                                <td class="text-center">{{ $giaotrinh->ma_gt }}</td>
+                                <td>{{ $giaotrinh->ten_gt }}</td>
+                                <td class="text-center">
+                                    @if ($giaotrinh->status == 0)
+                                        <a href="#"><i class="fa-sharp fa-solid fa-check-double"
+                                                style="color: red;"></i></a>
+                                    @else
+                                        <a href="#"><i class="fa-sharp fa-solid fa-check-double"
+                                                style="color: green;"></i></a>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

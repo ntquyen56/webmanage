@@ -5,16 +5,14 @@
         <div class="col-sm-6">
             <h5>Danh sách người dùng</h5>
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-4">
-            <form class="d-flex" role="search">
-                <input class="form-control mx-2" type="search" placeholder="Nhập nội dung bạn cần tìm...?" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-3 text-center mb-3">
+            <a href="{{ route('manage.add_user') }}">
+                <button type="button" class="btn btn-success">
+                    <i class="fa-solid fa-plus"></i> Thêm người dùng
                 </button>
-              </form>
+            </a>
         </div>
-        <div class="col-sm-1"></div>
     </div>
 
     <table class="table table-bordered border-primary text-center mt-3" style="color: black;" id="mytable">

@@ -29,6 +29,7 @@ class PermissionController extends Controller
             return redirect()->back();
         }catch(\Exception $e){
             return throw new($e->getMessage());
+
         }
     }
 }

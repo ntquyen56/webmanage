@@ -6,7 +6,7 @@
         rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
         rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
-/* #3366FF */
+
 .text-header {
     color: white;
     font-weight: 500;
@@ -24,7 +24,13 @@
 }
 
 /* main */
-
+.main { 
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px;
+    width: 100%;
+}
 .group-main {
     margin: 20px 120px;
     border: grey solid 2px;
@@ -108,7 +114,7 @@
 }
 .txt-calendar {
     font-size: 20px;
-    vertical-align: middle;    
+    vertical-align: middle;
 }
 
 /* publish */
@@ -118,3 +124,37 @@
     border-radius: 4px;
     padding: 2% 6%;
 }
+
+/* register */
+.btn-txt {
+    margin: 3% 45%;
+    color: #b9d2b9;
+    background-color: #2b09b4;
+    border: white solid 2px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.btn-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #555555;
+}
+.btn-input {
+    border: grey solid 2px;
+}
+.txt-a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+/* compilation */
+.main-compilation {
+    margin: 20px 240px;
+    border: grey solid 2px;
+    border-radius: 4px;
+    padding-right: 5%;
+}
+
+

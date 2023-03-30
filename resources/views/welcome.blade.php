@@ -56,7 +56,7 @@
         </div>
     </header>
 
-    <main class="antialiased container-fluid">
+    <main class="antialiased container-fluid main">
 
         {{-- <div class="group-main">
             <div class="row">
@@ -211,7 +211,7 @@
         @yield('child_page')
     </main>
 
-    <footer class="container-fluid">
+    <footer class="container-fluid" style="width: 100%; bottom: 0;">
         <div class="row u-footer">
             <div class="col-12 text-center mb-2 mt-2">
                 Trường Công nghệ thông tin & Truyền thông

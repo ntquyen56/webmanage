@@ -3,7 +3,10 @@
 @section('child_page')
     <div class="group-main-pro">
         <div class="row">
-            <div class="col-sm-12 mt-3 text-center text-uppercase">
+            <div class="col-sm-2 mt-3 text-center">
+                <a href="{{ route ('manage.faculty_list') }}"><i class="fa-solid fa-list" style="font-size: 25px; color: black;"></i></a>
+            </div>
+            <div class="col-sm-10 mt-3 text-uppercase">
                 <h4>Thêm khoa</h4>
             </div>            
         </div>
@@ -21,7 +24,7 @@
                     <div class="col-sm-5"><input type="text" name="ten_khoa" id="" class="input-pr" style=""></div>
                 </div>
                 <div class="row mt-5">
-                    <button type="submit" class="btn btn-success" style="margin-left: 69%; ">Thêm khoa</button>     
+                    <button type="submit" class="btn btn-success" style="margin-left: 55%; ">Thêm khoa</button>     
                 </div>                
             </form>
         </div>

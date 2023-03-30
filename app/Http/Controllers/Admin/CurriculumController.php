@@ -45,6 +45,7 @@ class CurriculumController extends Controller
     }
 
 
+
     public function handle_update_status_curriculum(Request $req){
         try{
             if($req->status == "start"){
@@ -74,5 +75,12 @@ class CurriculumController extends Controller
             throw new \Exception($e->getMessage());
 
         }
+    }
+    public function listCurriculum(){
+
+        $allGiaoTrinh = Curriculum::all();
+        // dd($allGiaoTrinh);
+        return view('curriculum',compact('allGiaoTrinh'));
+
     }
 }

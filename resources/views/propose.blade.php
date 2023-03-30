@@ -20,8 +20,7 @@
                 <div class="row mt-4">
                     <div class="col-sm-4"></div>
                     <div class="col-sm-4 text-center"><button type="button" class="btn btn-success" style="width: 100px;">Đề xuất</button></div>
-                    <div class="col-sm-4"></div>
-                    
+                    <div class="col-sm-4"></div>                    
                 </div>                
             </form>
         </div>

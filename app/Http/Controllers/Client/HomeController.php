@@ -53,5 +53,7 @@ class HomeController extends Controller
         }catch(\Exception $e){
             return throw new \Exception($e->getMessage());
         }
+        // $allGiaoTrinh = Curriculum::limit(3)->get();
+        // return view('home',compact('allGiaoTrinh'));
     }
 }

@@ -25,9 +25,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::get('/home', [HomeController::class,'pageHome'])->name("client");
 
-    Route::get('/curriculum', function () {
-        return view('curriculum');
-    })->name("client.curriculum");
+    Route::get('/curriculum', [CurriculumController::class,'listCurriculum'])->name("client.curriculum");
+
+    // Route::get('/curriculum', function () {
+    //     return view('curriculum');
+    // })->name("client.curriculum");
 
     Route::get('/propose', function () {
         return view('propose');
@@ -52,6 +54,14 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/publish', function () {
         return view('publish');
     })->name("client.publish");
+
+    Route::get('/register', function () {
+        return view('register');
+    })->name("client.register");
+
+    Route::get('/compilation', function () {
+        return view('compilation');
+    })->name("client.compilation");
 });
 // Admin
     Route::prefix('manager')->middleware('admin')->name('manage.')->group(function () {
@@ -62,8 +72,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
                     Route::get('/add_curriculum', function(){
                         return view('admin.add_curriculum');
                     })->name('add_curriculum');
-
-
                     Route::post('/handle_add_curriculum',[CurriculumController::class,'createaCurriculum'])->name('handle_add_curriculum');
 
                     Route::post('/handle_update_status_curriculum',[CurriculumController::class,'handle_update_status_curriculum'])->name('handle_update_curriculum');
@@ -98,10 +106,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/edit_user', function(){
                 return view('admin.edit_user');
             })->name('edit_user');
-
-
-
-
 
 
             Route::get ('/registration_document_list', function(){
@@ -143,6 +147,16 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/role', function(){
                 return view('admin.role');
             })->name('role');
+
+            //truong khoa
+            Route::get ('/browser_one', function(){
+                return view('admin.browser_one');
+            })->name('browser_one');
+
+            //HD truong
+            Route::get ('/browser_two', function(){
+                return view('admin.browser_two');
+            })->name('browser_two');
     });
 
 
