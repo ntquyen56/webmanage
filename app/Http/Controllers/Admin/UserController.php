@@ -16,6 +16,7 @@ class UserController extends Controller
     //
     public function  listUser (){
         $users = User::all();
+        $total_user = User::all()->count();
         return view('admin.user',compact('users'));
     }
 
@@ -23,7 +24,6 @@ class UserController extends Controller
         try{
 
             $allKhoa = Faculty::all();
-
             $allTrinhDo = Level::all();
             return view('admin.add_user',compact('allKhoa', 'allTrinhDo'));
         }catch(\Exception $e){

@@ -14,13 +14,13 @@
             </form> --}}
         </div>
         <div class="col-sm-1"></div>
-        <div class="col-sm-3 text-center">
-            <a href="{{ route ('manage.add_level') }}">
+        <div class="col-sm-3 text-center mb-3">
+            <a href="{{ route('manage.add_level') }}">
                 <button type="button" class="btn btn-success">
                     <i class="fa-solid fa-plus"></i> Thêm trình độ
-                </button>  
-            </a>                     
-        </div>        
+                </button>
+            </a>
+        </div>
     </div>
     <table id="mytable" class="table table-bordered border-primary text-center mt-3" style="color: black;">
         <thead>
@@ -32,17 +32,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($list as $key => $trinhdo)
-            <tr>
-                <th scope="row">{{ $key+1 }}</th>
-                <td>{{ $trinhdo->ma_trinhdo }}</td>
-                <td class="text-left">{{ $trinhdo->ten_trinhdo }}</td>
-                <td>
-                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"
-                            style="color: green; font-size: 25px;"></i></a> |
-                    <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
-                </td>
-            </tr>
+            @foreach ($list as $key => $trinhdo)
+                <tr>
+                    <th scope="row">{{ $key + 1 }}</th>
+                    <td>{{ $trinhdo->ma_trinhdo }}</td>
+                    <td class="text-left">{{ $trinhdo->ten_trinhdo }}</td>
+                    <td>
+                        <a href="{{ URL::to('manage/edit_level/' . $trinhdo->id_trinhdo) }}"><i
+                                class="fa-sharp fa-regular fa-pen-to-square" style="color: green; font-size: 25px;"></i></a>
+                        |
+                        <a onclick="return confirm('Bạn có muốn xóa không?')"
+                            href="{{ URL::to('manage/delete_level/' . $trinhdo->id_trinhdo) }}"><i
+                                class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
+                    </td>
+                </tr>
             @endforeach
         </tbody>
     </table>

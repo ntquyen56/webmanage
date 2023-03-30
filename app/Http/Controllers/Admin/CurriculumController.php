@@ -42,4 +42,11 @@ class CurriculumController extends Controller
 
         }
     }
+
+    public function listCurriculum(){
+      
+        $allGiaoTrinh = Curriculum::all();
+        // dd($allGiaoTrinh);
+        return view('curriculum',compact('allGiaoTrinh'));
+    }
 }

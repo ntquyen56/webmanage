@@ -36,14 +36,14 @@
                             <input type="checkbox" name="" id=""> Hội đồng trường
                         </div>
                         <div class="col-sm-3">
-                            <input type="checkbox" name="" id=""> Chủ tịch HĐNT
+                            <input type="checkbox" name="" id=""> Trưởng khoa
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="checkbox" name="" id=""> HĐNT
                         </div>
                         <div class="col-sm-3">
                             <input type="checkbox" name="" id=""> Thư ký
-                        </div>
-                        <div class="col-sm-3">
-                            <input type="checkbox" name="" id=""> Thành viên HĐNT
-                        </div>
+                        </div>                        
                     </div>
                 </td>          
             </tr>            

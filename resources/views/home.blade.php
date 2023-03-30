@@ -58,32 +58,32 @@
                         <div class="col-3 mt-2">
                             <div class="gr-icon text-center">
                                 <a href="{{ route ('client.result') }}" style="text-decoration: none;">
-                                    <i class="fa-solid fa-book-open" style="color: #54B435; font-size: 45px;"></i>
-                                    <p class="text-hright">Kết quả biên soạn</p>
+                                    <i class="fa-solid fa-book-open" style="color: #54B435; font-size: 30px;"></i>
+                                    <p class="text-hright">Kết quả</p>
                                 </a>
                             </div>
                         </div>
                         <div class="col-3 mt-2">
                             <div class="gr-icon text-center">
                                 <a href="{{ route ('client.calendar') }}" style="text-decoration: none;">
-                                    <i class="fa-regular fa-calendar-days"style="color: #5DA7DB; font-size: 45px;"></i>
-                                    <p class="text-hright">Lịch nghiệm thu</p>
+                                    <i class="fa-regular fa-calendar-days"style="color: #5DA7DB; font-size: 30px;"></i>
+                                    <p class="text-hright txt-right">Lịch</p>
                                 </a>
                             </div>
                         </div>
                         <div class="col-3 mt-2">
                             <div class="gr-icon text-center">
                                 <a href="{{ route ('client.publish') }}" style="text-decoration: none;">
-                                    <i class="fa-solid fa-print" style="color: grey; font-size: 45px;"></i>
-                                    <p class="text-hright">Xuất bản</p>
+                                    <i class="fa-solid fa-print" style="color: grey; font-size: 30px;"></i>
+                                    <p class="text-hright txt-right">Xuất bản</p>
                                 </a>
                             </div>
                         </div>
                         <div class="col-3 mt-2">
                             <div class="gr-icon text-center">
-                                <a href="#" style="text-decoration: none;">
-                                    <i class="fa-solid fa-user-pen"></i>
-                                    <p class="text-hright">Đăng kí</p>
+                                <a href="{{ route ('client.register') }}" style="text-decoration: none;">
+                                    <i class="fa-solid fa-user-pen" style="color: rgb(232, 229, 18); font-size: 30px;"></i>
+                                    <p class="text-hright txt-right">Đăng kí</p>
                                 </a>
                             </div>
                         </div>
@@ -92,7 +92,13 @@
 
                 <div class="border border-secondary group">
                     <div class="row border-bt">
-                        <h6 class="text-uppercase text-center mt-2">đăng kí biên soạn</h6>
+                        <div class="col-sm-6"> <h6 class="text-uppercase mt-2 mx-2">đăng kí biên soạn</h6></div>
+                        <div class="col-sm-6 text-end">
+                            <a href="{{ route ('client.compilation') }}" class="txt-a">
+                                <i class="fa-solid fa-check-to-slot" style="color: #54B435"></i> 
+                                Biên soạn
+                            </a>                            
+                        </div>
                     </div>
                     <div class="row" style="margin: 6px 6px;">
                         <table class="table">
@@ -107,9 +113,6 @@
                                     <tr>
                                         <td class="text-center">{{$giaotrinh->ma_gt}}</td>
                                         <td>{{$giaotrinh->ten_gt}}</td>
-                                        {{-- <td class="text-center">
-                                            <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
-                                        </td> --}}
                                         <td class="text-center">
                                             @if ($giaotrinh->status == 0)
                                             <a href="#"><i class="fa-sharp fa-solid fa-check-double"
@@ -117,19 +120,11 @@
                                             @else
                                             <a href="#"><i class="fa-sharp fa-solid fa-check-double"
                                                 style="color: green;"></i></a>
-
                                             @endif
-
-
-
-
-
                                         </td>
                                     </tr>
                                     @endforeach
                                 @endif
-
-
                             </tbody>
                         </table>
                     </div>
@@ -149,7 +144,6 @@
                             </a>
                         </div>
                         <div class="col-1"></div>
-
                     </div>
                 </div>
             </div>
