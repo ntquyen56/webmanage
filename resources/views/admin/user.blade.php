@@ -43,10 +43,15 @@
                             <a href="{{ URL::to('manager/edit_user/' . $user->id) }}"><i
                                     class="fa-sharp fa-regular fa-pen-to-square"
                                     style="color: green; font-size: 25px;"></i></a>
-                            |
+
+                                    @if (Auth::user()->id != $user->id && Auth::user()->group_id ==1)
+                                    |
+
                             <a onclick="return confirm('Bạn có muốn xóa không?')"
-                                href="{{ URL::to('manager/delete_user/' . $user->id) }}"><i class="fa-sharp fa-solid fa-trash"
-                                    style="color: red; font-size: 25px;"></i></a>
+                            href="{{ URL::to('manager/delete_user/' . $user->id) }}"><i class="fa-sharp fa-solid fa-trash"
+                            style="color: red; font-size: 25px;"></i></a>
+                            @endif
+
                         </td>
                     </tr>
                 @endforeach

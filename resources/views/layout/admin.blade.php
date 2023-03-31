@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +20,7 @@
         rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{asset('admins')}}/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 </head>
 
 <body id="page-top">
@@ -58,6 +58,7 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
+        @if(Auth::user()->group_id ==1)
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -177,6 +178,12 @@
                 </div>
             </div>
         </li>
+
+        @endif
+
+
+        @if(Auth::user()->group_id ==1 || Auth::user()->position == 2)
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
                 aria-expanded="true" aria-controls="collapseTwo">
@@ -189,6 +196,11 @@
                 </div>
             </div>
         </li>
+        @endif
+
+
+        @if(Auth::user()->group_id ==1 || Auth::user()->position == 1)
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTenty"
                 aria-expanded="true" aria-controls="collapseTwo">
@@ -201,6 +213,9 @@
                 </div>
             </div>
         </li>
+        @endif
+        @if(Auth::user()->group_id ==1 || Auth::user()->position == 3)
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight2"
                 aria-expanded="true" aria-controls="collapseTwo">
@@ -213,6 +228,8 @@
                 </div>
             </div>
         </li>
+        @endif
+
     </ul>
     <!-- End of Sidebar -->
 
@@ -498,6 +515,7 @@
     <script src="{{asset('admins')}}/js/demo/chart-area-demo.js"></script>
     <script src="{{asset('admins')}}/js/demo/chart-pie-demo.js"></script>
     <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
   <script>
       $(document).ready(function() {
           $('#mytable').DataTable({
@@ -521,6 +539,9 @@
       });
   </script>
   {{--  --}}
+
+
+  @yield('js')
 
 </body>
 
