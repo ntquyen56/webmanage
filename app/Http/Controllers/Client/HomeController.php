@@ -7,6 +7,7 @@ use App\Models\Curriculum;
 use App\Models\Faculty;
 use App\Models\Level;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,8 @@ class HomeController extends Controller
     //
 
     public function pageHome(){
-        $allGiaoTrinh = Curriculum::whereNotNull('status')->limit(3)->get();
+        $allGiaoTrinh = Curriculum::where('status','<>',Carbon::create(0, 0, 0, 0, 0, 0))->limit(3)->get();
+        // dd($allGiaoTrinh);
         $user = User::where('id',Auth::user()->id)->first();
 
         return view('home',compact('allGiaoTrinh','user'));
@@ -23,9 +25,9 @@ class HomeController extends Controller
 
     public function  showFromUpdate(){
         $allKhoa = Faculty::all();
-
         $allTrinhDo = Level::all();
         $user = User::where('id',Auth::user()->id)->first();
+        // dd($user);
         return view('update_info',compact('allTrinhDo','allKhoa','user'));
     }
 

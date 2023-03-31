@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Client\Curr;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\LevelController;
@@ -24,6 +25,8 @@ use App\Http\Controllers\LevelController;
 Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::get('/home', [HomeController::class,'pageHome'])->name("client");
+    Route::get('/', [HomeController::class,'pageHome'])->name("client");
+
 
     Route::get('/curriculum', [CurriculumController::class,'listCurriculum'])->name("client.curriculum");
 
@@ -55,13 +58,17 @@ Route::prefix('/')->middleware('auth')->group(function () {
         return view('publish');
     })->name("client.publish");
 
-    Route::get('/register', function () {
-        return view('register');
-    })->name("client.register");
+    Route::get('/register',[Curr::class,'showFromRegister'])->name("client.register");
 
     Route::get('/compilation', function () {
         return view('compilation');
     })->name("client.compilation");
+
+
+
+    Route::prefix('currClient')->name('currClient.')->group(function () {
+            route::post('handle_register_curr',[Curr::class,'registerCurr'])->name('handle_register_curr');
+    });
 });
 // Admin
     Route::prefix('manager')->middleware('admin')->name('manage.')->group(function () {
@@ -93,19 +100,21 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
             //user
             Route::get ('/user', [UserController::class,'listUser'])->name('user');
-
             Route::get ('/add_user',[UserController::class,'showFrom'])->name('add_user');
             Route::post ('/handle_add_user',[UserController::class,'createAccountUser'])->name('handle_add_user');
+            Route::get('/edit_user/{id}', [UserController::class, 'edit_user'])->name('edit_user');
+            Route::post('/handle_edit_user/{id}', [UserController::class, 'handle_edit_user'])->name('handle_edit_user');
 
+            Route::get('/delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
             //end user
 
             Route::get ('/detail_user', function(){
                 return view('admin.detail_user');
             })->name('detail_user');
 
-            Route::get ('/edit_user', function(){
-                return view('admin.edit_user');
-            })->name('edit_user');
+            // Route::get ('/edit_user', function(){
+            //     return view('admin.edit_user');
+            // })->name('edit_user');
 
 
             Route::get ('/registration_document_list', function(){
@@ -142,11 +151,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::post ('/handle_permission',[PermissionController::class,'handle_permission'] )->name('handle_permission');
 
 
+            Route::get ('/role', [PermissionController::class,'showListRole'])->name('role');
+            Route::post ('/handleGrantPossition', [PermissionController::class,'handleGrantPossition'])->name('handleGrantPossition');
+
             //end permission
 
-            Route::get ('/role', function(){
-                return view('admin.role');
-            })->name('role');
 
             //truong khoa
             Route::get ('/browser_one', function(){
@@ -157,6 +166,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/browser_two', function(){
                 return view('admin.browser_two');
             })->name('browser_two');
+
+            //HD nghiem thu
+            Route::get ('/acceptance', function(){
+                return view('admin.acceptance');
+            })->name('acceptance');
     });
 
 

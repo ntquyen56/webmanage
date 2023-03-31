@@ -24,12 +24,15 @@ class DatabaseSeeder extends Seeder
 
 
         DB::table('users')->insert([
+            'magv' => 'gv111',
             'name' => 'quyen2',
             'email' => 'quyen2@cit.edu.vn',
             'password' => Hash::make(123456789),
             'group_id' => 10,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
+            'id_khoa' => 8,
+            'id_trinhdo' => 3,
 
         ]);
     }

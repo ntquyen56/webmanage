@@ -8,9 +8,12 @@ use App\Models\Faculty;
 use App\Models\Level;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+
 class UserController extends Controller
 {
     //
@@ -24,7 +27,6 @@ class UserController extends Controller
         try{
 
             $allKhoa = Faculty::all();
-
             $allTrinhDo = Level::all();
             return view('admin.add_user',compact('allKhoa', 'allTrinhDo'));
         }catch(\Exception $e){
@@ -81,5 +83,36 @@ class UserController extends Controller
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
+    }
+
+    public function edit_user($id){
+        $allKhoa = Faculty::all();
+        $allTrinhDo = Level::all();
+        $user = User::where('id',$id)->first();
+        // dd($user->id);
+        return view('admin.edit_user',compact('allTrinhDo','allKhoa','user'));
+    }
+
+    public function handle_edit_user(Request $req, $id){
+        $user  =  User::where('id',$id)->first();
+        if(!$user) return  throw new \Exception('user khong ton tai');
+        $user->name = $req->tengv;
+        $user->lienhe = $req->lienhe;
+        $user->id_khoa = $req->khoa;
+        $user->id_trinhdo = $req->trinhdo;
+        $user->ngaysinh = $req->ngaysinh;
+        $user->gioitinh = $req->gioitinh;
+        $user->diachi = $req->diachi;
+
+
+        $user->update();
+
+        return redirect()->route('manage.user');
+
+    }
+
+    public function delete_user($id){
+        User::find($id)->delete();
+        return redirect()->back();
     }
 }
