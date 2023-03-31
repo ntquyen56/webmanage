@@ -108,21 +108,14 @@
                                 <th>Trạng thái</th>
                             </thead>
                             <tbody>
-<<<<<<< HEAD
                                 @if (!empty($allGiaoTrinh) &&  $allGiaoTrinh->count() > 0 )
-=======
-                                @if ($allGiaoTrinh->count() > 0 )
->>>>>>> 581fbb464572f72eec7a8aa9ff5486b5f6bce971
                                     @foreach ($allGiaoTrinh as $giaotrinh)
                                     <tr>
                                         <td class="text-center">{{$giaotrinh->ma_gt}}</td>
                                         <td>{{$giaotrinh->ten_gt}}</td>
-<<<<<<< HEAD
                                         {{-- <td class="text-center">
                                             <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
                                         </td> --}}
-=======
->>>>>>> 581fbb464572f72eec7a8aa9ff5486b5f6bce971
                                         <td class="text-center">
                                             @if ($giaotrinh->status == 0)
                                             <a href="#"><i class="fa-sharp fa-solid fa-check-double"
@@ -130,7 +123,6 @@
                                             @else
                                             <a href="#"><i class="fa-sharp fa-solid fa-check-double"
                                                 style="color: green;"></i></a>
-<<<<<<< HEAD
 
                                             @endif
 
@@ -138,18 +130,12 @@
 
 
 
-=======
-                                            @endif
->>>>>>> 581fbb464572f72eec7a8aa9ff5486b5f6bce971
                                         </td>
                                     </tr>
                                     @endforeach
                                 @endif
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 581fbb464572f72eec7a8aa9ff5486b5f6bce971
                             </tbody>
                         </table>
                     </div>
