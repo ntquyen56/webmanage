@@ -23,9 +23,9 @@ class HomeController extends Controller
 
     public function  showFromUpdate(){
         $allKhoa = Faculty::all();
-
         $allTrinhDo = Level::all();
         $user = User::where('id',Auth::user()->id)->first();
+        // dd($user);
         return view('update_info',compact('allTrinhDo','allKhoa','user'));
     }
 

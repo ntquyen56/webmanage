@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CurriculumController extends Controller
 {
 
-     const PER_PAGE = 3;
+     const PER_PAGE = 10;
 
 
     //

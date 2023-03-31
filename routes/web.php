@@ -93,19 +93,19 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
             //user
             Route::get ('/user', [UserController::class,'listUser'])->name('user');
-
             Route::get ('/add_user',[UserController::class,'showFrom'])->name('add_user');
             Route::post ('/handle_add_user',[UserController::class,'createAccountUser'])->name('handle_add_user');
-
+            Route::get('/edit_user/{id}', [UserController::class, 'edit_user'])->name('edit_user');
+            Route::get('/delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
             //end user
 
             Route::get ('/detail_user', function(){
                 return view('admin.detail_user');
             })->name('detail_user');
 
-            Route::get ('/edit_user', function(){
-                return view('admin.edit_user');
-            })->name('edit_user');
+            // Route::get ('/edit_user', function(){
+            //     return view('admin.edit_user');
+            // })->name('edit_user');
 
 
             Route::get ('/registration_document_list', function(){
@@ -157,6 +157,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/browser_two', function(){
                 return view('admin.browser_two');
             })->name('browser_two');
+            
+            //HD nghiem thu
+            Route::get ('/acceptance', function(){
+                return view('admin.acceptance');
+            })->name('acceptance');
     });
 
 

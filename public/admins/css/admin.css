@@ -27,7 +27,7 @@
 
 /* edit_user */
 .txt-edit {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 /* add_curriculum */
@@ -35,10 +35,6 @@
     margin: 20px 240px;
     border: grey solid 2px;
     border-radius: 4px;
-<<<<<<< HEAD
-=======
-    margin-top: 10%;
->>>>>>> 21989622e1bdcfff282ed50ed2aa73c125c8d89e
 }
 .input-pr {
     height: 35px;
@@ -47,5 +43,11 @@
 }
 .txt-add {
     font-size: 20px;
+    font-weight: 600;
+}
+
+/* acceptance */
+.txt-acc {
+    font-size: 18px;
     font-weight: 600;
 }

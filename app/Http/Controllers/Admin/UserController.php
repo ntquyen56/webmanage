@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+
 class UserController extends Controller
 {
     //
@@ -24,7 +26,6 @@ class UserController extends Controller
         try{
 
             $allKhoa = Faculty::all();
-
             $allTrinhDo = Level::all();
             return view('admin.add_user',compact('allKhoa', 'allTrinhDo'));
         }catch(\Exception $e){
@@ -81,5 +82,25 @@ class UserController extends Controller
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
+    }
+
+    public function edit_user($id){
+        $edit = User::find($id);
+        return view('admin.edit_user')
+            ->with('edit', $edit);
+    }
+
+    // public function update_user(Request $request, $id){
+    //     $data = $request->all();
+    //     $user = User::find($id);
+    //     $users->magv = $data['magv'];
+    //     $users->name = $data['name'];
+    //     $users->save();
+    //     return Redirect::to('manage/user');
+    // }
+
+    public function delete_user($id){
+        User::find($id)->delete();
+        return redirect()->back();
     }
 }

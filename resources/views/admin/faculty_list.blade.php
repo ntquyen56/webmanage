@@ -32,7 +32,9 @@
                     <td>
                         <a href="{{ URL::to('manage/edit_faculty/'.$khoa->id_khoa) }}"><i class="fa-sharp fa-regular fa-pen-to-square"
                                 style="color: green; font-size: 25px;"></i></a> |
-                        <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{ URL::to('manage/delete_faculty/'.$khoa->id_khoa) }}"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
+                        <a onclick="return confirm('Bạn có muốn xóa không?')" 
+                        href="{{ URL::to('manage/delete_faculty/'.$khoa->id_khoa) }}">
+                        <i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
                     </td>
                 </tr>
             @endforeach

@@ -209,7 +209,7 @@
             </a>
             <div id="collapseEight2" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('manage.faculty_list') }}">Danh sách khoa</a>
+                    <a class="collapse-item" href="{{ route('manage.acceptance') }}">Nghiệm thu</a>
                 </div>
             </div>
         </li>
