@@ -103,7 +103,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/add_user',[UserController::class,'showFrom'])->name('add_user');
             Route::post ('/handle_add_user',[UserController::class,'createAccountUser'])->name('handle_add_user');
             Route::get('/edit_user/{id}', [UserController::class, 'edit_user'])->name('edit_user');
+
             Route::post('/handle_edit_user/{id}', [UserController::class, 'handle_edit_user'])->name('handle_edit_user');
+
 
             Route::get('/delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
             //end user

@@ -86,6 +86,7 @@ class UserController extends Controller
     }
 
     public function edit_user($id){
+
         $allKhoa = Faculty::all();
         $allTrinhDo = Level::all();
         $user = User::where('id',$id)->first();
@@ -110,6 +111,7 @@ class UserController extends Controller
         return redirect()->route('manage.user');
 
     }
+
 
     public function delete_user($id){
         User::find($id)->delete();

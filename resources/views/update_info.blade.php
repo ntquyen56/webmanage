@@ -19,7 +19,9 @@
                         </div> --}}
                         <div class="row mt-3">
                             <div class="col-sm-4 text-right">Tên giảng viên</div>
+
                             <div class="col-sm-8"><input type="text" name="tengv"  value="{{$user->name}}" id="" style="height: 125%; border: grey solid 2px;"></div>
+
                         </div>
                         {{-- <div class="row mt-3">
                             <div class="col-sm-4 text-right">Email</div>
