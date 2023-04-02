@@ -46,7 +46,14 @@ class PermissionController extends Controller
 
     public function handleGrantPossition(Request $req){
         try{
+
             $user = User::where('id',$req->user_id)->first();
+            if($req->clear){
+                $user->position =0;
+                $user->save();
+            return redirect()->back();
+
+            }
             if(empty($user)) return  redirect()->back()->with('msg','Account khong ton tai');
 
             if($req->position ==2){

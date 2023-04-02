@@ -11,4 +11,14 @@ class dang_ki_bien_soan extends Model
     protected $table = "dang_ki_bien_soan";
 
     protected $guarded = [];
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_gtdk', 'giaotrinh_id', 'user_id')->withTimestamps();
+    }
+
+    public function khoa (){
+        return $this->belongsTo(Faculty::class,'id_khoa','id_khoa');
+    }
 }

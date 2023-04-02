@@ -22,10 +22,10 @@
     <table class="table table-bordered border-primary text-center mt-3" style="color: black;">
         <thead>
             <tr class="text-uppercase">
-                <th scope="col">stt</th>
-                <th scope="col">mã</th>
-                <th scope="col" class="text-left" style="width: 30%;">tên người dùng</th>
-                <th scope="col-2" style="width: 60%;">vai trò</th>
+                <th scope="col-2">stt</th>
+                <th scope="col-2">mã</th>
+                <th scope="col-2" class="text-left" style="width: 30%;">tên người dùng</th>
+                <th  style="width: 70%;">vai trò</th>
             </tr>
         </thead>
         <tbody>
@@ -90,6 +90,13 @@
                                   </div>
                                 </div>
                               </div> --}}
+                        </form>
+
+                        <form action={{route('manage.handleGrantPossition')}} method="post">
+                            @csrf
+                            <input type="hidden" name="user_id" value="{{$user->id}}">
+                            <input type="hidden" name="clear" value="{{$user->id}}">
+                            <button type="submit">Xóa vai trò</button>
                         </form>
                     </td>
                 </tr>
