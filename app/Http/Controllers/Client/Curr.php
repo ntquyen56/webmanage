@@ -26,6 +26,9 @@ class Curr extends Controller
 
         try{
             $giaotrinh = Curriculum::where('ma_gt',$req->magt)->first();
+            $dkgt = dang_ki_bien_soan::where('ma_gt',$req->magt)->first();
+            if(!empty($dkgt)) return redirect()->back()->with('msg','Giao trinh đã được đăng kí!');
+
             if(empty($giaotrinh)) return redirect()->back()->with('msg','Giao trinh khong ton tai');
 
             $allTacgia = explode('-', $req->allTacGia);
@@ -47,7 +50,7 @@ class Curr extends Controller
 
             $newDKBS->ma_gt = $req->magt;
 
-            $newDKBS->ten_gt = $req->tengt;
+            $newDKBS->ten_gt = $giaotrinh->ten_gt;
             $newDKBS->loai_gt = $req->loaigt;
             $newDKBS->id_khoa = $req->khoa;
 
@@ -62,7 +65,7 @@ class Curr extends Controller
 
                 $newUserGt->user_id = $tacgia->id;
 
-                $newUserGt->giaotrinh_id = $giaotrinh->id;
+                $newUserGt->giaotrinh_id = $newDKBS->id;
 
 
                 $newUserGt->save();

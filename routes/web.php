@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrowserController;
 use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\UserController;
@@ -60,10 +61,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::get('/register',[Curr::class,'showFromRegister'])->name("client.register");
 
-    Route::get('/compilation', function () {
-        return view('compilation');
-    })->name("client.compilation");
+    Route::get('/compilation',[BrowserController::class,'showListCurrRegisterClient'])->name("client.compilation");
 
+    Route::post('/upload_document',[BrowserController::class,'upload_document'])->name("client.upload_document");
 
 
     Route::prefix('currClient')->name('currClient.')->group(function () {
@@ -158,14 +158,12 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
 
             //truong khoa
-            Route::get ('/browser_one', function(){
-                return view('admin.browser_one');
-            })->name('browser_one');
+            Route::get ('/browser_one',[BrowserController::class,'showListBrowserOne'] )->name('browser_one');
+            Route::post ('/hanle_browser_one',[BrowserController::class,'hanle_browser_one'] )->name('hanle_browser_one');
 
             //HD truong
-            Route::get ('/browser_two', function(){
-                return view('admin.browser_two');
-            })->name('browser_two');
+            Route::get ('/browser_two',[BrowserController::class,'showListBrowserTwo']  )->name('browser_two');
+            Route::post ('/hanle_browser_two',[BrowserController::class,'hanle_browser_two'] )->name('hanle_browser_two');
 
             //HD nghiem thu
             Route::get ('/acceptance', function(){
