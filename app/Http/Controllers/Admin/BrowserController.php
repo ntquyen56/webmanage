@@ -170,6 +170,7 @@ class BrowserController extends Controller
 
                 $gt->messageStatus = $mesageStatus;
                 $gt->browsered = $browsered;
+                $browsered =0;
 
             }
             return view('compilation',compact('gtdk'));

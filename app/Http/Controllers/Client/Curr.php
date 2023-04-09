@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Curriculum;
 use App\Models\dang_ki_bien_soan;
 use App\Models\Faculty;
+use App\Models\Term;
+use App\Models\Type;
 use App\Models\User;
 use App\Models\user_gtdk;
 use Illuminate\Http\Request;
@@ -17,41 +19,55 @@ class Curr extends Controller
     public function showFromRegister(){
         try{
             $allKhoa = Faculty::all();
-            return view('register',compact('allKhoa'));
+            $allHocPhan = Term::all();
+            $allLoai = Type::all();
+            $allGiangVien = User::where('group_id','<>',1)->where('position',0)->where('id','<>',Auth::user()->id)->get();
+
+
+
+            return view('register',compact('allKhoa','allHocPhan','allLoai','allGiangVien'));
         }catch(\Exception $e ){
             throw new($e->getMessage());
 
         }
     }
+
+
+    /**
+     * @param $request input
+     * @return void
+     */
     public function registerCurr(Request $req){
 
         try{
-            $giaotrinh = Curriculum::where('ma_gt',$req->magt)->first();
-            $dkgt = dang_ki_bien_soan::where('ma_gt',$req->magt)->first();
-            if(!empty($dkgt)) return redirect()->back()->with('msg','Giao trinh đã được đăng kí!');
+            // dd($req->input());
+            if($req->loai == 'GT'){
 
-            if(empty($giaotrinh)) return redirect()->back()->with('msg','Giao trinh khong ton tai');
-
-            $allTacgia = explode('-', $req->allTacGia);
-
-            $check = 0;
-            foreach($allTacgia as $matacgia){
-                $tacgia = User::where('magv',$matacgia)->first();
-                if(empty($tacgia)){
-                    $check =1;
-                    break;
-                }
-                $check =0;
+                $hocphan = Term::where('ma_hp',$req->ma_hp)->first();
+                if(empty($hocphan)) return redirect()->back()->with('msg','Hoc phan khong ton tai');
             }
 
-            if($check == 1 ) return redirect()->back()->with('msg','Ma tac gia chua dung! Vui long kiem tra lai.');
 
+
+            $dkgt = dang_ki_bien_soan::where('ma_gt',$req->ma_hp)->orWhere('ten_gt',$req->tengt)->first();
+            if(!empty($dkgt)) return redirect()->back()->with('msg','Hoc phan đã được đăng kí!');
+
+
+            $allTacgia = $req->tacgia;
 
             $newDKBS = new dang_ki_bien_soan();
+            if($req->loai == 'GT'){
 
-            $newDKBS->ma_gt = $req->magt;
+                $newDKBS->ma_gt = $req->ma_hp;
+                $newDKBS->ten_gt = $hocphan->ten_hp;
 
-            $newDKBS->ten_gt = $giaotrinh->ten_gt;
+            }else{
+                $newDKBS->ma_gt = '';
+                if(empty($req->tengt)) return redirect()->back()->with('msg','Tai lieu tham khao phải có tên.');
+                $newDKBS->ten_gt = $req->tengt;
+
+            }
+
             $newDKBS->loai_gt = $req->loaigt;
             $newDKBS->id_khoa = $req->khoa;
 

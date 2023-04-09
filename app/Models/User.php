@@ -58,4 +58,8 @@ class User extends Authenticatable
     function khoa(){
         return  $this->belongsTo(Faculty::class,'id_khoa','id_khoa');
     }
+
+    function roles(){
+        return  $this->hasMany(user_role::class,'user_id','id');
+    }
 }

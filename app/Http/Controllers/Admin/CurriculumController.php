@@ -35,7 +35,13 @@ class CurriculumController extends Controller
 
             $curriculums = Curriculum::orderBy('created_at', 'desc');
             $curriculums =   $curriculums->paginate(self::PER_PAGE);
-            return view('admin.registration_list',compact('curriculums'));
+
+            $checkStatus = Curriculum::where('statusInt',0)->get();
+            // dd(!empty($checkStatus),$checkStatus);
+            $check =1;
+            if(($checkStatus->count() > 0)) $check =0;
+            // dd($checkStatus->count() > 0);
+            return view('admin.registration_list',compact('curriculums','check'));
 
 
         }catch(\Exception $e){
@@ -49,28 +55,18 @@ class CurriculumController extends Controller
     public function handle_update_status_curriculum(Request $req){
         try{
             if($req->status == "start"){
-                $curr = Curriculum::where('id',$req->id)->first();
-                if(!$curr)  throw new \Exception('Giao trinh khong ton tai');
 
-                $curr->status = Carbon::now();
-
-                $curr->update();
-
-
-                return redirect()->back();
-
+                Curriculum::where('id','<>',0)->update([
+                    "status"=> date("Y-m-d H:i:s"),
+                    'statusInt' => 1
+                ]);
             }else{
-                $curr = Curriculum::where('id',$req->id)->first();
-                if(!$curr)  throw new \Exception('Giao trinh khong ton tai');
-
-                $curr->status = null;
-
-                $curr->update();
-
-
-                return redirect()->back();
+                Curriculum::where('id','<>',0)->update([
+                    "status"=> null,
+                    'statusInt' => 0
+                ]);
             }
-
+            return redirect()->back();
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
 

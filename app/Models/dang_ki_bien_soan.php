@@ -21,4 +21,9 @@ class dang_ki_bien_soan extends Model
     public function khoa (){
         return $this->belongsTo(Faculty::class,'id_khoa','id_khoa');
     }
+
+    public function loai(){
+        return $this->belongsTo(Type::class,'loai_gt','ma_loai');
+
+    }
 }

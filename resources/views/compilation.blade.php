@@ -18,9 +18,10 @@
                     <th>Loại</th>
 
                     <th>Trạng thái</th>
+
                     <th>Đăng ký NT</th>
                     <th>Nộp bài</th>
-                    
+
                 </thead>
                 <tbody>
                     @if ($gtdk->count() > 0)
@@ -33,7 +34,7 @@
                                         <p>{{ $user->magv }} - {{ $user->name }}</p>
                                     @endforeach
                                 </td>
-                                <td>{{ $item->loai_gt == 1 ? 'Giáo trình' : 'Tài liệu tham khảo' }}</td>
+                                <td>{{ $item->loai->ten_loai}}</td>
                                 @if ($item->status == 0)
                                     <td>
                                         <span style="color:red">Chưa duyệt</span>
@@ -51,9 +52,9 @@
                                             <input type="date" name="" id="">
                                             <button type="submit">Đăng ký</button>
                                         </form>
-                                    </td>                                    
+                                    </td>
                                 </tr> --}}
-
+                                <td></td>
                                 @if ($item->browsered == 1)
                                     <td style="vertical-align: middle;">
                                         <p>
@@ -80,7 +81,7 @@
                                 </p>
                             </td>
                         </tr>
-                        
+
                     @endif
                 </tbody>
             </table>
