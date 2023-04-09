@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('curriculum', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ma_gt');
-            $table->string('ten_gt');
+        Schema::create('loai', function (Blueprint $table) {
+            $table->increments('id_loai');
+            $table->string('ma_loai');
+            $table->string('ten_loai');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curriculum');
+        Schema::dropIfExists('loai');
     }
 };

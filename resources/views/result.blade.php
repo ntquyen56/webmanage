@@ -8,7 +8,8 @@
         </div>
     </div>
     <div class="row" style="margin: 2% 10% 2% 15%;">
-        <div class="col-sm-12">
+        Biên bản thư ký gửi lên đây!!!
+        {{-- <div class="col-sm-12">
             <div class="row bd-result">
                 <div class="col-sm-4 txt-dm">Mã giáo trình</div>
                 <div class="col-sm-8 txt-nd">CT111</div>
@@ -41,7 +42,7 @@
                 <div class="col-sm-4 txt-dm">Ngày xuất bản</div>
                 <div class="col-sm-8 txt-nd">05/06/2023</div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 

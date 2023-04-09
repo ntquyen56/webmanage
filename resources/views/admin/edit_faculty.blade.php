@@ -21,7 +21,7 @@
                     <div class="col-sm-5"><input type="text" name="ten_khoa" id="" value="{{ $edit->ten_khoa }}" class="input-pr" style=""></div>
                 </div>
                 <div class="row mt-5">
-                    <button type="submit" class="btn btn-success" style="margin-left: 69%; ">Cập nhật khoa</button>     
+                    <button type="submit" class="btn btn-success" style="">Cập nhật khoa</button>     
                 </div>                
             </form>
         </div>

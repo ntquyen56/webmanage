@@ -9,6 +9,7 @@ use App\Models\Faculty;
 use App\Models\User;
 use App\Models\user_gtdk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Curr extends Controller
 {
@@ -18,7 +19,7 @@ class Curr extends Controller
             $allKhoa = Faculty::all();
             return view('register',compact('allKhoa'));
         }catch(\Exception $e ){
-            return throw new($e->getMessage());
+            throw new($e->getMessage());
 
         }
     }
@@ -70,9 +71,10 @@ class Curr extends Controller
 
                 $newUserGt->save();
             }
-
-
-
+            $newUserGt = new user_gtdk();
+            $newUserGt->user_id = Auth::user()->id;
+            $newUserGt->giaotrinh_id = $newDKBS->id;
+            $newUserGt->save();
 
             return redirect()->back()->with('success','Dang ky giao trinh thanh cong');
 
