@@ -27,6 +27,8 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style> --}}
+
+        @yield('css')
 </head>
 
 <body class="antialiased container-fluid">
@@ -222,6 +224,8 @@
             </div>
         </div>
     </footer>
+
+    @yield('js')
 
 </body>
 

@@ -21,6 +21,24 @@
 
                 </button>
             </a>
+
+                    @if ($check == 0)
+                        <form action="{{route('manage.handle_update_curriculum')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="status" value="start">
+
+                            <button type="submit">Bắt đầu</button>
+                        </form>
+                    @endif
+
+                    @if ($check == 1)
+                        <form action="{{route('manage.handle_update_curriculum')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="status" value="close">
+
+                            <button type="submit">Kết thúc</button>
+                        </form>
+                    @endif
         </div>
 
     </div>
@@ -45,25 +63,6 @@
                     <td class="text-left">{{$curriculum->ten_gt}}</td>
                     <td>{{strtotime($curriculum->status) > 0 && !empty($curriculum->status)  ?"Open":"Close"}}
 
-                    @if (strtotime($curriculum->status) < 0 ||  empty($curriculum->status))
-                        <form action="{{route('manage.handle_update_curriculum')}}" method="post">
-                            @csrf
-                            <input type="hidden" name="id" value="{{$curriculum->id}}">
-                            <input type="hidden" name="status" value="start">
-
-                            <button type="submit">Bắt đầu</button>
-                        </form>
-                    @endif
-
-                    @if (strtotime($curriculum->status) > 0 && !empty($curriculum->status))
-                        <form action="{{route('manage.handle_update_curriculum')}}" method="post">
-                            @csrf
-                            <input type="hidden" name="id" value="{{$curriculum->id}}">
-                            <input type="hidden" name="status" value="close">
-
-                            <button type="submit">Kết thúc</button>
-                        </form>
-                    @endif
 
                     </td>
                     <td>

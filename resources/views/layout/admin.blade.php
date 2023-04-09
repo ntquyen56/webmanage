@@ -210,7 +210,7 @@
         @endif
 
 
-        @if(Auth::user()->group_id ==1 || Auth::user()->position == 2)
+        @if(Auth::user()->group_id ==1 || in_array(1,json_decode(Auth::user()->position,true)))
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
@@ -227,7 +227,7 @@
         @endif
 
 
-        @if(Auth::user()->group_id ==1 || Auth::user()->position == 1)
+        @if(Auth::user()->group_id ==1 || in_array(2,json_decode(Auth::user()->position,true)))
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTenty"
@@ -242,7 +242,7 @@
             </div>
         </li>
         @endif
-        @if(Auth::user()->group_id ==1 || Auth::user()->position == 3)
+        @if(Auth::user()->group_id ==1 || in_array(4,json_decode(Auth::user()->position,true)))
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight2"
