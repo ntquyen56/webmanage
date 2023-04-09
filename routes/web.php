@@ -9,6 +9,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\Curr;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\TermController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\LevelController;
 
 /*
@@ -54,6 +56,10 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/calendar', function () {
         return view('calendar');
     })->name("client.calendar");
+
+    Route::get('/regis_calendar', function () {
+        return view('regis_calendar');
+    })->name("client.regis_calendar");
 
     Route::get('/publish', function () {
         return view('publish');
@@ -148,6 +154,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
             })->name('publish_document_list');
 
 
+            Route::get ('/add_term', function(){
+                return view('admin.add_term');
+            })->name('add_term');
+
+
             //permisssion
             Route::get ('/permission',[PermissionController::class,'listUser'] )->name('permission');
             Route::post ('/handle_permission',[PermissionController::class,'handle_permission'] )->name('handle_permission');
@@ -171,7 +182,12 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/acceptance', function(){
                 return view('admin.acceptance');
             })->name('acceptance');
+            Route::get ('/secretary', function(){
+                return view('admin.secretary');
+            })->name('secretary');
     });
+
+
 
 
 
@@ -181,6 +197,14 @@ Route::get('/manage/add_faculty', function(){
     return view('admin.add_faculty');
 })->name('manage.add_faculty');
 
+Route::get('/manage/add_term', function(){
+    return view('admin.add_term');
+})->name('manage.add_term');
+
+Route::get('/manage/add_typecurr', function(){
+    return view('admin.add_typecurr');
+})->name('manage.add_typecurr');
+
 // Route::get ('/manage/faculty_list', function(){
 //     return view('admin.faculty_list')
 //     ;
@@ -188,13 +212,12 @@ Route::get('/manage/add_faculty', function(){
 
 Route::get ('/manage/faculty_list', [FacultyController::class, 'faculty_list'])->name('manage.faculty_list');
 
-// Route::get ('/manage/level_list', function(){
-//     return view('admin.level_list');
-// })->name('manage.level_list');
 
 Route::get ('/manage/add_level', function(){
     return view('admin.add_level');
 })->name('manage.add_level');
+
+
 
 // Backend
 Route::get('/login', [AdminController::class, 'index'])->name("login");
@@ -209,9 +232,21 @@ Route::get('/manage/edit_faculty/{id_khoa}', [FacultyController::class, 'edit_kh
 Route::post('/update_faculty/{id_khoa}', [FacultyController::class, 'update_khoa']);
 Route::get('/manage/delete_faculty/{id_khoa}', [FacultyController::class, 'delete_khoa']);
 
-Route::get('/manage/level_list', [LevelController::class, 'level_list'])->name('manage.level_list');;
+Route::get ('/manage/type_curr', [TypeController::class, 'typecurr'])->name('manage.type_curr');
+Route::post('/add_typecurr', [TypeController::class, 'add_loai']);
+Route::get('/manage/edit_typecurr/{id_loai}', [TypeController::class, 'edit_loai']);
+Route::post('/update_typecurr/{id_loai}', [TypeController::class, 'update_loai']);
+Route::get('/manage/delete_typecurr/{id_loai}', [TypeController::class, 'delete_loai']);
+
+Route::get('/manage/level_list', [LevelController::class, 'level_list'])->name('manage.level_list');
 Route::post('/add_level', [LevelController::class, 'add_trinhdo']);
 Route::get('/manage/edit_level/{id_trinhdo}', [LevelController::class, 'edit_trinhdo']);
 Route::post('/update_level/{id_trinhdo}', [LevelController::class, 'update_trinhdo']);
 Route::get('/manage/delete_level/{id_trinhdo}', [LevelController::class, 'delete_trinhdo']);
 
+
+Route::get ('/manage/term', [TermController::class, 'term'])->name('manage.term');
+Route::post('/add_term', [TermController::class, 'add_hp']);
+Route::get('/manage/edit_term/{id_hp}', [TermController::class, 'edit_hp']);
+Route::post('/update_term/{id_hp}', [TermController::class, 'update_hp']);
+Route::get('/manage/delete_term/{id_hp}', [TermController::class, 'delete_term']);

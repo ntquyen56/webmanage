@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('curriculum', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ma_gt');
-            $table->string('ten_gt');
+        Schema::create('group_hocphan', function (Blueprint $table) {
+            $table->increments('id_hp');
+            $table->string('ma_hp');
+            $table->string('ten_hp');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curriculum');
+        Schema::dropIfExists('group_hocphan');
     }
 };
