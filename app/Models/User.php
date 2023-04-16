@@ -63,6 +63,11 @@ class User extends Authenticatable
         return  $this->belongsToMany(roles::class,'user_roles','user_id','role_id');
     }
 
+    function roles_user(){
+        return  $this->hasMany(user_role::class,'user_id','id');
+    }
+
+
     function gtdkNT(){
         return $this->hasMany(user_hdnt::class,'hdnt_id','id');
     }
