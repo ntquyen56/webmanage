@@ -19,7 +19,7 @@
 
                     <th>Trạng thái</th>
 
-                    <th>Đăng ký NT</th>
+                    <th>Ngày NT</th>
                     <th>Nộp bài</th>
 
                 </thead>
@@ -45,17 +45,19 @@
                                         <span style="color:black">{{ $item->messageStatus }}</span>
                                     </td>
                                 @endif
-
-                                {{-- <tr>
+                                    @if(!empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT != "khongduyet")
                                     <td>
-                                        <form action="">
-                                            <input type="date" name="" id="">
-                                            <button type="submit">Đăng ký</button>
-                                        </form>
+                                        <p>{{$item->dateNT}}</p>
+                                        <p>Mã NT: {{$item->statusNT}}</p>
                                     </td>
-                                </tr> --}}
-                                <td></td>
-                                @if ($item->browsered == 1)
+                                    @elseif(!empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT == "khongduyet")
+                                        <td>Không duoc duyệt</td>
+
+                                    @else
+
+                                        <td>Đang đợi duyệt</td>
+                                    @endif
+                                @if ($item->browsered == 1 &&  !empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT != "khongduyet" )
                                     <td style="vertical-align: middle;">
                                         <p>
                                             file đã nộp:

@@ -21,7 +21,7 @@ class Curr extends Controller
             $allKhoa = Faculty::all();
             $allHocPhan = Term::all();
             $allLoai = Type::all();
-            $allGiangVien = User::where('group_id','<>',1)->where('position',0)->where('id','<>',Auth::user()->id)->get();
+            $allGiangVien = User::where('group_id','<>',1)->where('id','<>',Auth::user()->id)->get();
 
 
 

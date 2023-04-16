@@ -208,9 +208,16 @@
         </li>
 
         @endif
+        @php
+            $arrRoles = [];
+            if(Auth::user()->roles->count() > 0){
+                foreach (Auth::user()->roles as $key => $role) {
+                    $arrRoles[] =$role->id;
+                }
+            }
+        @endphp
 
-
-        @if(Auth::user()->group_id ==1 || in_array(1,json_decode(Auth::user()->position,true)))
+        @if(Auth::user()->group_id ==1 || in_array(1,$arrRoles))
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTen"
@@ -227,7 +234,7 @@
         @endif
 
 
-        @if(Auth::user()->group_id ==1 || in_array(2,json_decode(Auth::user()->position,true)))
+        @if(Auth::user()->group_id ==1 || in_array(2,$arrRoles)))
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTenty"
@@ -239,10 +246,14 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.browser_two') }}">Danh sách duyệt</a>
                 </div>
+                <div class="bg-white py-2 collapse-inner rounded">
+
+                    <a class="collapse-item" href="{{ route('manage.date') }}">Duyệt nghiệm thu</a>
+                </div>
             </div>
         </li>
         @endif
-        @if(Auth::user()->group_id ==1 || in_array(4,json_decode(Auth::user()->position,true)))
+        @if(Auth::user()->group_id ==1 || in_array(4,$arrRoles)))
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight2"

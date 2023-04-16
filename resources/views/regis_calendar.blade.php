@@ -1,4 +1,14 @@
 @extends('welcome')
+@section('css')
+<link href="{{asset('admins/vendor/select2')}}/select2.min.css" rel="stylesheet" />
+<style>
+    .select2-selection__choice{background-color: #000 !important; color: #fff !important}
+    .select2-container
+    {
+        width:100% !important;
+    }
+</style>
+@endsection
 @section('child_page')
     <div class="main-calendar">
         <div class="row">
@@ -13,31 +23,96 @@
                         <th scope="col" class="txt-calendar">STT</th>
                         <th scope="col" style="width: 8%;">Mã giáo trình</th>
                         <th scope="col" class="txt-calendar">Tên giáo trình</th>
-                        <th scope="col">Hội đồng</th>
+                        <th scope="col">Hội đồng và Ngày đăng ký</th>
                         <th scope="col">Tác giả</th>
-                        <th scope="col">Ngày đăng ký</th>
                     </tr>
                 </thead>
                 <tbody class="txt-calendar">
+                    @if ($gtdk->count() > 0)
+                    @foreach ($gtdk as $key=>$item)
+                        @if ($item->browsered == 1 )
+
+                        <tr>
+                            <td>{{ $key +1 }}</td>
+
+                            <td>{{ $item->ma_gt }}</td>
+                            <td class="text-left">{{ $item->ten_gt }}</td>
+                            <td>
+                                @if (!empty($item->dateNT))
+                                    <p style="border-bottom:1px solid #ccc;padding:8px 0;">
+                                    {{
+
+                                        $item->dateNT
+                                       }}
+                                    </p>
+
+                                        @if ($item->hdnts->count()>0)
+                                        @foreach ($item->hdnts as $hdnt)
+                                            <p>{{$hdnt->user->name}} - {{$hdnt->user->magv}}</p>
+                                        @endforeach
+
+                                        @endif
+                                @else
+
+
+
+                                <form action="{{route('client.registerHDNTAndDateSubmit')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id_gtdk" value="{{$item->id}}">
+                                    <select  name="hdnt[]"  multiple="multiple" id="" class=" tag_select2_choose" style="width: 30%;">
+                                        @if ($allHDNT->count() > 0)
+                                            @foreach ($allHDNT as $gv)
+
+                                                <option
+                                                    value={{ $gv->id }}>{{ $gv->magv }} </option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    <input type="datetime-local" name="dateNT" id="">
+                                    <button style="margin-top:8px" type="submit">Nộp</button>
+                                </form>
+                                @endif
+
+                            </td>
+                            <td class="text-left">
+                                @foreach ($item->users as $user)
+                                    <p>{{ $user->magv }} - {{ $user->name }}</p>
+                                @endforeach
+                            </td>
+
+
+                        </tr>
+                        @endif
+                    @endforeach
+                @else
                     <tr>
-                        <th scope="row" class="text-center txt-calendar">1</th>
-                        <td class="text-center">CT111</td>
-                        <td>Lập trình hướng đối tượng</td>
-                        <td>
-                            <select name="hdnt" id="">
-                                <option value="0">Chọn hội đồng</option>
-                                <option value="1">Nguyễn Văn A</option>
-                                <option value="2">Nguyễn Văn B</option>
-                                <option value="3">Nguyễn Văn C</option>
-                            </select>
-                        </td>
-                        <td>Nguyễn Thanh Quyên</td>
-                        <td class="text-center">
-                            <input type="date" name="" id="">
+                        <td colspan="7">
+                            <p class="d-flex justify-content-between text-center">
+                                Không có giáo trình
+                            </p>
                         </td>
                     </tr>
+
+                @endif
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
+
+@section('js')
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="{{asset('admins/vendor/select2')}}/select2.min.js"></script>
+   <script>
+    $(function(){
+        $(".tag_select2_choose").select2({
+            tags: true,
+            tokenSeparators: [',']
+        });
+        $(".selected2_init").select2({
+            placeholder: "Select a state",
+            allowClear: true
+        });
+    });
+    </script>
+ @endsection

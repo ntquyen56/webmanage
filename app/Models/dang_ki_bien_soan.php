@@ -26,4 +26,9 @@ class dang_ki_bien_soan extends Model
         return $this->belongsTo(Type::class,'loai_gt','ma_loai');
 
     }
+
+
+    public function hdnts(){
+        return $this->hasMany(user_hdnt::class,'gtdk_id','id');
+    }
 }

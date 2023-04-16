@@ -17,7 +17,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() && ( Auth::user()->group_id == 1 || Auth::user()->position !=0)) {
+        if (Auth::user() && ( Auth::user()->group_id == 1 || Auth::user()->roles->count() > 0)) {
             return $next($request);
      }
 
