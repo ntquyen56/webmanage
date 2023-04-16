@@ -287,7 +287,7 @@ class BrowserController extends Controller
 
 
     public function show_list_nt(){
-        $list_nt = user_hdnt::where('hdnt_id',Auth::user()->id)->get();
+        $list_nt = user_hdnt::all();
         foreach($list_nt as $item){
             $item->gtdk = $item->gtdk;
         }
