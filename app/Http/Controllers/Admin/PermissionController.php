@@ -47,8 +47,9 @@ class PermissionController extends Controller
         $arrSubRole = [];
 
         foreach($allUser as $user){
-            foreach($user->roles as $role){
-                array_push($arrRole,$role->id);
+            foreach($user->roles_user as $role){
+                // dd($role);
+                array_push($arrRole,$role->role_id);
                 if($role->role_id == 2 || $role->role_id == 4){
 
                     $arrSubRole[$role->role_id] = $role->sub_role;
@@ -60,8 +61,8 @@ class PermissionController extends Controller
             $user->arrSubRole = $arrSubRole;
             $arrRole = [];
             $arrSubRole = [];
+            // dd($user);
         }
-        // dd($arrSubRole);
         return view('admin.role',compact('allUser','allKhoa','allRole'));
     }
 
