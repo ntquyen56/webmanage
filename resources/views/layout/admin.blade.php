@@ -76,7 +76,7 @@
             </div>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                 aria-expanded="true" aria-controls="collapseFour">
                 <i class="fas fa-fw fa-cog"></i>
@@ -84,13 +84,10 @@
             </a>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    {{-- <h6 class="collapse-header">Custom Components:</h6> --}}
                     <a class="collapse-item" href="{{ route ('manage.acceptance_list') }}">Danh sách nghiệm thu</a>
-                    {{-- <a class="collapse-item" href="{{ route ('manage.acceptance_curriculum_list') }}">Giáo trình đăng kí NT</a>
-                    <a class="collapse-item" href="{{ route ('manage.acceptance_document_list') }}">Tài liệu đăng kí NT</a> --}}
                 </div>
             </div>
-        </li>
+        </li> --}}
 
 
         <li class="nav-item">
@@ -198,18 +195,19 @@
             <div id="collapseTenty" class="collapse" aria-labelledby="headingTenty" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.browser_two') }}">Danh sách duyệt</a>
+                    <a class="collapse-item" href="{{ route('manage.date') }}">Duyệt nghiệm thu</a>
                 </div>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Hội đồng nghiệm thu</span>
             </a>
-            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('manage.faculty_list') }}">Danh sách khoa</a>
+                    <a class="collapse-item" href="{{ route('manage.acceptance') }}">Nghiệm thu</a>
                 </div>
             </div>
         </li>

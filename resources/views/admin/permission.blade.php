@@ -7,16 +7,16 @@
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
-            <form class="d-flex" role="search">
+            {{-- <form class="d-flex" role="search">
                 <input class="form-control mx-2" type="search" placeholder="Nhập nội dung bạn cần tìm...?" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-            </form>
+            </form> --}}
         </div>
         <div class="col-sm-1"></div>
     </div>
-    <table class="table table-bordered border-primary text-center mt-3" style="color: black;">
+    <table id="mytable" class="table table-bordered border-primary text-center mt-3" style="color: black;">
         <thead>
             <tr class="text-uppercase">
                 <th scope="col">stt</th>

@@ -23,8 +23,6 @@
                 <th scope="col">mã</th>
                 <th scope="col" class="text-left">tên giáo trình</th>
                 <th scope="col">thời gian</th>
-                <th scope="col">Địa điểm</th>
-                <th scope="col">chi tiết</th>
                 <th scope="col">quản lý</th>                
             </tr>
         </thead>
@@ -34,7 +32,6 @@
                 <td>CT111</td>
                 <td class="text-left">Cấu trúc dữ liệu</td>
                 <td>08g00 - 05/06/2023</td>
-                <td>P101, Nhà học B1</td>
                 <td>
                     <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>                    
                 </td>
@@ -43,34 +40,6 @@
                     <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
                 </td>
             </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>CT111</td>
-                <td class="text-left">Cấu trúc dữ liệu</td>
-                <td>08g00 - 05/06/2023</td>
-                <td>P101, Nhà học B1</td>
-                <td>
-                    <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>                    
-                </td>
-                <td>
-                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square" style="color: green; font-size: 25px;"></i></a> |
-                    <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>CT111</td>
-                <td class="text-left">Cấu trúc dữ liệu</td>
-                <td>08g00 - 05/06/2023</td>
-                <td>P101, Nhà học B1</td>
-                <td>
-                    <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>                    
-                </td>
-                <td>
-                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square" style="color: green; font-size: 25px;"></i></a> |
-                    <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
-                </td>
-            </tr>     
         </tbody>
     </table>
 @endsection
