@@ -57,9 +57,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
         return view('calendar');
     })->name("client.calendar");
 
-    Route::get('/regis_calendar', function () {
-        return view('regis_calendar');
-    })->name("client.regis_calendar");
+
 
     Route::get('/publish', function () {
         return view('publish');
@@ -70,6 +68,8 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/compilation',[BrowserController::class,'showListCurrRegisterClient'])->name("client.compilation");
 
     Route::post('/upload_document',[BrowserController::class,'upload_document'])->name("client.upload_document");
+    Route::post('/registerHDNTAndDateSubmit',[BrowserController::class,'registerHDNTAndDateSubmit'])->name("client.registerHDNTAndDateSubmit");
+
 
 
     Route::prefix('currClient')->name('currClient.')->group(function () {

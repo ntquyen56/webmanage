@@ -19,7 +19,7 @@
 
                     <th>Trạng thái</th>
 
-                    <th>Đăng ký NT</th>
+                    <th>Ngày NT</th>
                     <th>Nộp bài</th>
 
                 </thead>
@@ -46,16 +46,10 @@
                                     </td>
                                 @endif
 
-                                {{-- <tr>
                                     <td>
-                                        <form action="">
-                                            <input type="date" name="" id="">
-                                            <button type="submit">Đăng ký</button>
-                                        </form>
+
                                     </td>
-                                </tr> --}}
-                                <td></td>
-                                @if ($item->browsered == 1)
+                                @if ($item->browsered == 1 )
                                     <td style="vertical-align: middle;">
                                         <p>
                                             file đã nộp:

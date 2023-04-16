@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-4"></div>
             <div class="col-sm-2">
-              <h6><a href="regis_calendar" style="text-decoration: none;color:black;">
+              <h6><a href="{{route('client.compilation')}}?page=calender" style="text-decoration: none;color:black;">
                 <i class="fa-solid fa-calendar-plus" style="color:rgb(219, 219, 11);"></i>
                 Đăng ký nghiệm thu</a></h6>
             </div>
