@@ -24,7 +24,7 @@
         </div>
 
     </div>
-    <table class="table table-bordered border-primary text-center mt-3" style="color: black;">
+    <table id="mytable" class="table table-bordered border-primary text-center mt-3" style="color: black;">
         <thead>
             <tr class="text-uppercase">
                 <th scope="col">stt</th>

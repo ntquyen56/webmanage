@@ -73,7 +73,10 @@ Route::prefix('/')->middleware('auth')->group(function () {
                     )->name('registration_list');
             });
 
-
+            //acceptance
+            Route::get ('/acceptance', function(){
+                return view('admin.acceptance');
+            })->name('acceptance');
 
             Route::get ('/', function(){
                 return view('admin.dashboard');
@@ -86,7 +89,6 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
             //user
             Route::get ('/user', [UserController::class,'listUser'])->name('user');
-
             Route::get ('/add_user',[UserController::class,'showFrom'])->name('add_user');
             Route::post ('/handle_add_user',[UserController::class,'createAccountUser'])->name('handle_add_user');
 
@@ -150,6 +152,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/browser_two', function(){
                 return view('admin.browser_two');
             })->name('browser_two');
+            Route::get ('/date', function(){
+                return view('admin.date');
+            })->name('date');
     });
 
 
