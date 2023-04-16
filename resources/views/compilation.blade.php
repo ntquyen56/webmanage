@@ -45,11 +45,19 @@
                                         <span style="color:black">{{ $item->messageStatus }}</span>
                                     </td>
                                 @endif
-
+                                    @if(!empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT != "khongduyet")
                                     <td>
-
+                                        <p>{{$item->dateNT}}</p>
+                                        <p>Mã NT: {{$item->statusNT}}</p>
                                     </td>
-                                @if ($item->browsered == 1 )
+                                    @elseif(!empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT == "khongduyet")
+                                        <td>Không duoc duyệt</td>
+
+                                    @else
+
+                                        <td>Đang đợi duyệt</td>
+                                    @endif
+                                @if ($item->browsered == 1 &&  !empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT != "khongduyet" )
                                     <td style="vertical-align: middle;">
                                         <p>
                                             file đã nộp:

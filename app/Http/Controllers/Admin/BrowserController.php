@@ -245,4 +245,53 @@ class BrowserController extends Controller
             throw new \Exception($e->getMessage());
         }
     }
+
+
+    public function listNT(Request $req){
+        try{
+            $gtdk_list = dang_ki_bien_soan::whereNotNull('dateNT')->get();
+            foreach($gtdk_list as $gt){
+                $gt->users = $gt->users;
+                $gt->hdnts = $gt->hdnts;
+
+            }
+            // dd($gtdk_list);
+            return view('admin.date',compact('gtdk_list'));
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
+
+    public function admin_brow_date(Request $request){
+        try{
+            $id_gtdk = $request->id_gtdk;
+            $gtdk = dang_ki_bien_soan::where('id',$id_gtdk)->first();
+            if(!empty($request->status )  && $request->status =='khongduyet'){
+
+                $gtdk->statusNT = $request->status;
+
+
+            }else{
+                $ma_duyet = $request->ma_duyet;
+
+                $gtdk->statusNT = $ma_duyet;
+            }
+            $gtdk->save();
+
+            return redirect()->back();
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
+
+
+    public function show_list_nt(){
+        $list_nt = user_hdnt::where('hdnt_id',Auth::user()->id)->get();
+        foreach($list_nt as $item){
+            $item->gtdk = $item->gtdk;
+        }
+        // dd($list_nt);
+        return view('admin.acceptance_list',compact('list_nt'));
+    }
 }

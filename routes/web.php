@@ -177,11 +177,13 @@ Route::prefix('/')->middleware('auth')->group(function () {
             //HD truong
             Route::get ('/browser_two',[BrowserController::class,'showListBrowserTwo']  )->name('browser_two');
             Route::post ('/hanle_browser_two',[BrowserController::class,'hanle_browser_two'] )->name('hanle_browser_two');
+            Route::get ('/date', [BrowserController::class,'listNT'])->name('date');
+            Route::post ('/admin_brow_date', [BrowserController::class,'admin_brow_date'])->name('admin_brow_date');
+            Route::post ('/show_list_nt', [BrowserController::class,'show_list_nt'])->name('show_list_nt');
+
 
             //HD nghiem thu
-            Route::get ('/acceptance', function(){
-                return view('admin.acceptance');
-            })->name('acceptance');
+            Route::get ('/acceptance', [BrowserController::class,'show_list_nt'])->name('acceptance');
             Route::get ('/secretary', function(){
                 return view('admin.secretary');
             })->name('secretary');

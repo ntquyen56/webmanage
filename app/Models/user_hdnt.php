@@ -13,4 +13,8 @@ class user_hdnt extends Model
     public function user(){
         return $this->belongsTo(User::class,'hdnt_id','id');
     }
+
+    function gtdk(){
+        return $this->belongsTo(dang_ki_bien_soan::class,'gtdk_id','id');
+    }
 }

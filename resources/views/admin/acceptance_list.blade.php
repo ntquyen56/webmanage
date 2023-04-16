@@ -22,55 +22,38 @@
                 <th scope="col">stt</th>
                 <th scope="col">mã</th>
                 <th scope="col" class="text-left">tên giáo trình</th>
+                <th scope="col">tac gia</th>
+
                 <th scope="col">thời gian</th>
-                <th scope="col">Địa điểm</th>
                 <th scope="col">chi tiết</th>
-                <th scope="col">quản lý</th>                
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>CT111</td>
-                <td class="text-left">Cấu trúc dữ liệu</td>
-                <td>08g00 - 05/06/2023</td>
-                <td>P101, Nhà học B1</td>
-                <td>
-                    <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>                    
-                </td>
-                <td>
-                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square" style="color: green; font-size: 25px;"></i></a> |
-                    <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>CT111</td>
-                <td class="text-left">Cấu trúc dữ liệu</td>
-                <td>08g00 - 05/06/2023</td>
-                <td>P101, Nhà học B1</td>
-                <td>
-                    <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>                    
-                </td>
-                <td>
-                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square" style="color: green; font-size: 25px;"></i></a> |
-                    <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>CT111</td>
-                <td class="text-left">Cấu trúc dữ liệu</td>
-                <td>08g00 - 05/06/2023</td>
-                <td>P101, Nhà học B1</td>
-                <td>
-                    <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>                    
-                </td>
-                <td>
-                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square" style="color: green; font-size: 25px;"></i></a> |
-                    <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
-                </td>
-            </tr>     
+            @if ($list_nt->count() > 0)
+                @foreach ($list_nt as $key=>$item)
+                <tr>
+                    <th scope="row">{{$key +1}}</th>
+                    <td>{{$item->gtdk->ma_gt}}</td>
+
+                    <td>{{$item->gtdk->ten_gt}}</td>
+                    <td>
+                        @if ($item->gtdk->users->count()>0)
+                        @foreach ($item->gtdk->users as $tacgia)
+                            <p>{{$tacgia->name}} - {{$tacgia->magv}}</p>
+                        @endforeach
+
+                        @endif
+                    </td>
+                    <td>{{$item->gtdk->dateNT}}</td>
+                    <td>
+                        <a href=""><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
+                    </td>
+
+                </tr>
+                @endforeach
+            @endif
+
+
         </tbody>
     </table>
 @endsection

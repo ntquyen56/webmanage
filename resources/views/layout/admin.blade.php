@@ -246,6 +246,10 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.browser_two') }}">Danh sách duyệt</a>
                 </div>
+                <div class="bg-white py-2 collapse-inner rounded">
+
+                    <a class="collapse-item" href="{{ route('manage.date') }}">Duyệt nghiệm thu</a>
+                </div>
             </div>
         </li>
         @endif

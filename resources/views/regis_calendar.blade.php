@@ -33,7 +33,7 @@
                         @if ($item->browsered == 1 )
 
                         <tr>
-                            <td>{{ $item->key }}</td>
+                            <td>{{ $key +1 }}</td>
 
                             <td>{{ $item->ma_gt }}</td>
                             <td class="text-left">{{ $item->ten_gt }}</td>
