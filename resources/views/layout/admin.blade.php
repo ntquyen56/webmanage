@@ -184,12 +184,12 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
-                <span>Quản lý khoa</span>
+                <span>Quản lý đơn vị</span>
             </a>
             <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('manage.faculty_list') }}">Danh sách khoa</a>
-                    <a class="collapse-item" href="{{ route('manage.add_faculty') }}">Thêm khoa</a>
+                    <a class="collapse-item" href="{{ route('manage.faculty_list') }}">Danh sách đơn vị</a>
+                    <a class="collapse-item" href="{{ route('manage.add_faculty') }}">Thêm đơn vị</a>
                 </div>
             </div>
         </li>
@@ -203,6 +203,19 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.level_list') }}">Danh sách trình độ</a>
                     <a class="collapse-item" href="{{ route('manage.add_level') }}">Thêm trình độ</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSixx"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Quản lý địa điểm</span>
+            </a>
+            <div id="collapseSixx" class="collapse" aria-labelledby="headingSixx" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" href="{{ route('manage.location') }}">Danh sách địa điểm</a>
+                    <a class="collapse-item" href="{{ route('manage.add_location') }}">Thêm địa điểm</a>
                 </div>
             </div>
         </li>
@@ -245,26 +258,22 @@
             <div id="collapseTenty" class="collapse" aria-labelledby="headingTenty" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.browser_two') }}">Danh sách duyệt</a>
-                </div>
-                <div class="bg-white py-2 collapse-inner rounded">
-
                     <a class="collapse-item" href="{{ route('manage.date') }}">Duyệt nghiệm thu</a>
                 </div>
             </div>
         </li>
         @endif
         @if(Auth::user()->group_id ==1 || in_array(4,$arrRoles)))
-
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight2"
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight1"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Hội đồng nghiệm thu</span>
             </a>
-            <div id="collapseEight2" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
+            <div id="collapseEight1" class="collapse" aria-labelledby="headingEight1" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.acceptance') }}">Nghiệm thu</a>
-                    <a class="collapse-item" href="{{ route('manage.secretary') }}">Thư ký</a>
+                    <a class="collapse-item" href="{{ route('manage.secretary') }}">Thư kí</a>
                 </div>
             </div>
         </li>

@@ -16,12 +16,12 @@
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-3 txt-add">Mã loại</div>
-                    <div class="col-sm-7"><input type="text" name="ma_loai" id="" style="width: 70%;" class="input-pr"></div>
+                    <div class="col-sm-7"><input required type="text" name="ma_loai" id="" style="width: 70%;" class="input-pr"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-3 txt-add">Tên loại</div>
-                    <div class="col-sm-7"><input type="text" name="ten_loai" id="" class="input-pr" style=""></div>
+                    <div class="col-sm-7"><input required type="text" name="ten_loai" id="" class="input-pr" style=""></div>
                 </div>
                 <div class="row mt-5">
                     <button type="submit" class="btn btn-success">Thêm loại</button>     

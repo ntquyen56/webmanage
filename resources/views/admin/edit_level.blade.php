@@ -13,12 +13,12 @@
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5 txt-add">Mã trình độ</div>
-                    <div class="col-sm-5"><input type="text" name="ma_trinhdo" id="" value="{{ $edit->ma_trinhdo }}" style="width: 70%;" class="input-pr"></div>
+                    <div class="col-sm-5"><input required type="text" name="ma_trinhdo" id="" value="{{ $edit->ma_trinhdo }}" style="width: 70%;" class="input-pr"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5 txt-add">Tên trình độ</div>
-                    <div class="col-sm-5"><input type="text" name="ten_trinhdo" id="" value="{{ $edit->ten_trinhdo }}" class="input-pr" style=""></div>
+                    <div class="col-sm-5"><input required type="text" name="ten_trinhdo" id="" value="{{ $edit->ten_trinhdo }}" class="input-pr" style=""></div>
                 </div>
                 <div class="row mt-5">
                     <button type="submit" class="btn btn-success" style="margin-left: 69%; ">Cập nhật trình độ</button>     

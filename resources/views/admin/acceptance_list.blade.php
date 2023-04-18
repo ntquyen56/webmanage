@@ -46,7 +46,7 @@
                     </td>
                     <td>{{$item->gtdk->dateNT}}</td>
                     <td>
-                        <a href=""><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
+                        <a href="{{ route ("manage.acceptance1") }}"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
                     </td>
 
                 </tr>

@@ -20,6 +20,7 @@
                 <th scope="col">stt</th>
                 <th scope="col">mã học phần</th>
                 <th scope="col" class="text-left" style="width: 40%;">tên học phần</th>                
+                <th scope="col" class="text-center" style="width: 13%;">số tc</th>                
                 <th scope="col">quản lý</th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                     <th scope="row">{{ $key+1 }}</th>
                     <td>{{ $hp->ma_hp }}</td>
                     <td class="text-left">{{ $hp->ten_hp }}</td>
+                    <td>{{ $hp->tinchi }}</td>
                     <td>
                         <a href="{{ URL::to('manage/edit_term/'.$hp->id_hp) }}"><i class="fa-sharp fa-regular fa-pen-to-square"
                                 style="color: green; font-size: 25px;"></i></a> |

@@ -25,7 +25,7 @@
                             <div class="col-9 text-tt">{{$user->gioitinh == 1 ?"Nam":"Nữ"}}</div>
                         </div>
                         <div class="row border-bt">
-                            <div class="col-3 text-inf">Khoa</div>
+                            <div class="col-3 text-inf">Đơn vị</div>
                             <div class="col-9 text-tt">{{$user->khoa->ten_khoa ?? "khongcokhoa"}}</div>
                         </div>
                         <div class="row border-bt">

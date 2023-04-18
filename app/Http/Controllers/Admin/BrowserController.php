@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\dang_ki_bien_soan;
 use App\Models\User;
+use App\Models\Location;
 use App\Models\user_hdnt;
 use App\Models\user_role;
 use App\Traits\StorageImageTrait;
@@ -30,12 +31,13 @@ class BrowserController extends Controller
         }
     }
 
+
     public function hanle_browser_one(Request $req){
         try{
             $dkbs = dang_ki_bien_soan::where('id',$req->id_dk)->first();
 
 
-            if(empty($dkbs)) return redirect()->back()->with('msg','Giao trinh dang kis khong ton tai!');
+            if(empty($dkbs)) return redirect()->back()->with('msg','Giáo trình đăng ký không tồn tại!');
 
 
 
@@ -44,7 +46,7 @@ class BrowserController extends Controller
             $dkbs->save();
 
 
-            return redirect()->back()->with('success','Duyet giao trinh thanh cong!');
+            return redirect()->back()->with('success','Duyệt giáo trình thành công!');
         }catch(\Exception $e){
             return throw new($e->getMessage());
         }
@@ -177,10 +179,12 @@ class BrowserController extends Controller
                 $allHDNT =  User::whereHas('roles' , function (Builder $query) {
                     $query->where('roles.id', 4);
                 })->get();
+                $allDiadiem = Location::get();
+                // $allRole = user_role::get();
                 // foreach($allHDNT as $user){
                 //     $user->roles = $user->roles;
                 // }
-                return view('regis_calendar',compact('gtdk','allHDNT'));
+                return view('regis_calendar',compact('gtdk','allHDNT','allDiadiem'));
 
             }
             return view('compilation',compact('gtdk'));
@@ -285,7 +289,6 @@ class BrowserController extends Controller
         }
     }
 
-
     public function show_list_nt(){
         $list_nt = user_hdnt::where('hdnt_id',Auth::user()->id)->get();
         foreach($list_nt as $item){
@@ -294,4 +297,18 @@ class BrowserController extends Controller
         // dd($list_nt);
         return view('admin.acceptance_list',compact('list_nt'));
     }
+
+    public function show_bbhdnt(){
+        // $list_nt = user_hdnt::where('hdnt_id',Auth::user()->id)->get();
+        // foreach($list_nt as $item){
+        //     $item->gtdk = $item->gtdk;
+        // }
+        // dd($list_nt);
+        return view('admin.acceptance');
+    }
+
+    // public function showDD(){
+    //     $allDiadiem = Location::get();
+    //     return view('regis_calender',compact('allDiadiem'));
+    // }
 }

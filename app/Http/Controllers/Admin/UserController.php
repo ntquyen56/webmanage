@@ -23,6 +23,15 @@ class UserController extends Controller
         return view('admin.user',compact('users'));
     }
 
+    public function detail_user($id){
+        $user = User::join('khoa','users.id_khoa','=','khoa.id_khoa')
+        ->join('trinh_do','users.id_trinhdo','=','trinh_do.id_trinhdo')
+        ->where('id',$id)
+        ->get();
+        return view('admin.detail_user',compact('user'));
+    }
+
+
     public function showFrom (Request $req){
         try{
 
