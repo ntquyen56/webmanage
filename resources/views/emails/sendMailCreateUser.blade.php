@@ -32,8 +32,14 @@
         </div>
         <div style="padding:12px">
             <p>Xin chào {{$user->email}}</p>
+            @if (!isset($mailData['password']) && !empty($mailData['password']))
 
             <p>password: {{$mailData['password']}}</p>
+            @endif
+
+            <p>{{$mailData['message'] ?? 'abc'}}</p>
+            <p>file: {{$mailData['file'] ?? 'khong co file'}}</p>
+
 
             <p>Cảm ơn bạn đã...</p>
         </div>

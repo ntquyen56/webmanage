@@ -17,7 +17,7 @@ class HomeController extends Controller
     //
 
     public function pageHome(){
-        $allGiaoTrinh = Curriculum::where('status','<>',Carbon::create(0, 0, 0, 0, 0, 0))->limit(3)->get();
+        $allGiaoTrinh = Curriculum::limit(3)->get();
         // dd($allGiaoTrinh);
         $user = User::where('id',Auth::user()->id)->first();
 
@@ -32,7 +32,7 @@ class HomeController extends Controller
         return view('update_info',compact('allTrinhDo','allKhoa','user'));
     }
 
-   
+
 
     public function handle_update_info(Request $req){
         try{

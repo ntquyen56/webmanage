@@ -52,18 +52,16 @@ class CurriculumController extends Controller
 
     public function handle_update_status_curriculum(Request $req){
         try{
-            if($req->status == "start"){
+            if(Carbon::now()->gt($req->dateStart)) return redirect()->back()->with('msg','Ngày bắt đầu phải lớn hơn ngày hiện tại');
+            if(Carbon::create($req->dateStart)->gt($req->dateEnd)) return redirect()->back()->with('msg','Ngày bắt đầu phải nhỏ hơn ngày kêt thúc');
 
-                Curriculum::where('id','<>',0)->update([
-                    "status"=> date("Y-m-d H:i:s"),
-                    'statusInt' => 1
-                ]);
-            }else{
-                Curriculum::where('id','<>',0)->update([
-                    "status"=> null,
-                    'statusInt' => 0
-                ]);
-            }
+            Curriculum::where('id','<>',0)->update([
+                'dateStart'=>$req->dateStart,
+                'dateEnd'=>$req->dateEnd,
+
+            ]);
+
+
             return redirect()->back();
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());

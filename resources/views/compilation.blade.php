@@ -57,7 +57,7 @@
 
                                         <td>Đang đợi duyệt</td>
                                     @endif
-                                @if ($item->browsered == 1 &&  !empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT != "khongduyet" )
+                                {{-- @if ($item->browsered == 1 &&  !empty($item->dateNT) && !empty($item->statusNT) && $item->statusNT != "khongduyet" )
                                     <td style="vertical-align: middle;">
                                         <p>
                                             file đã nộp:
@@ -72,7 +72,7 @@
                                             <button type="submit" class="btn btn-success">Nộp bài</button>
                                         </form>
                                     </td>
-                                @endif
+                                @endif --}}
                             </tr>
                         @endforeach
                     @else

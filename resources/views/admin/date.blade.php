@@ -36,13 +36,34 @@
                                 @endforeach
                             </td>
                             <td>{{$item->dateNT}}</td>
+                            <td>
+                                <p>
+                                    file đã nộp:
+
+                                    <a target="_blank" href="{{ $item->file_upload }}">{{ $item->file_name }}</a>
+                                </p>
+                            </td>
+
                             @if(empty($item->statusNT))
                             <td>
+                                @php
+                                    $check =0;
+                                    foreach(Auth::user()->roles_user as $role){
+                                        if($role->role_id ==4 && $role->sub_role =="Chủ tịch"){
+                                            $check =1;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+
+                                @if($check == 1)
                                 <button class="button_brow">Duyệt</button>
-                                <form class="invisible form-brow" style="margin:8px 0;" action="{{route('manage.admin_brow_date')}}" method="POST">
+                                <form class="invisible form-brow" style="margin:8px 0;" action="{{route('manage.admin_brow_date')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id_gtdk" value="{{$item->id}}">
                                     <input type="text" name="ma_duyet">
+                                    <input type="file" name="file_qd">
+
                                     <button type="submit">Nộp</button>
 
                                 </form>
@@ -56,12 +77,20 @@
 
                                     <button type="submit">Không duyệt</button>
                                 </form>
+                                @endif
                             </td>
                             @elseif($item->statusNT == "khongduyet")
                             <td><span style="color:red;font-weight: 600">Không được duyệt</span></td>
 
                             @else
-                            <td>Mã duyệt: <span style="color:blue; font-weight: 600">{{$item->statusNT}}</span></td>
+                            <td>
+                                <p>
+
+                                    Mã duyệt: <span style="color:blue; font-weight: 600">{{$item->statusNT}}</span>
+                                </p>
+                                File QD: <a href="{{$item->fileQD}}" style="color:blue; font-weight: 600">File QD</a>
+                            </td>
+
                             @endif
                         </tr>
                     @endforeach
@@ -84,10 +113,13 @@
 
 @section('js')
     <script>
-        const button_brow = document.querySelector('.button_brow');
-        const form_brow  = document.querySelector('.form-brow');
-        button_brow.addEventListener('click', function(){
-            form_brow.classList.toggle('invisible')
+        const button_brow = document.querySelectorAll('.button_brow');
+        const form_brow  = document.querySelectorAll('.form-brow');
+        button_brow.forEach((item,index)=>{
+
+            item.addEventListener('click', function(){
+                form_brow[index].classList.toggle('invisible')
+            })
         })
     </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMail;
 use App\Models\dang_ki_bien_soan;
 use App\Models\User;
 use App\Models\Location;
@@ -13,6 +14,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
+
 class BrowserController extends Controller
 {
     //
@@ -35,15 +38,29 @@ class BrowserController extends Controller
     public function hanle_browser_one(Request $req){
         try{
             $dkbs = dang_ki_bien_soan::where('id',$req->id_dk)->first();
-
-
+            // dd($dkbs->users);
             if(empty($dkbs)) return redirect()->back()->with('msg','Giáo trình đăng ký không tồn tại!');
 
-
-
-            $dkbs->status = 1;
-
+            $dkbs->status = $req->status;
             $dkbs->save();
+            if($req->status == 1){
+                foreach($dkbs->users as $user){
+                    $mailData['message'] = 'Giáo trình '.$dkbs->ten_gt.' đã được duyệt';
+                    Mail::to($user->email)->send( new SendMail($user,$mailData));
+                }
+            }else{
+                foreach($dkbs->users as $user){
+                    $mailData['message'] = 'Giáo trình '.$dkbs->ten_gt.' đã bị từ chối';
+                    Mail::to($user->email)->send( new SendMail($user,$mailData));
+                }
+            }
+
+
+
+
+
+
+
 
 
             return redirect()->back()->with('success','Duyệt giáo trình thành công!');
@@ -118,6 +135,31 @@ class BrowserController extends Controller
                 $dkbs->save();
             }
 
+            $checkDaduyet = 0;
+            $checKhongduyet = 0;
+
+            foreach( $arr as $bro){
+                if($bro == 1){
+                    $checkDaduyet++;
+                }else{
+                    $checKhongduyet++;
+                }
+            }
+
+
+
+            if($checkDaduyet > count($arr)/2){
+                foreach($dkbs->users as $user){
+                    $mailData['message'] = 'Giáo trình '.$dkbs->ten_gt.' đã được duyệt bởi HDT';
+                    Mail::to($user->email)->send( new SendMail($user,$mailData));
+                }
+            }
+            if($checKhongduyet > count($arr)/2){
+                foreach($dkbs->users as $user){
+                    $mailData['message'] = 'Giáo trình '.$dkbs->ten_gt.' đã bị từ chối bởi HDT';
+                    Mail::to($user->email)->send( new SendMail($user,$mailData));
+                }
+            }
 
 
             return redirect()->back()->with('success','Duyet giao trinh thanh cong!');
@@ -149,7 +191,7 @@ class BrowserController extends Controller
                     $arr = json_decode($gt->tongdiem,true);
                     $countHDT = user_role::where('role_id',2)->get();
 
-                    if(count($arr) >= $countHDT->count()){
+                    if(count($arr) >= $countHDT->count()/2){
                         foreach($arr as $key=>$item){
                             if($item == 1 || $item == "1") $tongDiem++;
 
@@ -220,8 +262,12 @@ class BrowserController extends Controller
                 return redirect()->back()->with('msg',"Ngày nộp phải lớn hơn ngày hiện tại!");
             }else{
                 $gtdk = dang_ki_bien_soan::where('id',$request->id_gtdk)->first();
+                $diadiem = Location::where('id_dd',$request->diadiem)->first();
+
                 if(empty($gtdk)) return redirect()->back()->with('msg',"Giáo trình không tồn tại!");
                 $gtdk->dateNT = $date;
+                $gtdk->diadiem = $diadiem->phong.' - '.$diadiem->khuvuc;
+
                 $gtdk->save();
 
 
@@ -270,6 +316,12 @@ class BrowserController extends Controller
         try{
             $id_gtdk = $request->id_gtdk;
             $gtdk = dang_ki_bien_soan::where('id',$id_gtdk)->first();
+
+            $dataImage = $this->storageTraitUpload($request, 'file_qd', 'document');
+
+
+            $gtdk->fileQD = $dataImage['file_path'];
+
             if(!empty($request->status )  && $request->status =='khongduyet'){
 
                 $gtdk->statusNT = $request->status;
@@ -282,6 +334,15 @@ class BrowserController extends Controller
             }
             $gtdk->save();
 
+
+            foreach($gtdk->users as $user){
+                $mailData['message'] = 'Giáo trình '.$gtdk->ten_gt.' đã được duyệt bởi Chủ Tịch Hội Đồng Nghiệm Thu';
+                $mailData['file'] = 'http://127.0.0.1:8000'.$dataImage['file_path'];
+
+                Mail::to($user->email)->send( new SendMail($user,$mailData));
+            }
+
+
             return redirect()->back();
 
         }catch(\Exception $e){
@@ -290,7 +351,7 @@ class BrowserController extends Controller
     }
 
     public function show_list_nt(){
-        $list_nt = user_hdnt::all();
+        $list_nt = user_hdnt::where('hdnt_id',Auth::user()->id)->get();
         foreach($list_nt as $item){
             $item->gtdk = $item->gtdk;
         }

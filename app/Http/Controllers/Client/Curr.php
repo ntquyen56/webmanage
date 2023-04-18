@@ -41,7 +41,7 @@ class Curr extends Controller
 
         try{
             // dd($req->input());
-            if($req->loai == 'GT'){
+            if($req->loaigt == 'GT'){
 
                 $hocphan = Term::where('ma_hp',$req->ma_hp)->first();
                 if(empty($hocphan)) return redirect()->back()->with('msg','Học phần không tồn tại!');
@@ -56,7 +56,7 @@ class Curr extends Controller
             $allTacgia = $req->tacgia;
 
             $newDKBS = new dang_ki_bien_soan();
-            if($req->loai == 'GT'){
+            if($req->loaigt == 'GT'){
 
                 $newDKBS->ma_gt = $req->ma_hp;
                 $newDKBS->ten_gt = $hocphan->ten_hp;

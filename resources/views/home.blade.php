@@ -109,30 +109,32 @@
                             </thead>
                             <tbody>
                                 @if (!empty($allGiaoTrinh) &&  $allGiaoTrinh->count() > 0 )
-                                    @foreach ($allGiaoTrinh as $giaotrinh)
+                                    @if(\Carbon\Carbon::now()->lt($allGiaoTrinh[0]->dateStart)  || \Carbon\Carbon::now()->gt($allGiaoTrinh[0]->dateEnd))
                                     <tr>
-                                        <td class="text-center">{{$giaotrinh->ma_gt}}</td>
-                                        <td>{{$giaotrinh->ten_gt}}</td>
-                                        {{-- <td class="text-center">
-                                            <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
-                                        </td> --}}
-                                        <td class="text-center">
-                                            @if ($giaotrinh->status == 0)
-                                            <a href="#"><i class="fa-sharp fa-solid fa-check-double"
-                                                style="color: red;"></i></a>
-                                            @else
-                                            <a href="#"><i class="fa-sharp fa-solid fa-check-double"
-                                                style="color: green;"></i></a>
 
-                                            @endif
+                                        <td colspan="3">
 
-
-
-
-
+                                            <p>Chưa tới thời gian đăng kí</p>
                                         </td>
                                     </tr>
-                                    @endforeach
+                                    @else
+
+                                        @foreach ($allGiaoTrinh as $giaotrinh)
+
+                                            <tr>
+                                                <td class="text-center">{{$giaotrinh->ma_gt}}</td>
+                                                <td>{{$giaotrinh->ten_gt}}</td>
+                                                {{-- <td class="text-center">
+                                                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"></i></a>
+                                                </td> --}}
+                                                <td class="text-center">
+
+                                                        <p>Đăng mở</p>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+
                                 @endif
 
 

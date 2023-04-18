@@ -18,6 +18,15 @@
                 </thead>
                 <tbody>
                     @if ($allGiaoTrinh->count() > 0)
+                    @if(\Carbon\Carbon::now()->lt($allGiaoTrinh[0]->dateStart)  || \Carbon\Carbon::now()->gt($allGiaoTrinh[0]->dateEnd))
+                    <tr>
+
+                        <td colspan="4">
+
+                            <p>Chưa tới thời gian đăng kí</p>
+                        </td>
+                    </tr>
+                    @else
                         @foreach ($allGiaoTrinh as $key=>$giaotrinh)
                             <tr>
                                 <td>{{ $key+ 1 }}</td>
@@ -35,6 +44,8 @@
                             </tr>
                         @endforeach
                     @endif
+                    @endif
+
                 </tbody>
             </table>
         </div>

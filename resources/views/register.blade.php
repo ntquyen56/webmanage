@@ -16,6 +16,15 @@
                     <h5>Đăng ký biên soạn giáo trình năm 2023</h5>
                 </div>
             </div>
+            @if(\Carbon\Carbon::now()->lt($allHocPhan[0]->dateStart)  || \Carbon\Carbon::now()->gt($allHocPhan[0]->dateEnd))
+                    <tr>
+
+                        <td colspan="4">
+
+                            <p>Chưa tới thời gian đăng kí</p>
+                        </td>
+                    </tr>
+            @else
             <div class="row mt-4">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4 text-end btn-text">Loại giáo trình</div>
@@ -36,8 +45,8 @@
             @endif
             @if(!empty(session('success')))
             <div class="alert alert-success">{{session('success')}}</div>
-        @endif
-            <div class="row mt-4">
+            @endif
+            <div class="row mt-4 chonhp">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4 text-end btn-text">Chọn học phần</div>
                 <div class="col-sm-7">
@@ -53,12 +62,12 @@
                 </div>
             </div>
 
-            <div class="row mt-4">
+            <div class="row mt-4 tentl " >
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4 text-end btn-text">Tên tài liệu</div>
                 <div class="col-sm-7"><input type="text" name="tengt" class="btn-input" style="width: 60%;" id=""></div>
             </div>
-            
+
             <div class="row mt-3">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4 text-end btn-text">Đơn vị</div>
@@ -100,7 +109,7 @@
             </div>
             <button type="submit" class="btn-txt">Đăng ký</button>
             {{-- <button type="submit" class="btn btn-success text-center">Đăng ký</button> --}}
-
+            @endif
         </form>
     </div>
 @endsection
@@ -120,5 +129,24 @@
             allowClear: true
         });
     });
+
+    const loaigt = document.querySelector('select[name="loaigt"');
+    const tentl = document.querySelector('.tentl');
+    const chonhp = document.querySelector('.chonhp');
+
+    loaigt.addEventListener('change', function(){
+        if(loaigt.value == 'GT'){
+            tentl.classList.add('d-none')
+        }else{
+            tentl.classList.remove('d-none')
+
+        }
+        if(loaigt.value == 'TLTK'){
+            chonhp.classList.add('d-none')
+        }else{
+            chonhp.classList.remove('d-none')
+
+        }
+    })
     </script>
  @endsection

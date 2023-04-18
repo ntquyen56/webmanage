@@ -25,6 +25,10 @@
                 <th scope="col">tac gia</th>
 
                 <th scope="col">thời gian</th>
+                <th scope="col">File đã nộp</th>
+                <th scope="col">HDNT QD</th>
+
+
                 <th scope="col">chi tiết</th>
             </tr>
         </thead>
@@ -45,6 +49,21 @@
                         @endif
                     </td>
                     <td>{{$item->gtdk->dateNT}}</td>
+                    <td>
+                        <p>
+                            file đã nộp:
+
+                            <a target="_blank" href="{{ $item->gtdk->file_upload }}">{{ $item->gtdk->file_name }}</a>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+
+                            Mã duyệt: <span style="color:blue; font-weight: 600">{{$item->gtdk->statusNT}}</span>
+                        </p>
+                        File QD: <a href="{{$item->gtdk->fileQD}}" style="color:blue; font-weight: 600">File QD</a>
+                    </td>
+
                     <td>
                         <a href="{{ route ("manage.acceptance1") }}"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
                     </td>
