@@ -9,9 +9,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Client\Curr;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\TermController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\LevelController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::get('/curriculum', [CurriculumController::class,'listCurriculum'])->name("client.curriculum");
 
+    Route::get('/bienban', [BrowserController::class,'show_bbhdnt'])->name("manage.acceptance1");
+
+
     // Route::get('/curriculum', function () {
     //     return view('curriculum');
     // })->name("client.curriculum");
@@ -46,9 +51,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/update_info', [HomeController::class,'showFromUpdate'])->name("client.update_info");
 
     Route::post('/handle_update_info', [HomeController::class,'handle_update_info'])->name("client.handle_update_info");
-
-
     //end update info
+
+    Route::get('/regis_calender', [HomeController::class,'showDD'])->name("client.regis_calendar");
+
+
     Route::get('/result', function () {
         return view('result');
     })->name("client.result");
@@ -57,6 +64,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
         return view('calendar');
     })->name("client.calendar");
 
+    
 
 
     Route::get('/publish', function () {
@@ -91,7 +99,12 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
                     Route::get ('/registration_list',[CurriculumController::class,'getPagination']
                     )->name('registration_list');
+                    // Route::get('/delete_curr/{id}', [CurriculumController::class, 'delete_gt'])
+                    // ->name('delete_curr');
             });
+
+            Route::get('manage/delete_curr/{id}', [CurriculumController::class, 'delete_gt']);
+        
 
 
 
@@ -112,13 +125,15 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
             Route::post('/handle_edit_user/{id}', [UserController::class, 'handle_edit_user'])->name('handle_edit_user');
 
+            Route::get('/detail_user/{id}', [UserController::class, 'detail_user'])->name('admin.detail_user');
+           
 
             Route::get('/delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
             //end user
 
-            Route::get ('/detail_user', function(){
-                return view('admin.detail_user');
-            })->name('detail_user');
+            // Route::get ('/detail_user/{id}', function(){
+            //     return view('admin.detail_user');
+            // })->name('detail_user');
 
             // Route::get ('/edit_user', function(){
             //     return view('admin.edit_user');
@@ -132,6 +147,12 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/acceptance_list', function(){
                 return view('admin.acceptance_list');
             })->name('acceptance_list');
+
+            //test
+            Route::get ('/acceptance', function(){
+                return view('admin.acceptance');
+            })->name('acceptance');
+            //
 
             Route::get ('/acceptance_curriculum_list', function(){
                 return view('admin.acceptance_curriculum_list');
@@ -219,6 +240,10 @@ Route::get ('/manage/add_level', function(){
     return view('admin.add_level');
 })->name('manage.add_level');
 
+Route::get ('/manage/add_location', function(){
+    return view('admin.add_location');
+})->name('manage.add_location');
+
 
 
 // Backend
@@ -252,3 +277,9 @@ Route::post('/add_term', [TermController::class, 'add_hp']);
 Route::get('/manage/edit_term/{id_hp}', [TermController::class, 'edit_hp']);
 Route::post('/update_term/{id_hp}', [TermController::class, 'update_hp']);
 Route::get('/manage/delete_term/{id_hp}', [TermController::class, 'delete_term']);
+
+Route::get('/manage/location', [LocationController::class, 'location_list'])->name('manage.location');
+Route::post('/add_location', [LocationController::class, 'add_diadiem']);
+Route::get('/manage/edit_location/{id_dd}', [LocationController::class, 'edit_diadiem']);
+Route::post('/update_location/{id_dd}', [LocationController::class, 'update_diadiem']);
+Route::get('/manage/delete_location/{id_dd}', [LocationController::class, 'delete_diadiem']);

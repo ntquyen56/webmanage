@@ -3,13 +3,13 @@
 @section('child_page')
     <div class="row">
         <div class="col-sm-4">
-            <h5>Danh sách khoa</h5>
+            <h5>Danh sách đơn vị</h5>
         </div>
         <div class="col-sm-5"></div>
         <div class="col-sm-3 text-center mb-3">
             <a href="{{ route ('manage.add_faculty') }}">
                 <button type="button" class="btn btn-success">
-                    <i class="fa-solid fa-plus"></i> Thêm khoa
+                    <i class="fa-solid fa-plus"></i> Thêm đơn vị
                 </button>  
             </a>                     
         </div>        
@@ -18,8 +18,8 @@
         <thead>
             <tr class="text-uppercase">
                 <th scope="col">stt</th>
-                <th scope="col">mã khoa</th>
-                <th scope="col" class="text-left" style="width: 40%;">tên khoa</th>                
+                <th scope="col">mã đơn vị</th>
+                <th scope="col" class="text-left" style="width: 40%;">tên đơn vị</th>                
                 <th scope="col">quản lý</th>
             </tr>
         </thead>

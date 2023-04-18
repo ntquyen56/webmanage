@@ -7,17 +7,17 @@ use App\Models\Curriculum;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+
 class CurriculumController extends Controller
 {
 
      const PER_PAGE = 10;
 
-
-    //
     public function createaCurriculum(Request $req){
         try{
 
              $curriculum = new Curriculum();
+             $curriculum->id = $req->id;
              $curriculum->ma_gt = $req->magt;
              $curriculum->ten_gt = $req->tengt;
              $curriculum->save();
@@ -50,8 +50,6 @@ class CurriculumController extends Controller
         }
     }
 
-
-
     public function handle_update_status_curriculum(Request $req){
         try{
             if($req->status == "start"){
@@ -72,6 +70,7 @@ class CurriculumController extends Controller
 
         }
     }
+
     public function listCurriculum(){
 
         $allGiaoTrinh = Curriculum::all();
@@ -79,4 +78,11 @@ class CurriculumController extends Controller
         return view('curriculum',compact('allGiaoTrinh'));
 
     }
+
+    public function delete_gt($id){
+        Curriculum::find($id)->delete();
+        return redirect()->back();
+    }
+
+
 }

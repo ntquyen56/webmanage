@@ -36,11 +36,11 @@
                             {{ $user->email }}
                         </td>
                         <td>
-                            <a href="{{ route('manage.detail_user') }}"><i class="fa-solid fa-book-open-reader"
+                            <a href="{{ URL::to('manager/detail_user/'.$user->id) }}"><i class="fa-solid fa-book-open-reader"
                                     style="color:blue; font-size: 25px;"></i></a>
                         </td>
                         <td>
-                            <a href="{{ URL::to('manager/edit_user/' . $user->id) }}"><i
+                            <a href="{{ URL::to('manager/edit_user/'.$user->id) }}"><i
                                     class="fa-sharp fa-regular fa-pen-to-square"
                                     style="color: green; font-size: 25px;"></i></a>
 

@@ -2,7 +2,7 @@
 
 @section('child_page')
     <div class="row">
-        <div class="col-sm-12 text-center text-uppercase mb-5" style="font-size: 20px; font-weight: 800;">
+        <div class="col-sm-12 text-center text-uppercase mb-5 mt-4" style="font-size: 20px; font-weight: 800;">
             <h4>Cập nhật thông tin người dùng</h4>
         </div>
 
@@ -24,7 +24,7 @@
                         </div> --}}
                         <div class="row mt-3">
                             <div class="col-sm-4 text-right txt-edit">Tên giảng viên</div>
-                            <div class="col-sm-8"><input type="text" value="{{ $user->name }}" name="tengv" id="" style="height: 125%; border: grey solid 2px;"></div>
+                            <div class="col-sm-8"><input required type="text" value="{{ $user->name }}" name="tengv" id="" style="height: 125%; border: grey solid 2px;"></div>
 
                         </div>
                         {{-- <div class="row mt-3">
@@ -34,25 +34,22 @@
                         <div class="row mt-3">
                             <div class="col-sm-4 text-right txt-edit">Địa chỉ liên hệ</div>
                             <div class="col-sm-8">
-
-                                <textarea name="diachi" id=""  rows="2" cols="30" style="height: 125%; border: grey solid 2px;">{{ $user->diachi }}</textarea>
-
+                                <textarea required name="diachi" id=""  rows="2" cols="30" style="height: 125%; border: grey solid 2px;">{{ $user->diachi }}</textarea>
                             </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-4 text-right txt-edit">Ngày sinh</div>
+                            <div class="col-sm-8"><input type="date" required value={{ $user->ngaysinh }} name="ngaysinh" id="" style="height: 125%; border: grey solid 2px;"></div>
+
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-4 text-right txt-edit">Ngày sinh</div>
-
-                            <div class="col-sm-8"><input type="date" value={{ $user->ngaysinh }} name="ngaysinh" id="" style="height: 125%; border: grey solid 2px;"></div>
-
-                        </div>
+                        
                         <div class="row mt-3">
                             <div class="col-sm-4 text-right txt-edit">Giới tính</div>
                             <div class="col-sm-8">
-                                <select name="gioitinh" id="" class="text-center" style="height: 125%; border: grey solid 2px;">
+                                <select name="gioitinh" required id="" class="text-center" style="height: 125%; border: grey solid 2px;">
                                     <option value="0">----Chọn----</option>
-
                                     <option {{$user->gioitinh == 1 ?"selected" : ""}} value="1">Nam</option>
                                     <option  {{$user->gioitinh == 2 ?"selected" : ""}} value="2">Nữ</option>
 
@@ -60,9 +57,9 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-sm-4 text-right">Khoa</div>
+                            <div class="col-sm-4 text-right txt-edit">Khoa</div>
                             <div class="col-sm-8">
-                                <select name="khoa" id="" value="{{ $edit->id_khoa }}" style="height: 125%; border: grey solid 2px;">
+                                <select name="khoa" required id="" value="{{ $user->id_khoa }}" style="height: 125%; border: grey solid 2px;">
                                     <option value="0">-------Chọn khoa giảng dạy-------</option>
                                     @if ($allKhoa->count() > 0)
                                         @foreach ($allKhoa as $khoa)
@@ -75,9 +72,9 @@
                             </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-sm-4 text-right">Trình độ</div>
+                            <div class="col-sm-4 text-right txt-edit">Trình độ</div>
                             <div class="col-sm-8">
-                                <select name="trinhdo" id="" class="text-center"
+                                <select name="trinhdo" required id="" class="text-center"
                                     style="height: 125%; border: grey solid 2px;">
                                     <option value="0">----Chọn----</option>
                                     @if ($allTrinhDo->count() > 0)
@@ -94,15 +91,15 @@
                         <div class="row mt-3">
                             <div class="col-sm-4 text-right txt-edit">Liên hệ</div>
 
-                            <div class="col-sm-8"><input type="text" name="lienhe" id="" value="{{ $user->lienhe }}" style="height: 125%; border: grey solid 2px;"></div>
+                            <div class="col-sm-8"><input required pattern="^\+?\d{1,3}?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$" maxlength="10" 
+                                type="text" name="lienhe" id="" value="{{ $user->lienhe }}" style="height: 125%; border: grey solid 2px;"></div>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-5" style="margin-left: 45%;">
+                <div class="row" style="width: 60%; margin-left: 18%; margin-top: 10%;">
                     <button type="submit" class="btn btn-success">Cập nhật</button>
                 </div>
             </div>
-
             <div class="col-sm-1"></div>
         </div>
     </form>

@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Term extends Model
+class Location extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ma_hp',
-        'ten_hp',
-        'tinchi'
+        'phong',
+        'khuvuc'
       ];
       public $timestamps = false; 
-      protected $primaryKey = 'id_hp';
-      protected $table = 'group_hocphan';
+      protected $primaryKey = 'id_dd';
+      protected $table = 'diadiem';
 }

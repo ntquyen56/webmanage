@@ -19,6 +19,7 @@ class TermController extends Controller
         $hp = new Term();
         $hp->ma_hp = $data['ma_hp'];
         $hp->ten_hp = $data['ten_hp'];
+        $hp->tinchi = $data['tinchi'];
         $hp->save();
         return Redirect::to('manage/add_term');
     }
@@ -32,6 +33,7 @@ class TermController extends Controller
         $hp = Term::find($id_hp);
         $hp->ma_hp = $data['ma_hp'];
         $hp->ten_hp = $data['ten_hp'];
+        $hp->tinchi = $data['tinchi'];
         $hp->save();
         return Redirect::to('manage/term');
     }
