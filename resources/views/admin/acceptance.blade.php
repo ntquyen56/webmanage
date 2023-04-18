@@ -72,7 +72,12 @@
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="col-sm-10"> <input type="text" name="" id=""></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <textarea name="muc1" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="col-sm-2"></div>
                     </div>
                 </div>
             </div>
@@ -98,8 +103,13 @@
                                 <input type="checkbox" checked="checked">
                                 <span class="checkmark"></span>
                             </label>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <textarea name="muc2" id="" cols="30" rows="10"></textarea>
                         </div>
-                        <div class="col-sm-10"> <input type="text" name="" id=""></div>
+                        <div class="col-sm-2"></div>
                     </div>
                 </div>
             </div>
@@ -126,7 +136,12 @@
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="col-sm-10"> <input type="text" name="" id=""></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <textarea name="muc3" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="col-sm-2"></div>
                     </div>
                 </div>
             </div>
@@ -137,7 +152,12 @@
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    <textarea name="" id="" cols="80" rows="5"></textarea>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <textarea name="muc4" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
                 </div>
             </div>
             <div class="row mt-3">
@@ -195,4 +215,21 @@
             </div>
         </form>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('muc1');
+    </script>
+    <script>
+        CKEDITOR.replace('muc2');
+    </script>
+    <script>
+        CKEDITOR.replace('muc3');
+    </script>
+    <script>
+        CKEDITOR.replace('muc4');
+    </script>
+    
 @endsection
+

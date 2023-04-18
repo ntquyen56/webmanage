@@ -16,32 +16,6 @@
                     <h5>Đăng ký biên soạn giáo trình năm 2023</h5>
                 </div>
             </div>
-            @if(!empty(session('msg')))
-                <div class="alert alert-danger">{{session('msg')}}</div>
-            @endif
-            @if(!empty(session('success')))
-            <div class="alert alert-success">{{session('success')}}</div>
-        @endif
-            <div class="row mt-4">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4 text-end btn-text">Mã học phần</div>
-                <div class="col-sm-7">
-                    <select name="ma_hp" id="" class="btn-input">
-                        <option value="0">--Chọn mã--</option>
-                        @if ($allHocPhan->count() > 0)
-                            @foreach ($allHocPhan as $hocphan)
-                                <option
-                                    value={{ $hocphan->ma_hp }}>{{ $hocphan->ma_hp }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-4 text-end btn-text">Tên giáo trình</div>
-                <div class="col-sm-7"><input type="text" name="tengt" class="btn-input" style="width: 60%;" id=""></div>
-            </div>
             <div class="row mt-4">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-4 text-end btn-text">Loại giáo trình</div>
@@ -57,11 +31,40 @@
                     </select>
                 </div>
             </div>
+            @if(!empty(session('msg')))
+                <div class="alert alert-danger">{{session('msg')}}</div>
+            @endif
+            @if(!empty(session('success')))
+            <div class="alert alert-success">{{session('success')}}</div>
+        @endif
+            <div class="row mt-4">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4 text-end btn-text">Chọn học phần</div>
+                <div class="col-sm-7">
+                    <select name="ma_hp" id="" class="btn-input" style="width: 60%;">
+                        <option value="0">------Chọn học phần biên soạn------</option>
+                        @if ($allHocPhan->count() > 0)
+                            @foreach ($allHocPhan as $hocphan)
+                                <option
+                                    value={{ $hocphan->ma_hp }}>{{ $hocphan->ma_hp }} - {{ $hocphan->ten_hp }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4 text-end btn-text">Tên tài liệu</div>
+                <div class="col-sm-7"><input type="text" name="tengt" class="btn-input" style="width: 60%;" id=""></div>
+            </div>
+            
             <div class="row mt-3">
-                <div class="col-sm-4 text-end btn-text">Khoa</div>
-                <div class="col-sm-8">
-                    <select name="khoa" class="btn-input" id="" style=" border: grey solid 2px;">
-                        <option value="0">-------Chọn khoa giảng dạy-------</option>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4 text-end btn-text">Đơn vị</div>
+                <div class="col-sm-7">
+                    <select name="khoa" class="btn-input" id="" style=" border: grey solid 2px;width: 60%;">
+                        <option value="0">-------Chọn đơn vị-------</option>
                         @if ($allKhoa->count() > 0)
                             @foreach ($allKhoa as $khoa)
                                 <option
@@ -83,13 +86,13 @@
             </div> --}}
             <div class="row mt-4">
                 <div class="col-sm-1"></div>
-                <div class="col-sm-4 text-end btn-text">Mã giảng viên</div>
+                <div class="col-sm-4 text-end btn-text">Thành viên</div>
                 <div class="col-sm-7">
-                    <select  name="tacgia[]"  multiple="multiple" id="" class=" tag_select2_choose" style="width: 30%;">
+                    <select  name="tacgia[]"  multiple="multiple" id="" class="tag_select2_choose btn-tag">
                         @if ($allGiangVien->count() > 0)
                             @foreach ($allGiangVien as $gv)
                                 <option
-                                    value={{ $gv->magv }}>{{ $gv->magv }}</option>
+                                    value={{ $gv->magv }}>{{ $gv->magv}} - {{ $gv->name }}</option>
                             @endforeach
                         @endif
                     </select>

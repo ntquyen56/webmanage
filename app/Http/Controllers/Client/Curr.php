@@ -44,13 +44,13 @@ class Curr extends Controller
             if($req->loai == 'GT'){
 
                 $hocphan = Term::where('ma_hp',$req->ma_hp)->first();
-                if(empty($hocphan)) return redirect()->back()->with('msg','Hoc phan khong ton tai');
+                if(empty($hocphan)) return redirect()->back()->with('msg','Học phần không tồn tại!');
             }
 
 
 
             $dkgt = dang_ki_bien_soan::where('ma_gt',$req->ma_hp)->orWhere('ten_gt',$req->tengt)->first();
-            if(!empty($dkgt)) return redirect()->back()->with('msg','Hoc phan đã được đăng kí!');
+            if(!empty($dkgt)) return redirect()->back()->with('msg','Học phần đã được Đăng ký!');
 
 
             $allTacgia = $req->tacgia;
@@ -63,17 +63,13 @@ class Curr extends Controller
 
             }else{
                 $newDKBS->ma_gt = '';
-                if(empty($req->tengt)) return redirect()->back()->with('msg','Tai lieu tham khao phải có tên.');
+                if(empty($req->tengt)) return redirect()->back()->with('msg','Bạn phải nhập Tên tài liệu tham khảo!');
                 $newDKBS->ten_gt = $req->tengt;
 
             }
-
             $newDKBS->loai_gt = $req->loaigt;
             $newDKBS->id_khoa = $req->khoa;
-
-
             $newDKBS->save();
-
 
             foreach($allTacgia as $matacgia){
                 $tacgia = User::where('magv',$matacgia)->first();
@@ -83,8 +79,6 @@ class Curr extends Controller
                 $newUserGt->user_id = $tacgia->id;
 
                 $newUserGt->giaotrinh_id = $newDKBS->id;
-
-
                 $newUserGt->save();
             }
             $newUserGt = new user_gtdk();
@@ -92,14 +86,7 @@ class Curr extends Controller
             $newUserGt->giaotrinh_id = $newDKBS->id;
             $newUserGt->save();
 
-            return redirect()->back()->with('success','Dang ky giao trinh thanh cong');
-
-
-
-
-
-
-
+            return redirect()->back()->with('success','Đăng ký biên soạn thành công!');
 
         }catch(\Exception $e){
             return throw new($e->getMessage());

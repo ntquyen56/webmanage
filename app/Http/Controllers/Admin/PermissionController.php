@@ -76,14 +76,14 @@ class PermissionController extends Controller
             return redirect()->back();
 
             }
-            if(empty($user)) return  redirect()->back()->with('msg','Account khong ton tai');
+            if(empty($user)) return  redirect()->back()->with('msg','Account không tồn tại!');
             user_role::where('user_id',$user->id)->delete();
             if(count($req->position) > 0 ){
                 foreach($req->position as $role){
                     if($role == 1 || $role == "1"){
                         $kt = user_role::where('role_id',1)->where('id_khoa',$user->id_khoa)->where('user_id','<>',$user->id)->first();
                         if(!empty($kt))
-                        return redirect()->back()->with('msg','Truong khoa da ton tai');
+                        return redirect()->back()->with('msg','Trưởng khoa đã tồn tại!');
 
                         $new_user_role = new user_role();
                         $new_user_role->user_id = $user->id;

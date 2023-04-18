@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Curriculum;
 use App\Models\Faculty;
 use App\Models\Level;
+use App\Models\Location;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class HomeController extends Controller
         return view('update_info',compact('allTrinhDo','allKhoa','user'));
     }
 
+   
 
     public function handle_update_info(Request $req){
         try{

@@ -16,12 +16,17 @@
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-4 txt-add">Mã học phần</div>
-                    <div class="col-sm-7"><input type="text" name="ma_hp" id="" style="width: 70%;" class="input-pr"></div>
+                    <div class="col-sm-7"><input required type="text" name="ma_hp" id="" style="width: 70%;" class="input-pr"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-4 txt-add">Tên học phần</div>
-                    <div class="col-sm-7"><input type="text" name="ten_hp" id="" class="input-pr" style=""></div>
+                    <div class="col-sm-7"><input required type="text" name="ten_hp" id="" class="input-pr" style=""></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4 txt-add">Số tín chỉ</div>
+                    <div class="col-sm-7"><input required type="number" min=1 max=20 name="tinchi" id="" class="input-pr" style="width: 30%;"></div>
                 </div>
                 <div class="row mt-5">
                     <button type="submit" class="btn btn-success">Thêm học phần</button>     

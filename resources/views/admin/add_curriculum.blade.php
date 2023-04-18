@@ -13,12 +13,12 @@
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5 txt-add">Mã giáo trình</div>
-                    <div class="col-sm-5"><input type="text" name="magt" id="" style="width: 70%;" class="input-pr"></div>
+                    <div class="col-sm-5"><input required type="text" name="magt" id="" style="width: 70%;" class="input-pr"></div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-5 txt-add">Tên giáo trình</div>
-                    <div class="col-sm-5"><input type="text" name="tengt" id="" class="input-pr" style=""></div>
+                    <div class="col-sm-5"><input required type="text" name="tengt" id="" class="input-pr" style=""></div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-sm-4"></div>

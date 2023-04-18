@@ -19,8 +19,8 @@
                 <div class="col-sm-2"></div>
                 <div class="col-sm-5">
                     <div class="row">
-                        <div class="col-sm-4">Mã số học phần:</div>
-                        <div class="col-sm-8 txt-acc">CT101</div>
+                        <div class="col-sm-5">Mã số học phần:</div>
+                        <div class="col-sm-7 txt-acc">CT101</div>
                     </div>
                 </div>
                 <div class="col-sm-5">
@@ -37,31 +37,31 @@
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">Chủ biên:</div>
-                <div class="col-sm-8"><input type="text" name="" id="" style="width: 60%;border:none;">
+                <div class="col-sm-8">Nguyễn Văn Anh
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">Thành viên:</div>
-                <div class="col-sm-8"><input type="text" name="" id="" style="width: 60%;border:none;">
+                <div class="col-sm-8">Lê Ngọc Anh
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">Thành viên:</div>
-                <div class="col-sm-8"><input type="text" name="" id="" style="width: 60%;border:none;">
+                <div class="col-sm-8">Nguyễn Bảo Anh
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-3">Địa điểm thẩm định giáo trình:</div>
-                <div class="col-sm-7"><input type="text" name="" id="" style="width: 60%;border:none;">
+                <div class="col-sm-7">Hội trường - Trường CNTT & TT
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">Thời gian:</div>
-                <div class="col-sm-8">Lúc: ???giờ, ngày .... tháng .... năm ....</div>
+                <div class="col-sm-8">Lúc: 08g00 giờ, ngày 17 tháng 05 năm 2023</div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
@@ -70,17 +70,16 @@
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Công bố Quyết định số <input type="text"
-                        style="width: 10%;border: none;">
-                    ./QĐ-ĐHCT ngày <input type="date" name="" id=""> của Hiệu
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Công bố Quyết định số 1/QĐ-ĐHCT
+                     ngày 05/04/2023 của Hiệu
                     trưởng Trường Đại học Cần Thơ về việc thành
-                    lập Hội đồng thẩm định giáo trình.
+                    lập Hội đồng thẩm định giáo trình. <a href="#">Xem quyết định</a>
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    Danh sách Hội đồng gồm có <input type="text" style="width: 6%;border: none;"> thành viên:
+                    Danh sách Hội đồng gồm có ??? thành viên:
                 </div>
             </div>
             <div class="row mt-3">
@@ -159,10 +158,11 @@
                 <div class="col-sm-10 fw-bold">2.1. Ban biên soạn trình bày nội dung giáo trình:</div>
             </div>
             <div class="row mt-3">
-                <div class="col-sm-2"></div>
+                <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-                    <textarea name="" id="" cols="80" rows="5"></textarea>
+                    <textarea name="muc2.1" id="" cols="30" rows="10"></textarea>
                 </div>
+                <div class="col-sm-1"></div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
@@ -194,7 +194,12 @@
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="col-sm-10"> <input type="text" name="" id=""></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <textarea name="muc2.2" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="col-sm-2"></div>
                     </div>
                 </div>
             </div>
@@ -221,7 +226,12 @@
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="col-sm-10"> <input type="text" name="" id=""></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <textarea name="muckienthuc" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="col-sm-2"></div>
                     </div>
                 </div>
             </div>
@@ -248,8 +258,14 @@
                                 <span class="checkmark"></span>
                             </label>
                         </div>
-                        <div class="col-sm-10"> <input type="text" name="" id=""></div>
-                    </div>
+                    </div>  
+                    <div class="row mt-3">
+                        <div class="col-sm-10">
+                            <textarea name="mucnoidung" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>    
+                                  
                 </div>
             </div>
             <div class="row mt-3">
@@ -257,10 +273,11 @@
                 <div class="col-sm-10 fw-bold">4. Định dạng, cấu trúc và hình thức trình bày của giáo trình:</div>
             </div>
             <div class="row mt-3">
-                <div class="col-sm-2"></div>
+                <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-                    <textarea name="" id="" cols="80" rows="5"></textarea>
+                    <textarea name="muc4" id="" cols="30" rows="10"></textarea>
                 </div>
+                <div class="col-sm-1"></div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
@@ -317,4 +334,23 @@
             </div>
         </form>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('muc2.1');
+    </script>
+    <script>
+        CKEDITOR.replace('muc2.2');
+    </script>
+    <script>
+        CKEDITOR.replace('muckienthuc');
+    </script>
+    <script>
+        CKEDITOR.replace('muc4');
+    </script>
+    <script>
+        CKEDITOR.replace('mucnoidung');
+    </script>
+
 @endsection
