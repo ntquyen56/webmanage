@@ -261,6 +261,7 @@
                     <a class="collapse-item" href="{{ route('manage.date') }}">Duyệt nghiệm thu</a>
                 </div>
             </div>
+
         </li>
         @endif
         @if(Auth::user()->group_id ==1 || in_array(4,$arrRoles)))
@@ -274,8 +275,24 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('manage.acceptance') }}">Nghiệm thu</a>
                     <a class="collapse-item" href="{{ route('manage.secretary') }}">Thư kí</a>
+                    @php
+                    $check =0;
+                    foreach(Auth::user()->roles_user as $role){
+                        if($role->role_id ==4 && $role->sub_role =="Chủ tịch"){
+                            $check =1;
+                            break;
+                        }
+                    }
+                @endphp
+
+                    @if($check == 1)
+
+                    <a class="collapse-item" href="{{ route('manage.date') }}">Duyệt nghiệm thu</a>
+                    @endif
+
                 </div>
             </div>
+
         </li>
         @endif
     </ul>

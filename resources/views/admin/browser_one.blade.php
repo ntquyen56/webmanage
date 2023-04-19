@@ -49,15 +49,23 @@
                                     <p>{{$user->magv}} - {{$user->name}}</p>
                                @endforeach
                             </td>
-                            <td>{{$item->loai_gt == 1 ? "Giáo trình" : "Tài liệu tham khảo" }}</td>
+                            <td>{{$item->loai_gt == "GT" ? "Giáo trình" : "Tài liệu tham khảo" }}</td>
 
                             <td>{{$item->created_at}}</td>
-                            @if ($item->status === 0)
+                            @if (empty($item->status) && $item->status !=0)
 
                             <td style="vertical-align: middle;">
-                                <span style="color:red;font-weight: bold;margin-bottom: 8px;display: inline-block;">Chưa duyệt</span>
                                 <form action="{{route('manage.hanle_browser_one')}}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="id_dk" value="{{$item->id}}">
+                                    <input type="hidden" name="status" value="0">
+
+                                    <button type="submit" class="btn btn-success"  style="margin-bottom:4px">Không Duyệt</button>
+                                </form>
+                                <form action="{{route('manage.hanle_browser_one')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="status" value="1">
+
                                     <input type="hidden" name="id_dk" value="{{$item->id}}">
                                     <button type="submit" class="btn btn-success">Duyệt</button>
                                 </form>
@@ -66,6 +74,12 @@
                             @if ($item->status === 1)
                                 <td style="vertical-align: middle;">
                                     <span style="color:green;font-weight: bold;margin-bottom: 8px;display: inline-block;">Đã duyệt</span>
+
+                                </td>
+                            @endif
+                            @if ($item->status === 0)
+                                <td style="vertical-align: middle;">
+                                    <span style="color:red;font-weight: bold;margin-bottom: 8px;display: inline-block;">Đã từ chối</span>
 
                                 </td>
                             @endif

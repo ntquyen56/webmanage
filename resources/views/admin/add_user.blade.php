@@ -6,6 +6,9 @@
             <h4 class="">Thêm người dùng</h4>
         </div>
     </div>
+    @if(session('msg'))
+        <div class="alert alert-danger">{{session('msg')}}</div>
+    @endif
     <form action={{ route('manage.handle_add_user') }} method="POST">
         @csrf
         <div class="row">

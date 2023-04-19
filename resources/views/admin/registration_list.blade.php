@@ -5,17 +5,21 @@
         <div class="col-sm-4">
             <h5>Danh sách giáo trình biên soạn</h5>
         </div>
-
+        @if(session('msg'))
+            <div class="alert alert-danger">
+                {{session('msg')}}
+            </div>        @endif
         <div class="col-sm-5">
-            <form action="">
+            <form action="{{route('manage.handle_update_curriculum')}}" method="POST">
+                @csrf
                 <div class="row">
-                    <div class="col-sm-5">Ngày bắt đầu: <input type="datetime-local" name="" id=""
+                    <div class="col-sm-5">Ngày bắt đầu:{{$curriculums[0]->dateStart}} <input type="datetime-local" name="dateStart" id=""
                             style="width: 100%;"></div>
-                    <div class="col-sm-5">Ngày kết thúc: <input type="datetime-local" name="" id=""
+                    <div class="col-sm-5">Ngày kết thúc: {{$curriculums[0]->dateEnd}} <input type="datetime-local" name="dateEnd" id=""
                             style="width: 100%;"></div>
                     <button type="submit" class="mt-3 text-center" style="width: 15%;height: 30px;">Lưu</button>
                 </div>
-                
+
             </form>
         </div>
 
@@ -26,23 +30,21 @@
 
                 </button>
             </a>
+            {{-- <form action="{{ route('manage.handle_update_curriculum') }}" method="post">
 
             @if ($check == 0)
-                <form action="{{ route('manage.handle_update_curriculum') }}" method="post">
                     @csrf
                     <input type="hidden" name="status" value="start">
 
                     <button type="submit">Bắt đầu</button>
-                </form>
             @endif
             @if ($check == 1)
-                <form action="{{ route('manage.handle_update_curriculum') }}" method="post">
                     @csrf
                     <input type="hidden" name="status" value="close">
 
                     <button type="submit">Kết thúc</button>
-                </form>
-            @endif
+                    @endif
+                </form> --}}
         </div>
 
     </div>
@@ -65,7 +67,7 @@
                         <td>{{ $curriculum->ma_gt }}</td>
                         <td class="text-left">{{ $curriculum->ten_gt }}</td>
                         <td>
-                            {{ strtotime($curriculum->status) > 0 && !empty($curriculum->status) ? 'Open' : 'Close' }}
+                            {{ \Carbon\Carbon::now()->lt($curriculum->dateEnd) ? 'Open' : 'Close' }}
                         </td>
                         {{-- <td>
                         <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>

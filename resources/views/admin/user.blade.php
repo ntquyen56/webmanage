@@ -21,6 +21,11 @@
                 <th scope="col">mã</th>
                 <th scope="col" class="text-left">tên người dùng</th>
                 <th scope="col">email</th>
+                <th scope="col">Chức vụ</th>
+                <th scope="col">Đơn vị</th>
+
+                <th scope="col">email</th>
+
                 <th scope="col">chi tiết</th>
                 <th scope="col">quản lý</th>
             </tr>
@@ -34,6 +39,19 @@
                         <td class="text-left">{{ $user->name }}</td>
                         <td>
                             {{ $user->email }}
+                        </td>
+                        <td>
+                           @if ($user->roles_user->count() > 0)
+                                @foreach($user->roles_user as $role)
+                                    <p>{{$role->role->name}}- {{$role->sub_role ?? ""}}</p>
+                                @endforeach
+
+                            @else
+                                <p>Giảng Viên</p>
+                           @endif
+                        </td>
+                        <td>
+                            {{ $user->khoa->ten_khoa }}
                         </td>
                         <td>
                             <a href="{{ URL::to('manager/detail_user/'.$user->id) }}"><i class="fa-solid fa-book-open-reader"

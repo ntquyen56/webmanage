@@ -78,7 +78,7 @@ class PermissionController extends Controller
             }
             if(empty($user)) return  redirect()->back()->with('msg','Account không tồn tại!');
             user_role::where('user_id',$user->id)->delete();
-            if(count($req->position) > 0 ){
+            if(!empty($req->position) && count($req->position) > 0 ){
                 foreach($req->position as $role){
                     if($role == 1 || $role == "1"){
                         $kt = user_role::where('role_id',1)->where('id_khoa',$user->id_khoa)->where('user_id','<>',$user->id)->first();
