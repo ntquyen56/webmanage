@@ -18,14 +18,17 @@
 
     <header class="header-bg">
         <div class="text-center justify-content-between  ">
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-1"></div>
                 <div class="col-3 justify-content-between text-end">
-                    <img src="{{ asset('image/logo_cit.png') }}" style="width: 100px;" alt="" srcset="">
+                    <img src="{{ asset('image/logo_cit.png') }}" style="width: 100px;" alt="" srcset="">                  
                 </div>
                 <div class="col-8 justify-content-between mt-4 text-start fs-4 fw-bold" style="color: #0400ff;">
                     TRƯỜNG CÔNG NGHỆ THÔNG TIN & TRUYỀN THÔNG
                 </div>
+            </div> --}}
+            <div class="row mb-2">
+                <img src="{{ asset('image/head.jpg') }}" style="width: 100%;" alt="" srcset="">
             </div>
         </div>
     </header>
@@ -38,7 +41,7 @@
                         class="img-fluid" alt="Sample image">
                         
                 </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 img-bg ">
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1  ">
                     <form  action="{{ route('handleLogin') }}" method="POST" >
                         @csrf
                         <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">

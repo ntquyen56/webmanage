@@ -13,6 +13,8 @@ class TypeController extends Controller
             ->with('list', $list);
     }
     public function add_loai(Request $request){
+        $isValidEmail = Type::where('ma_loai',$request->ma_loai)->first();
+        if($isValidEmail) return redirect()->back()->with('msg','Mã loại đã tồn tại!');
         $data = $request->all();
         $loai = new Type();
         $loai->ma_loai = $data['ma_loai'];

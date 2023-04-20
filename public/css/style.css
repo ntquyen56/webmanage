@@ -24,7 +24,7 @@
 }
 
 /* main */
-.main { 
+.main {
     overflow: hidden;
     display: block;
     position: relative;
@@ -157,4 +157,11 @@
     padding-right: 5%;
 }
 
-
+.main-up {
+    margin: 30px 60px;
+    border: black solid 2px;
+}
+.text-right {
+    font-size: 20px;
+    font-weight: 600;
+}

@@ -44,11 +44,9 @@ class UserController extends Controller
     }
     public function createAccountUser(Request $req){
         try{
-            // dd($req->input());
             $isValidEmail = User::where('email',$req->email)->orWhere('magv',$req->magv)->first();
-
-            // dd($isValidEmail);
-            if($isValidEmail) return redirect()->back()->with('msg','Email hoặc magv đã tồn tại');
+            if($isValidEmail) return redirect()->back()->with('msg','Email hoặc Mã giảng viên đã tồn tại!');
+            
             $password = Str::random(10);
             $hashPash =  Hash::make($password);
             $newUser  = new User();

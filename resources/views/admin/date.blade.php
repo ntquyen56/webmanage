@@ -2,20 +2,22 @@
 @section('child_page')
     <div class="main-browser">
         <div class="row">
-            <div class="col-sm-12 text-center text-uppercase">
-                Danh sách đăng ký nghiệm thu năm 2023
+            <div class="col-sm-12 text-uppercase">
+                <h3 style="font-weight:700;"> <i class="fa-solid fa-list"></i> Danh sách đăng ký nghiệm thu </h3>
             </div>
         </div>
         <div class="row">
-            <table class="table table-bordered border-primary text-center mt-3" style="color: black;">
+            <table id="mytable" class="table table-bordered table-striped text-center mt-3" style="color: black;">
                 <thead>
-                    <tr class="text-uppercase">
-                        <th scope="col">stt</th>
-                        <th scope="col">mã</th>
-                        <th scope="col">Hội đồng</th>
-                        <th scope="col">Tác giả</th>
-                        <th scope="col">Ngày nghiệm thu</th>
-                        <th scope="col">Trạng thái</th>
+                    <tr class="text-uppercase" style="background-color: rgb(173, 205, 237)">
+                        <th scope="col" class="text-center" style="vertical-align: middle">stt</th>
+                        <th scope="col" class="text-center" style="vertical-align: middle">mã</th>
+                        <th scope="col" class="text-center" style="vertical-align: middle">Hội đồng</th>
+                        <th scope="col" class="text-center" style="vertical-align: middle">Tác giả</th>
+                        <th scope="col" class="text-center" style="vertical-align: middle">Ngày nghiệm thu</th>
+                        <th scope="col" class="text-center" style="vertical-align: middle">Địa điểm</th>
+                        <th scope="col" class="text-center" style="vertical-align: middle;">Giáo trình</th>
+                        <th scope="col" class="text-center" style="vertical-align: middle">Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,12 +37,12 @@
                                     <p>{{ $user->magv }} - {{ $user->name }}</p>
                                 @endforeach
                             </td>
-                            <td>{{$item->dateNT}}</td>
+                            <td>{{date('d-m-Y H:i:s'),strtotime($item->dateNT) }}</td>
+                            <td>????</td>
                             <td>
                                 <p>
-                                    file đã nộp:
-
-                                    <a target="_blank" href="{{ $item->file_upload }}">{{ $item->file_name }}</a>
+                                    {{-- <a target="_blank" href="{{ $item->file_upload }}">{{ $item->file_name }}</a> --}}
+                                    <a target="_blank" href="{{ $item->file_upload }}">Xem tại đây</a>
                                 </p>
                             </td>
 
@@ -86,9 +88,9 @@
                             <td>
                                 <p>
 
-                                    Mã duyệt: <span style="color:blue; font-weight: 600">{{$item->statusNT}}</span>
+                                    Số QĐ: <span style="color:blue; font-weight: 600">{{$item->statusNT}}</span>
                                 </p>
-                                File QD: <a href="{{$item->fileQD}}" style="color:blue; font-weight: 600">File QD</a>
+                                <a href="{{$item->fileQD}}" style="color:blue; font-weight: 600">Xem ngay</a>
                             </td>
 
                             @endif

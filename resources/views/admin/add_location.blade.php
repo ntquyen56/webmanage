@@ -2,14 +2,17 @@
 
 @section('child_page')
     <div class="group-main-pro mt-5">
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-sm-2 mt-3 text-center">
-                <a href="{{ route ('manage.location') }}"><i class="fa-solid fa-list" style="font-size: 25px; color: black;"></i></a>
+                <a href="{{ route ('manage.location') }}"><i class="fa-solid fa-list" style="font-size: 30px; color: black;"></i></a>
             </div>
-            <div class="col-sm-10 mt-3 text-center text-uppercase">
-                <h4>Thêm địa điểm</h4>
-            </div>            
+            <div class="col-sm-9  text-uppercase mt-3">
+                <h3 style="font-weight: 700">Thêm địa điểm</h3>
+            </div>
         </div>
+        @if(session('msg'))
+            <div class="alert alert-danger">{{session('msg')}}</div>
+        @endif
         <div class="row mt-3 mb-3" style="margin: 4% 5% 2% 5%;">
             <form method="post" action="{{ URL::to('add_location')}}">
                 @csrf

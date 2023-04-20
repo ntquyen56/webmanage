@@ -15,6 +15,8 @@ class FacultyController extends Controller
             ->with('list', $list);
     }
     public function add_khoa(Request $request){
+        $isValidEmail = Faculty::where('ma_khoa',$request->ma_khoa)->first();
+        if($isValidEmail) return redirect()->back()->with('msg','Mã đơn vị đã tồn tại!');
         $data = $request->all();
         $khoa = new Faculty();
         $khoa->ma_khoa = $data['ma_khoa'];
