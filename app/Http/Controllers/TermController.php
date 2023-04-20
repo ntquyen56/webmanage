@@ -15,6 +15,8 @@ class TermController extends Controller
             ->with('list', $list);
     }
     public function add_hp(Request $request){
+        $isValidEmail = Term::where('ma_hp',$request->ma_hp)->first();
+        if($isValidEmail) return redirect()->back()->with('msg','Mã học phần đã tồn tại!');
         $data = $request->all();
         $hp = new Term();
         $hp->ma_hp = $data['ma_hp'];

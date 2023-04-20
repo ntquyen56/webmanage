@@ -20,7 +20,7 @@
                     <th>Trạng thái</th>
 
                     <th>Ngày NT</th>
-                    <th>Nộp bài</th>
+                  
 
                 </thead>
                 <tbody>

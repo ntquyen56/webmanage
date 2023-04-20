@@ -15,6 +15,8 @@ class LevelController extends Controller
             ->with('list', $list);
     }
     public function add_trinhdo(Request $request){
+        $isValidEmail = Level::where('ma_trinhdo',$request->ma_trinhdo)->first();
+        if($isValidEmail) return redirect()->back()->with('msg','Mã loại đã tồn tại!');
         $data = $request->all();
         $trinhdo = new Level();
         $trinhdo->ma_trinhdo = $data['ma_trinhdo'];

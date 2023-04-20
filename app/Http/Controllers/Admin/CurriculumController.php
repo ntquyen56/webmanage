@@ -15,6 +15,8 @@ class CurriculumController extends Controller
 
     public function createaCurriculum(Request $req){
         try{
+            $isValidEmail = Curriculum::where('ma_gt',$req->magt)->first();
+            if($isValidEmail) return redirect()->back()->with('msg','Mã giáo trình biên soạn này đã tồn tại!');
 
              $curriculum = new Curriculum();
              $curriculum->id = $req->id;

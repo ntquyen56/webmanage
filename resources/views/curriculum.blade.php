@@ -22,8 +22,7 @@
                     <tr>
 
                         <td colspan="4">
-
-                            <p>Chưa tới thời gian đăng kí</p>
+                            <p style="font-size: 20px; color: red; font-weight: 600;">Chưa đến thời gian đăng kí biên soạn!</p>
                         </td>
                     </tr>
                     @else

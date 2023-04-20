@@ -10,7 +10,8 @@
 .footer {
     border-top: 1px dashed #2F58CD;
     text-align: center;
-    background-color: #62CDFF;
+    background-color: #092ae1;
+    color: #eee;
 }
 .text-f {
     font-weight: 500;

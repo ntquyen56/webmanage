@@ -2,26 +2,27 @@
 
 @section('child_page')
     <div class="row">
-        <div class="col-sm-4">
-            <h5>Danh sách giáo trình biên soạn</h5>
+        <div class="col-sm-6 text-uppercase">
+            <h3 style="font-weight:700;"> <i class="fa-solid fa-list"></i> Danh sách giáo trình biên soạn</h3>
         </div>
-        @if(session('msg'))
+        <div class="col-sm-3"></div>
+        {{-- @if (session('msg'))
             <div class="alert alert-danger">
-                {{session('msg')}}
-            </div>        @endif
+                {{ session('msg') }}
+            </div>
+        @endif
         <div class="col-sm-5">
-            <form action="{{route('manage.handle_update_curriculum')}}" method="POST">
+            <form action="{{ route('manage.handle_update_curriculum') }}" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-sm-5">Ngày bắt đầu:{{$curriculums[0]->dateStart}} <input type="datetime-local" name="dateStart" id=""
+                    <div class="col-sm-5 txt-time">Ngày bắt đầu: <input type="datetime-local" name="dateStart" id=""
                             style="width: 100%;"></div>
-                    <div class="col-sm-5">Ngày kết thúc: {{$curriculums[0]->dateEnd}} <input type="datetime-local" name="dateEnd" id=""
+                    <div class="col-sm-5 txt-time">Ngày kết thúc:<input type="datetime-local" name="dateEnd" id=""
                             style="width: 100%;"></div>
                     <button type="submit" class="mt-3 text-center" style="width: 15%;height: 30px;">Lưu</button>
                 </div>
-
             </form>
-        </div>
+        </div> --}}
 
         <div class="col-sm-3 text-center">
             <a href="{{ route('manage.add_curriculum') }}">
@@ -30,32 +31,47 @@
 
                 </button>
             </a>
-            {{-- <form action="{{ route('manage.handle_update_curriculum') }}" method="post">
-
-            @if ($check == 0)
-                    @csrf
-                    <input type="hidden" name="status" value="start">
-
-                    <button type="submit">Bắt đầu</button>
-            @endif
-            @if ($check == 1)
-                    @csrf
-                    <input type="hidden" name="status" value="close">
-
-                    <button type="submit">Kết thúc</button>
-                    @endif
-                </form> --}}
         </div>
-
     </div>
-    <table id="mytable" class="table table-bordered border-primary text-center mt-3" style="color: black;">
+    <div class="row mt-2">
+        @if (session('msg'))
+            <div class="alert alert-danger">
+                {{ session('msg') }}
+            </div>
+        @endif
+        <div class="col-sm-12 mt-2">
+            <form action="{{ route('manage.handle_update_curriculum') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-sm-2 txt-time text-right">Ngày bắt đầu:</div>
+                    <div class="col-sm-3"> <input type="datetime-local" name="dateStart" id=""
+                            style="width: 100%;"></div>
+                    <div class="col-sm-2 text-right txt-time">Ngày kết thúc:</div>
+                    <div class="col-sm-3 "><input type="datetime-local" name="dateEnd" id="" style="width: 100%;">
+                    </div>
+                    <div class="col-sm-2"><button type="submit" class="text-center btn-hover"
+                            style="border: none;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+                            rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+                                <i class="fa-solid fa-floppy-disk"></i> Lưu</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-3 mb-2" style="color: rgb(227, 126, 25);">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4 txt-time">Từ ngày: {{ date('d-m-Y H:i:s', strtotime($curriculums[0]->dateStart)) }}</div>
+        <div class="col-sm-4 txt-time">Đến ngày: {{ date('d-m-Y H:i:s', strtotime($curriculums[0]->dateEnd)) }}</div>
+    </div>
+    <table id="mytable" class="table table-bordered table-striped text-center mt-3" style="color: black;">
         <thead>
-            <tr class="text-uppercase">
+            <tr class="text-uppercase" style="background-color: rgb(173, 205, 237)">
                 <th scope="col" class="text-center">stt</th>
                 <th scope="col" class="text-center">mã</th>
                 <th scope="col" class="text-center">tên giáo trình</th>
                 <th scope="col" class="text-center">Trạng thái</th>
-                {{-- <th scope="col">chi tiết</th> --}}
+                <th scope="col" class="text-center">Năm biên soạn</th>
                 <th scope="col" class="text-center">quản lý</th>
             </tr>
         </thead>
@@ -69,9 +85,7 @@
                         <td>
                             {{ \Carbon\Carbon::now()->lt($curriculum->dateEnd) ? 'Open' : 'Close' }}
                         </td>
-                        {{-- <td>
-                        <a href="#"><i class="fa-solid fa-book-open-reader" style="color:blue; font-size: 25px;"></i></a>
-                    </td> --}}
+                        <td>{{ date('d-m-Y'), strtotime($curriculum->created_at) }}</td>
                         <td>
                             <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"
                                     style="color: green; font-size: 25px;"></i></a> |

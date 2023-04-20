@@ -2,8 +2,8 @@
 
 @section('child_page')
     <div class="row">
-        <div class="col-sm-6">
-            <h5>Danh sách người dùng</h5>
+        <div class="col-sm-6 text-uppercase">
+            <h3 style="font-weight:700;"> <i class="fa-solid fa-list"></i> Danh sách người dùng</h3>
         </div>
         <div class="col-sm-3"></div>
         <div class="col-sm-3 text-center mb-3">
@@ -14,20 +14,17 @@
             </a>
         </div>
     </div>
-    <table class="table table-bordered border-primary text-center mt-3" style="color: black;" id="mytable">
+    <table class="table table-bordered table-striped text-center mt-3" style="color: black;" id="mytable">
         <thead>
-            <tr class="text-uppercase">
-                <th scope="col">stt</th>
-                <th scope="col">mã</th>
-                <th scope="col" class="text-left">tên người dùng</th>
-                <th scope="col">email</th>
-                <th scope="col">Chức vụ</th>
-                <th scope="col">Đơn vị</th>
-
-                <th scope="col">email</th>
-
-                <th scope="col">chi tiết</th>
-                <th scope="col">quản lý</th>
+            <tr class="text-center" style="background-color: rgb(173, 205, 237)">
+                <th scope="col" class="text-center" style="font-size: 15px; vertical-align: middle;">STT</th>
+                <th scope="col" class="text-center" style="font-size: 15px; vertical-align: middle;">MÃ</th>
+                <th scope="col" class="text-center" style="font-size: 15px; vertical-align: middle;">TÊN NGƯỜI DÙNG</th>
+                <th scope="col" class="text-center" style="font-size: 15px; vertical-align: middle;">EMAIL</th>
+                <th scope="col" class="text-center" style="font-size: 15px; vertical-align: middle;">CHỨC VỤ</th>
+                <th scope="col" class="text-center" style="font-size: 15px; vertical-align: middle;">ĐƠN VỊ</th>
+                <th scope="col" class="text-center" style="font-size: 15px; vertical-align: middle;">CHI TIẾT</th>
+                <th scope="col" style="width: 10%;" class="text-center" style="font-size: 15px; vertical-align: middle;">QUẢN LÍ</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +37,7 @@
                         <td>
                             {{ $user->email }}
                         </td>
-                        <td>
+                        <td class="text-left">
                            @if ($user->roles_user->count() > 0)
                                 @foreach($user->roles_user as $role)
                                     <p>{{$role->role->name}}- {{$role->sub_role ?? ""}}</p>
@@ -50,7 +47,7 @@
                                 <p>Giảng Viên</p>
                            @endif
                         </td>
-                        <td>
+                        <td class="text-left">
                             {{ $user->khoa->ten_khoa }}
                         </td>
                         <td>

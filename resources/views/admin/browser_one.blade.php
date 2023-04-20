@@ -2,8 +2,8 @@
 @section('child_page')
     <div class="main-browser">
         <div class="row">
-            <div class="col-sm-12 text-center text-uppercase">
-                Danh sách đăng ký biên soạn năm 2023 - Khoa công nghệ thông tin
+            <div class="col-sm-12 text-uppercase">
+                <h3 style="font-weight:700;"> <i class="fa-solid fa-list"></i> Danh sách duyệt đăng ký biên soạn </h3>
             </div>
         </div>
         @if (session('msg'))
@@ -24,24 +24,23 @@
             </div>
         @endif
         <div class="row">
-            <table class="table table-bordered border-primary text-center mt-3" style="color: black;">
+            <table class="table table-bordered table-striped text-center mt-3" style="color: black;">
                 <thead>
-                    <tr class="text-uppercase">
-                        <th scope="col">stt</th>
-                        <th scope="col">mã</th>
-                        <th scope="col" class="text-left">tên giáo trình</th>
-                        <th scope="col">Tác giả</th>
-                        <th scope="col">Loại</th>
-
-                        <th scope="col">Ngày đăng ký</th>
-                        <th scope="col">Trạng thái</th>
+                    <tr class="text-uppercase" style="background-color: rgb(173, 205, 237)">
+                        <th scope="col" class="text-center">stt</th>
+                        <th scope="col" class="text-center">mã</th>
+                        <th scope="col" class="text-center">tên giáo trình</th>
+                        <th scope="col" class="text-center">Tác giả</th>
+                        <th scope="col" class="text-center">Loại</th>
+                        <th scope="col" class="text-center">Ngày đăng ký</th>
+                        <th scope="col" class="text-center">Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($allGiaotrinhKhoa->count() > 0)
-                        @foreach ($allGiaotrinhKhoa as $item)
+                        @foreach ($allGiaotrinhKhoa as $key=>$item)
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{{ $key + 1 }}</th>
                             <td>{{$item->ma_gt}}</td>
                             <td class="text-left">{{$item->ten_gt}}</td>
                             <td class="text-left">
@@ -51,7 +50,8 @@
                             </td>
                             <td>{{$item->loai_gt == "GT" ? "Giáo trình" : "Tài liệu tham khảo" }}</td>
 
-                            <td>{{$item->created_at}}</td>
+                            {{-- <td>{{$item->created_at}}</td> --}}
+                            <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                             @if (empty($item->status) && $item->status !=0)
 
                             <td style="vertical-align: middle;">

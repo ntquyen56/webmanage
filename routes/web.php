@@ -64,7 +64,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
         return view('calendar');
     })->name("client.calendar");
 
-    
+
 
 
     Route::get('/publish', function () {
@@ -178,6 +178,10 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/add_term', function(){
                 return view('admin.add_term');
             })->name('add_term');
+
+            Route::get ('/edit_curriculum', function(){
+                return view('admin.edit_curriculum');
+            })->name('edit_curriculum');
 
 
             //permisssion

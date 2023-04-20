@@ -1,9 +1,9 @@
 @extends('layout.admin')
 
 @section('child_page')
-    <div class="row">
-        <div class="col-sm-6">
-            <h5>Danh sách giáo trình xuất bản</h5>
+    <div class="row mb-3">
+        <div class="col-sm-6 text-uppercase ">
+            <h3 style="font-weight:700;"> <i class="fa-solid fa-list"></i> Danh sách xuất bản</h3>
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-4">
@@ -17,14 +17,14 @@
         <div class="col-sm-1"></div>
     </div>
 
-    <table id="mytable" class="table table-bordered border-primary text-center mt-3" style="color: black;">
+    <table id="mytable" class="table table-bordered table-striped text-center mt-3" style="color: black;">
         <thead>
-            <tr class="text-uppercase">
-                <th scope="col">stt</th>
-                <th scope="col">mã</th>
-                <th scope="col">tên giáo trình</th>
-                <th scope="col">Nội dung</th>
-                <th scope="col">Thời gian</th>
+            <tr class="text-uppercase" style="background-color: rgb(173, 205, 237)">
+                <th scope="col" class="text-center">stt</th>
+                <th scope="col" class="text-center">mã</th>
+                <th scope="col" class="text-center">tên giáo trình</th>
+                <th scope="col" class="text-center">Nội dung</th>
+                <th scope="col" class="text-center">Ngày xuất bản</th>
                 {{-- <th scope="col">quản lý</th> --}}
             </tr>
         </thead>

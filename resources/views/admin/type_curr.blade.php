@@ -2,10 +2,10 @@
 
 @section('child_page')
     <div class="row">
-        <div class="col-sm-4">
-            <h5>Loại giáo trình</h5>
+        <div class="col-sm-6 text-uppercase">
+            <h3 style="font-weight:700;"> <i class="fa-solid fa-list"></i> Danh sách loại giáo trình</h3>
         </div>
-        <div class="col-sm-5"></div>
+        <div class="col-sm-3"></div>
         <div class="col-sm-3 text-center mb-3">
             <a href="{{ route ('manage.add_typecurr') }}">
                 <button type="button" class="btn btn-success">
@@ -14,13 +14,13 @@
             </a>                     
         </div>        
     </div>
-    <table id="mytable" class="table table-bordered border-primary text-center mt-5" style="color: black; width: 80%; margin: 5% 10%;">
+    <table id="mytable" class="table table-bordered  table-striped text-center mt-5" style="color: black; width: 80%; margin: 5% 10%;">
         <thead>
-            <tr class="text-uppercase">
-                <th scope="col">stt</th>
-                <th scope="col">mã loại</th>
-                <th scope="col" class="text-left" style="width: 40%;">tên loại</th>                
-                <th scope="col">quản lý</th>
+            <tr class="text-uppercase" style="background-color: rgb(173, 205, 237)">
+                <th scope="col" class="text-center">stt</th>
+                <th scope="col" class="text-center">mã loại</th>
+                <th scope="col" class="text-center" style="width: 40%;">tên loại</th>                
+                <th scope="col" class="text-center">quản lý</th>
             </tr>
         </thead>
         <tbody>
