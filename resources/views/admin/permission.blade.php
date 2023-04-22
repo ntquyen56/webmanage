@@ -45,7 +45,7 @@
                                         <input type="radio" {{ $user->group_id !== 1 ? 'checked' : '' }} name="role"
                                             value="10"> User
                                     </div>
-                                    @if (Auth::user()->id != $user->id && $user->group_id == 1)
+                                    @if (Auth::user()->id != $user->id && Auth::user()->group_id == 1)
                                         <div class="col-sm-4">
                                             <button type="submit">Lưu</button>
                                         </div>

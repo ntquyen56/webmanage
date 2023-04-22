@@ -35,7 +35,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
     Route::get('/curriculum', [CurriculumController::class,'listCurriculum'])->name("client.curriculum");
 
-    Route::get('/bienban', [BrowserController::class,'show_bbhdnt'])->name("manage.acceptance1");
+    Route::get('/bienban/{id}', [BrowserController::class,'show_bbhdnt'])->name("manage.acceptance1");
 
 
     // Route::get('/curriculum', function () {
@@ -60,9 +60,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
         return view('result');
     })->name("client.result");
 
-    Route::get('/calendar', function () {
-        return view('calendar');
-    })->name("client.calendar");
+    Route::get('/calendar', [Curr::class,'showCalendar'])->name("client.calendar");
 
 
 
@@ -105,6 +103,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
             Route::get('manage/delete_curr/{id}', [CurriculumController::class, 'delete_gt']);
         
+            Route::post('/handle_update_status_dkbs',[CurriculumController::class,'handle_update_status_dkbs'])->name('handle_update_status_dkbs');
 
 
 

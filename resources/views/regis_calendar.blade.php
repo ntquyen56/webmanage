@@ -121,6 +121,8 @@
 
                                             <a target="_blank" href="{{ $item->file_upload }}">{{ $item->file_name }}</a>
                                         </p>
+                                        @if ($item->statusNopFile == 0  || (\Carbon\Carbon::now()->gt($item->dateStartEditFile)  && \Carbon\Carbon::now()->lt($item->dateEndEditFile)))
+
                                         <form action="{{ route('client.upload_document') }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
@@ -128,6 +130,7 @@
                                             <input type="file" name="file_upload" id="">
                                             <button type="submit" class="btn btn-success">Nộp bài</button>
                                         </form>
+                                        @endif
                                     </td>
 
 

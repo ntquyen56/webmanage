@@ -64,6 +64,38 @@
         <div class="col-sm-4 txt-time">Từ ngày: {{ date('d-m-Y H:i:s', strtotime($curriculums[0]->dateStart)) }}</div>
         <div class="col-sm-4 txt-time">Đến ngày: {{ date('d-m-Y H:i:s', strtotime($curriculums[0]->dateEnd)) }}</div>
     </div>
+    <div class="row mt-2">
+        @if (session('msg'))
+            <div class="alert alert-danger">
+                {{ session('msg') }}
+            </div>
+        @endif
+        <div class="col-sm-12 mt-2">
+            <form action="{{ route('manage.handle_update_status_dkbs') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-sm-2 txt-time text-right">Ngày bắt đầu chỉnh sửa file nộp:</div>
+                    <div class="col-sm-3"> <input type="datetime-local" name="dateStart" id=""
+                            style="width: 100%;"></div>
+                    <div class="col-sm-2 text-right txt-time">Ngày kết thúc chỉnh sửa file nộp:</div>
+                    <div class="col-sm-3 "><input type="datetime-local" name="dateEnd" id="" style="width: 100%;">
+                    </div>
+                    <div class="col-sm-2"><button type="submit" class="text-center btn-hover"
+                            style="border: none;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
+                            rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+                                <i class="fa-solid fa-floppy-disk"></i> Lưu</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-3 mb-2" style="color: rgb(227, 126, 25);">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4 txt-time">Từ ngày: {{ date('d-m-Y H:i:s', strtotime($dkbs->dateStartEditFile)) }}</div>
+        <div class="col-sm-4 txt-time">Đến ngày: {{ date('d-m-Y H:i:s', strtotime($dkbs->dateEndEditFile)) }}</div>
+    </div>
+
     <table id="mytable" class="table table-bordered table-striped text-center mt-3" style="color: black;">
         <thead>
             <tr class="text-uppercase" style="background-color: rgb(173, 205, 237)">

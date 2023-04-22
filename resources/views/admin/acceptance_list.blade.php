@@ -48,7 +48,7 @@
                             @endif
                         </td>
                         <td>{{ date ('d-m-Y H:i:s'), strtotime($item->gtdk->dateNT) }}</td>
-                        <td>???</td>
+                        <td>{{$item->gtdk->diadiem}}</td>
                         <td>
                             <p>
 
@@ -65,7 +65,7 @@
                         </td>
 
                         <td>
-                            <a href="{{ route('manage.acceptance1') }}"><i class="fa-solid fa-book-open-reader"
+                            <a href="{{ route('manage.acceptance1',$item->gtdk->id) }}"><i class="fa-solid fa-book-open-reader"
                                     style="color:blue; font-size: 25px;"></i></a>
                         </td>
 

@@ -7,6 +7,8 @@ use App\Mail\SendMail;
 use App\Models\dang_ki_bien_soan;
 use App\Models\User;
 use App\Models\Location;
+use App\Models\config;
+
 use App\Models\user_hdnt;
 use App\Models\user_role;
 use App\Traits\StorageImageTrait;
@@ -239,11 +241,13 @@ class BrowserController extends Controller
     public function upload_document(Request $req){
         try{
             $dataImage = $this->storageTraitUpload($req, 'file_upload', 'document');
-
+            // dd($dataImage);
             $dkbs = dang_ki_bien_soan::where('id',$req->id_dk)->first();
 
             $dkbs->file_upload = $dataImage['file_path'];
             $dkbs->file_name = $dataImage['file_name'];
+            $dkbs->statusNopFile = 1;
+
 
 
             $dkbs->save();
@@ -359,13 +363,16 @@ class BrowserController extends Controller
         return view('admin.acceptance_list',compact('list_nt'));
     }
 
-    public function show_bbhdnt(){
+    public function show_bbhdnt($id){
         // $list_nt = user_hdnt::where('hdnt_id',Auth::user()->id)->get();
         // foreach($list_nt as $item){
         //     $item->gtdk = $item->gtdk;
         // }
         // dd($list_nt);
-        return view('admin.acceptance');
+
+        $dkbs = dang_ki_bien_soan::where('id',$id)->first();
+        $config = config::all();
+        return view('admin.acceptance',compact('dkbs','config'));
     }
 
     // public function showDD(){
