@@ -294,8 +294,28 @@
                     <div id="collapseEight1" class="collapse" aria-labelledby="headingEight1"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
+
+                            @php
+                            $check = 0;
+                            foreach (Auth::user()->roles_user as $role) {
+                                if ($role->role_id == 4 && $role->sub_role == 'Thư kí') {
+                                    $check = 1;
+                                    break;
+                                }
+                            }
+                            @endphp
+
+                            @if ($check == 0)
+
                             <a class="collapse-item" href="{{ route('manage.acceptance') }}">Nghiệm thu</a>
+                            @endif
+
+                         
+                            @if ($check == 1)
+
                             <a class="collapse-item" href="{{ route('manage.secretary') }}">Thư kí</a>
+                            @endif
+
                             @php
                                 $check = 0;
                                 foreach (Auth::user()->roles_user as $role) {

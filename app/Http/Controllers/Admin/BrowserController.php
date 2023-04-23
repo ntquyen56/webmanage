@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
 use App\Models\dang_ki_bien_soan;
 use App\Models\User;
+use App\Models\bienban_nt_thuky;
+
+use App\Models\danhgia_nt;
+
 use App\Models\Location;
 use App\Models\config;
 
@@ -372,6 +376,9 @@ class BrowserController extends Controller
 
         $dkbs = dang_ki_bien_soan::where('id',$id)->first();
         $config = config::all();
+        $danhgia_nt = danhgia_nt::where('user_danhgia',Auth::user()->id)->where('id_giaotrinh',$id)->first();
+        if(!empty($danhgia_nt)) return view('admin.acceptanced',compact('dkbs','config','danhgia_nt'));
+
         return view('admin.acceptance',compact('dkbs','config'));
     }
 
@@ -379,4 +386,179 @@ class BrowserController extends Controller
     //     $allDiadiem = Location::get();
     //     return view('regis_calender',compact('allDiadiem'));
     // }
+
+
+    public function danhgianghiemthu(Request $req)
+    {
+        try{
+            // dd($req->input());
+
+            $gtdk = dang_ki_bien_soan::where('id',$req->id_gt)->first();
+
+            if(empty($gtdk)) return redirect()->back()->with('msg','Giao trinh khong ton tai!');
+
+            $danhgia_nt = new danhgia_nt();     
+            
+            $danhgia_nt->user_danhgia = Auth::user()->id;
+            $danhgia_nt->id_giaotrinh = $req->id_gt;
+
+            $arr1 = $req->NDGT;
+            if(!empty($req->muc1)) array_push($arr1,$req->muc1);
+            $danhgia_nt->nd_giaotrinh = json_encode($arr1);
+
+         
+            $arr2 = $req->KTTGT;
+
+            if(!empty($req->muc2)) array_push($arr2,$req->muc2);
+            $danhgia_nt->kt_giaotrinh = json_encode($arr2);
+
+            $arr3 = $req->NDDTD;
+
+            if(!empty($req->muc3)) array_push($arr3,$req->muc3);
+            $danhgia_nt->ndtd_giaotrinh = json_encode($arr3);
+
+
+            if(empty($req->muc4)) return redirect()->back()->with('msg','Noi dung dinh dang khong the trong!');
+
+            $danhgia_nt->ddcautruc_gt = $req->muc4;
+
+            $danhgia_nt->dtsd = json_encode($req->DTDSD);
+            
+            $danhgia_nt->ketluan = ($req->DNVKL);
+
+            
+            $danhgia_nt->nd_ketluan = ($req->muc5);
+
+            $danhgia_nt->save();
+
+            return redirect()->back()->with('success_msg', 'Danh gia thanh cong!');
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
+
+    function show_list_nt_thuky (){
+        try{
+            $list_nt = user_hdnt::where('hdnt_id',Auth::user()->id)->get();
+            // dd($list_nt);
+            // $arr = [];
+
+
+
+
+
+            foreach($list_nt as $item){
+                $item->gtdk = $item->gtdk;
+            }
+
+
+        return view('admin.list_secretary',compact('list_nt'));
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
+
+    function detail_secretary($id){
+        try{
+            // dd($id);
+        $dkbs = dang_ki_bien_soan::where('id',$id)->first();
+        $config = config::all();
+        $danhgia_nt =    danhgia_nt::where('id_giaotrinh',$id)->get();
+        // dd($danhgia_nt);
+        $data_danhgia = [];
+        foreach($danhgia_nt as $item){
+            $data_danhgia['nd_giaotrinh'] = array_merge($data_danhgia['nd_giaotrinh'] ?? [], json_decode($item->nd_giaotrinh,true));
+            $data_danhgia['kt_giaotrinh'] = array_merge($data_danhgia['kt_giaotrinh'] ?? [], json_decode($item->kt_giaotrinh,true));
+            $data_danhgia['ndtd_giaotrinh'] = array_merge($data_danhgia['ndtd_giaotrinh'] ?? [], json_decode($item->ndtd_giaotrinh,true));
+            $data_danhgia['dtsd'] = array_merge($data_danhgia['dtsd'] ?? [], json_decode($item->dtsd,true));
+            $data_danhgia['ketluan'][] = $item->ketluan;
+            $data_danhgia['ddcautruc_gt'][] = $item->ddcautruc_gt;
+            $data_danhgia['nd_ketluan'][] = $item->nd_ketluan	;
+
+
+       
+        }
+
+        // dd($data_danhgia);
+        $danhgia_thuky = bienban_nt_thuky::where('id_thuky',Auth::user()->id)->first();
+        if(!empty($danhgia_thuky)) return view('admin.secretaried',compact('dkbs','config','danhgia_nt','data_danhgia','danhgia_thuky'));
+        $check = 0;
+        foreach (Auth::user()->roles_user as $role) {
+            if ($role->role_id == 4 && $role->sub_role == 'Thư kí') {
+                $check = 1;
+                break;
+            }
+        }
+        if($check == 0 ) return view('secretaried',compact('dkbs','config','danhgia_nt','data_danhgia','danhgia_thuky'));
+        return view('admin.secretary',compact('dkbs','config','danhgia_nt','data_danhgia'));
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
+    function detail_secretary_client($id){
+        try{
+            // dd($id);
+        $dkbs = dang_ki_bien_soan::where('id',$id)->first();
+        $config = config::all();
+        $danhgia_nt =    danhgia_nt::where('id_giaotrinh',$id)->get();
+        // dd($danhgia_nt);
+        $data_danhgia = [];
+        foreach($danhgia_nt as $item){
+            $data_danhgia['nd_giaotrinh'] = array_merge($data_danhgia['nd_giaotrinh'] ?? [], json_decode($item->nd_giaotrinh,true));
+            $data_danhgia['kt_giaotrinh'] = array_merge($data_danhgia['kt_giaotrinh'] ?? [], json_decode($item->kt_giaotrinh,true));
+            $data_danhgia['ndtd_giaotrinh'] = array_merge($data_danhgia['ndtd_giaotrinh'] ?? [], json_decode($item->ndtd_giaotrinh,true));
+            $data_danhgia['dtsd'] = array_merge($data_danhgia['dtsd'] ?? [], json_decode($item->dtsd,true));
+            $data_danhgia['ketluan'][] = $item->ketluan;
+            $data_danhgia['ddcautruc_gt'][] = $item->ddcautruc_gt;
+            $data_danhgia['nd_ketluan'][] = $item->nd_ketluan	;
+
+
+       
+        }
+
+        // dd($data_danhgia);
+        $danhgia_thuky = bienban_nt_thuky::where('id_giaotrinh',$id)->first();
+        // if(!empty($danhgia_thuky)) return view('admin.secretaried',compact('dkbs','config','danhgia_nt','data_danhgia','danhgia_thuky'));
+        // $check = 0;
+        // foreach (Auth::user()->roles_user as $role) {
+        //     if ($role->role_id == 4 && $role->sub_role == 'Thư kí') {
+        //         $check = 1;
+        //         break;
+        //     }
+        // }
+        // if($check == 0 ) 
+        return view('secretaried',compact('dkbs','config','danhgia_nt','data_danhgia','danhgia_thuky'));
+        // return view('admin.secretary',compact('dkbs','config','danhgia_nt','data_danhgia'));
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
+    public function danhgianghiemthu_thuky(Request $req){
+        try{
+            // dd($req->input());
+            $danhgia_thuky = new bienban_nt_thuky();
+            $danhgia_thuky->id_giaotrinh = $req->id_giaotrinh;
+            $danhgia_thuky->id_thuky = Auth::user()->id;
+            $danhgia_thuky->nd_giaotrinh = $req->muc2_2;
+            $danhgia_thuky->kt_giaotrinh = $req->muckienthuc;
+            $danhgia_thuky->ndtd_giaotrinh = $req->mucnoidung;
+            $danhgia_thuky->ddcautruc_gt = $req->muc4;
+            $danhgia_thuky->nd_ketluan = $req->muc5;
+            
+            $danhgia_thuky->save();
+
+
+            $dkbs = dang_ki_bien_soan::where('id',$req->id_giaotrinh)->first();
+
+            $dkbs->stausBienBanNT = 1;
+            $dkbs->save();
+
+            return redirect()->back();
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
 }

@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('welcome')
 @section('child_page')
     <div class="main-acc">
         <div class="row">
@@ -128,8 +128,8 @@
             <div class="row mt-1">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    Số thành viên có mặt: <input type="text" value="{{count($danhgia_nt) +1}}" style="width: 5%;"> ; &nbsp;
-                    Vắng mặt: <input type="text" name="" value="{{count($dkbs->hdnts) - (count($danhgia_nt) +1)}}" id="" style="width: 5%;">
+                    Số thành viên có mặt: <input disabled type="text" value="{{count($danhgia_nt) +1}}" style="width: 5%;"> ; &nbsp;
+                    Vắng mặt: <input disabled type="text" name="" value="{{count($dkbs->hdnts) - (count($danhgia_nt) +1)}}" id="" style="width: 5%;">
                 </div>                
             </div>
             <div class="row mt-3">
@@ -191,7 +191,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-10">
-                            <textarea name="muc2.2" id="" cols="30" rows="10">
+                            <textarea disabled name="muc2.2" id="" cols="30" rows="10">
                                 @forEach($data_danhgia['nd_giaotrinh'] as $item) 
                                     @if(is_html($item))
                                         {{$item}}
@@ -239,11 +239,10 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-10">
-                            <textarea name="muckienthuc" id="" cols="30" rows="10"> @forEach($data_danhgia['kt_giaotrinh'] as $item) 
-                                @if(is_html($item))
-                                    {{$item}}
-                                @endif
-                            @endforeach</textarea>
+                            <textarea disabled name="muckienthuc" id="" cols="30" rows="10"> 
+                                
+                                    {{$danhgia_thuky->nd_giaotrinh}}
+                            </textarea>
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -285,13 +284,10 @@
                     </div>  
                     <div class="row mt-3">
                         <div class="col-sm-10">
-                            <textarea name="mucnoidung" id="" cols="30" rows="10">
+                            <textarea disabled name="mucnoidung" id="" cols="30" rows="10">
 
-                                @forEach($data_danhgia['ndtd_giaotrinh'] as $item) 
-                                @if(is_html($item))
-                                    {{$item}}
-                                @endif
-                            @endforeach
+                                {{$danhgia_thuky->ndtd_giaotrinh}}
+
                             </textarea>
                         </div>
                         <div class="col-sm-2"></div>
@@ -306,12 +302,9 @@
             <div class="row mt-3">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-                    <textarea name="muc4" id="" cols="30" rows="10">
-                        @forEach($data_danhgia['ddcautruc_gt'] as $item) 
-                        @if(is_html($item))
-                            {{$item}}
-                        @endif
-                    @endforeach</textarea>
+                    <textarea disabled  name="muc4" id="" cols="30" rows="10">
+                        {{$danhgia_thuky->ddcautruc_gt}}
+                    </textarea>
                 </div>
                 <div class="col-sm-1"></div>
             </div>
@@ -385,20 +378,17 @@
                     @endif
                     @endforeach
                     <div class="col-sm-10  text_editor">
-                        <textarea name="muc5" id="" cols="30" rows="10">
-                                 @forEach($data_danhgia['nd_ketluan'] as $item) 
-                        @if(is_html($item))
-                            {{$item}}
-                        @endif
-                    @endforeach
+                        <textarea disabled name="muc5" id="" cols="30" rows="10">
+                            {{$danhgia_thuky->nd_ketluan}}
+
                             </textarea>
                     </div>
                 </div>
                 
             </div>
-            <div class="row mt-5 mb-3" style="padding-left: 40%;padding-right: 40%;">
+            {{-- <div class="row mt-5 mb-3" style="padding-left: 40%;padding-right: 40%;">
                 <button type="submit" style="" class="btn btn-success">Gửi đánh giá</button>
-            </div>
+            </div> --}}
         </form>
     </div>
 

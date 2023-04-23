@@ -66,7 +66,7 @@
                         
                     <label class="container">
                         {{$item->value}}
-                        <input type="checkbox" checked="checked" name="NDGT[]" value="{{$item->value}}">
+                        <input type="checkbox" disabled {{in_array($item->value,json_decode($danhgia_nt->nd_giaotrinh,true)) ? 'checked':""}} name="NDGT[]" value="{{$item->value}}">
                         <span class="checkmark"></span>
                     </label>
                     @endif
@@ -86,14 +86,14 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="container">Khác:
-                                <input type="checkbox" checked="checked">
+                                <input type="checkbox" disabled {{is_html(json_decode($danhgia_nt->nd_giaotrinh,true)[count(json_decode($danhgia_nt->nd_giaotrinh,true)) - 1]) ? 'checked':""}}>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-10">
-                            <textarea name="muc1" id="" cols="30" rows="10"></textarea>
+                            <textarea name="muc1" id="" cols="30" rows="10">{{is_html(json_decode($danhgia_nt->nd_giaotrinh,true)[count(json_decode($danhgia_nt->nd_giaotrinh,true)) - 1]) ? json_decode($danhgia_nt->nd_giaotrinh,true)[count(json_decode($danhgia_nt->nd_giaotrinh,true)) - 1]:""}}</textarea>
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -111,7 +111,7 @@
                         
                     <label class="container">
                         {{$item->value}}
-                        <input type="checkbox" checked="checked" name="KTTGT[]" value="{{$item->value}}">
+                        <input type="checkbox" disabled  {{in_array($item->value,json_decode($danhgia_nt->kt_giaotrinh,true)) ? 'checked':""}} name="KTTGT[]" value="{{$item->value}}">
                         <span class="checkmark"></span>
                     </label>
                     @endif
@@ -128,14 +128,14 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="container">Khác:
-                                <input type="checkbox" checked="checked">
+                                <input type="checkbox" disabled {{is_html(json_decode($danhgia_nt->kt_giaotrinh,true)[count(json_decode($danhgia_nt->kt_giaotrinh,true)) - 1]) ? 'checked':""}}>
                                 <span class="checkmark"></span>
                             </label>
                         </div>                        
                     </div>
                     <div class="row">
                         <div class="col-sm-10">
-                            <textarea name="muc2" id="" cols="30" rows="10"></textarea>
+                            <textarea name="muc2" id="" cols="30" rows="10">{{is_html(json_decode($danhgia_nt->kt_giaotrinh,true)[count(json_decode($danhgia_nt->kt_giaotrinh,true)) - 1]) ? json_decode($danhgia_nt->kt_giaotrinh,true)[count(json_decode($danhgia_nt->kt_giaotrinh,true)) - 1]:""}}</textarea>
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -154,7 +154,7 @@
                         
                     <label class="container">
                         {{$item->value}}
-                        <input type="checkbox" checked="checked" name="NDDTD[]" value="{{$item->value}}">
+                        <input type="checkbox" disabled {{in_array($item->value,json_decode($danhgia_nt->ndtd_giaotrinh,true)) ? 'checked':""}} name="NDDTD[]" value="{{$item->value}}">
                         <span class="checkmark"></span>
                     </label>
                     @endif
@@ -170,14 +170,14 @@
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="container">Khác:
-                                <input type="checkbox" checked="checked">
+                                <input type="checkbox" disabled {{is_html(json_decode($danhgia_nt->ndtd_giaotrinh,true)[count(json_decode($danhgia_nt->ndtd_giaotrinh,true)) - 1]) ? 'checked':""}}>
                                 <span class="checkmark"></span>
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-10">
-                            <textarea name="muc3" id="" cols="30" rows="10"></textarea>
+                            <textarea name="muc3" id="" cols="30" rows="10">{{is_html(json_decode($danhgia_nt->ndtd_giaotrinh,true)[count(json_decode($danhgia_nt->ndtd_giaotrinh,true)) - 1]) ? json_decode($danhgia_nt->ndtd_giaotrinh,true)[count(json_decode($danhgia_nt->ndtd_giaotrinh,true)) - 1]:""}}</textarea>
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -192,7 +192,7 @@
                 <div class="col-sm-10">
                     <div class="row">
                         <div class="col-sm-10">
-                            <textarea name="muc4" id="" cols="30" rows="10"></textarea>
+                            <textarea name="muc4" id="" cols="30" rows="10">{{$danhgia_nt->ddcautruc_gt}}</textarea>
                         </div>
                         <div class="col-sm-2"></div>
                     </div>
@@ -210,7 +210,7 @@
                     @if ($item->key == "DTDSD")
                         
                     <label class="container">{{$item->value}}
-                        <input type="checkbox" checked="checked" name="DTDSD[]" value="{{$item->value}}">
+                        <input type="checkbox" disabled {{in_array($item->value,json_decode($danhgia_nt->dtsd,true)) ? 'checked':""}} name="DTDSD[]" value="{{$item->value}}">
                         <span class="checkmark"></span>
                     </label>
                     @endif
@@ -240,7 +240,7 @@
                     @if ($item->key == "DNVKL")
                         
                     <div class="form-check">
-                        <input class="form-check-input" name="DNVKL" value="{{$item->value}}" type="radio" name="flexRadioDefault" id="{{"flexRadioDefault2"}}">
+                        <input class="form-check-input" disabled name="DNVKL" {{$item->value == $danhgia_nt->ketluan ? "checked":""}} value="{{$item->value}}" type="radio" name="flexRadioDefault" id="{{"flexRadioDefault2"}}">
                         <label class="form-check-label" >
                            {{$item->value}}
                         </label>
@@ -263,14 +263,14 @@
                             Không đạt
                         </label>
                     </div> --}}
-                    <div class="col-sm-10 invisible text_editor">
-                        <textarea name="muc5" id="" cols="30" rows="10"></textarea>
+                    <div class="col-sm-10  text_editor">
+                        <textarea name="muc5" id="" cols="30" rows="10">{{$danhgia_nt->nd_ketluan ?? ""}}</textarea>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5 mb-3" style="padding-left: 40%;padding-right: 40%;">
+            {{-- <div class="row mt-5 mb-3" style="padding-left: 40%;padding-right: 40%;">
                 <button type="submit" style="" class="btn btn-success">Gửi đánh giá</button>
-            </div>
+            </div> --}}
         </form>
     </div>
 

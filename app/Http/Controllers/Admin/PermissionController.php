@@ -94,11 +94,11 @@ class PermissionController extends Controller
                     }
 
                     if($role == 2 || $role == "2"){
-                        if($req->sub_position_hdt == 'Chủ tịch' || $req->sub_position_hdt == 'Thư kí'){
+                        // if($req->sub_position_hdt == 'Chủ tịch' || $req->sub_position_hdt == 'Thư kí'){
 
-                            $kt = user_role::where('role_id',2)->where('sub_role',$req->sub_position_hdt)->where('user_id','<>',$user->id)->first();
-                            if(!empty($kt)) return redirect()->back()->with('msg',$req->sub_position_hdt.' da ton tai');
-                        }
+                        //     $kt = user_role::where('role_id',2)->where('sub_role',$req->sub_position_hdt)->where('user_id','<>',$user->id)->first();
+                        //     if(!empty($kt)) return redirect()->back()->with('msg',$req->sub_position_hdt.' da ton tai');
+                        // }
 
                         $new_user_role = new user_role();
                         $new_user_role->user_id = $user->id;
@@ -110,11 +110,11 @@ class PermissionController extends Controller
                         $new_user_role->save();
                     }
                     if($role == 4 || $role == "4"){
-                        if($req->sub_position_hdnt == 'Chủ tịch' || $req->sub_position_hdnt == 'Thư kí'){
+                        // if($req->sub_position_hdnt == 'Chủ tịch' || $req->sub_position_hdnt == 'Thư kí'){
 
-                            $kt = user_role::where('role_id',4)->where('sub_role',$req->sub_position_hdnt)->where('user_id','<>',$user->id)->first();
-                            if(!empty($kt)) return redirect()->back()->with('msg',$req->sub_position_hdnt.' da ton tai');
-                        }
+                        //     $kt = user_role::where('role_id',4)->where('sub_role',$req->sub_position_hdnt)->where('user_id','<>',$user->id)->first();
+                        //     if(!empty($kt)) return redirect()->back()->with('msg',$req->sub_position_hdnt.' da ton tai');
+                        // }
                         $new_user_role = new user_role();
                         $new_user_role->user_id = $user->id;
                         $new_user_role->role_id = $role;
