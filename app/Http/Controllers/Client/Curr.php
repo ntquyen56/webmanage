@@ -102,4 +102,16 @@ class Curr extends Controller
             return throw new($e->getMessage());
         }
     }
+
+    public function showDKBS_THUKI(){
+        try{
+            $dkbsList = dang_ki_bien_soan::whereNotNull('statusNT')->whereNotNull('fileQD')->where('stausBienBanNT',1)->whereHas('users', function($q){
+                $q->where('users.id',Auth::user()->id);
+            })->get();
+            // dd($dkbsList);
+            return view('result',compact('dkbsList'));
+        }catch(\Exception $e){
+            return throw new($e->getMessage());
+        }
+    }
 }

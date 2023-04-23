@@ -36,6 +36,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/curriculum', [CurriculumController::class,'listCurriculum'])->name("client.curriculum");
 
     Route::get('/bienban/{id}', [BrowserController::class,'show_bbhdnt'])->name("manage.acceptance1");
+    Route::get ('/detail_secretary/{id}', [BrowserController::class,'detail_secretary_client'])->name('client.detail_secretary');
 
 
     // Route::get('/curriculum', function () {
@@ -56,9 +57,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
     Route::get('/regis_calender', [HomeController::class,'showDD'])->name("client.regis_calendar");
 
 
-    Route::get('/result', function () {
-        return view('result');
-    })->name("client.result");
+    Route::get('/result', [Curr::class,'showDKBS_THUKI'])->name("client.result");
 
     Route::get('/calendar', [Curr::class,'showCalendar'])->name("client.calendar");
 
@@ -84,6 +83,14 @@ Route::prefix('/')->middleware('auth')->group(function () {
 });
 // Admin
     Route::prefix('manager')->middleware('admin')->name('manage.')->group(function () {
+
+
+            //begin danh gia nt
+            Route::post('/danhgianghiemthu',[BrowserController::class,'danhgianghiemthu'])->name("danhgianghiemthu");
+        //thu ky
+            Route::post('/danhgianghiemthu_thuky',[BrowserController::class,'danhgianghiemthu_thuky'])->name("danhgianghiemthu_thuky");
+
+            //end danh gia nghiem thu
 
             //curr
             Route::prefix('/curriculum')->group(function () {
@@ -208,9 +215,9 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
             //HD nghiem thu
             Route::get ('/acceptance', [BrowserController::class,'show_list_nt'])->name('acceptance');
-            Route::get ('/secretary', function(){
-                return view('admin.secretary');
-            })->name('secretary');
+            Route::get ('/secretary', [BrowserController::class,'show_list_nt_thuky'])->name('secretary');
+            Route::get ('/detail_secretary/{id}', [BrowserController::class,'detail_secretary'])->name('detail_secretary');
+
     });
 
 

@@ -31,4 +31,8 @@ class dang_ki_bien_soan extends Model
     public function hdnts(){
         return $this->hasMany(user_hdnt::class,'gtdk_id','id');
     }
+
+    public function hocphan(){
+        return $this->belongsTo(Term::class,'ma_gt','ma_hp');
+    }
 }
