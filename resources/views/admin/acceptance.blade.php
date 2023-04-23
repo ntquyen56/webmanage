@@ -13,17 +13,17 @@
             <div class="row mt-4">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">Ủy viên phản biện:</div>
-                <div class="col-sm-8 txt-acc">Nguyễn Văn A</div>
+                <div class="col-sm-8 txt-acc">{{Auth::user()->name}}</div>
             </div>
-            <div class="row mt-2">
+            {{-- <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">Chuyên ngành:</div>
-                <div class="col-sm-8 txt-acc">Công nghệ thông tin</div>
-            </div>
+                <div class="col-sm-8 txt-acc">{{Auth::user()->khoa->ten_khoa}}</div>
+            </div> --}}
             <div class="row mt-2">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-2">Đơn vị công tác:</div>
-                <div class="col-sm-8 txt-acc">Khoa Công nghệ thông tin</div>
+                <div class="col-sm-8 txt-acc">{{Auth::user()->khoa->ten_khoa}}</div>
             </div>
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
@@ -36,13 +36,13 @@
                 <div class="col-sm-5">
                     <div class="row">
                         <div class="col-sm-4">Tên giáo trình:</div>
-                        <div class="col-sm-8 txt-acc">Lập trình căn bản A</div>
+                        <div class="col-sm-8 txt-acc">{{$dkbs->ten_gt}}</div>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="row">
                         <div class="col-sm-4 text-right">Mã HP:</div>
-                        <div class="col-sm-8 txt-acc">CT101</div>
+                        <div class="col-sm-8 txt-acc">{{$dkbs->ma_gt ?? ""}}</div>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,17 @@
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    <label class="container">Phù hợp với mục tiêu, nội dung CTĐT
+                    @foreach ($config as $item)
+                    @if ($item->key == "NDGT")
+                        
+                    <label class="container">
+                        {{$item->value}}
+                        <input type="checkbox" checked="checked" name="NDGT">
+                        <span class="checkmark"></span>
+                    </label>
+                    @endif
+                    @endforeach
+                    {{-- <label class="container">Phù hợp với mục tiêu, nội dung CTĐT
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
                     </label>
@@ -64,7 +74,7 @@
                     <label class="container">Đáp ứng chuẩn đầu ra của học phần
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
-                    </label>
+                    </label> --}}
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="container">Khác:
@@ -88,7 +98,17 @@
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    <label class="container">Trình bày khoa học, logic, cân đối giữa lý thuyết và thực hành
+                    @foreach ($config as $item)
+                    @if ($item->key == "KTTGT")
+                        
+                    <label class="container">
+                        {{$item->value}}
+                        <input type="checkbox" checked="checked" name="KTTGT">
+                        <span class="checkmark"></span>
+                    </label>
+                    @endif
+                    @endforeach
+                    {{-- <label class="container">Trình bày khoa học, logic, cân đối giữa lý thuyết và thực hành
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
                     </label>
@@ -96,7 +116,7 @@
                         nhận
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
-                    </label>
+                    </label> --}}
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="container">Khác:
@@ -121,14 +141,24 @@
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    <label class="container">Có nguồn gốc, chú thích rõ ràng, tuân thủ các quy định của pháp luật
+                    @foreach ($config as $item)
+                    @if ($item->key == "NDDTD")
+                        
+                    <label class="container">
+                        {{$item->value}}
+                        <input type="checkbox" checked="checked" name="NDDTD">
+                        <span class="checkmark"></span>
+                    </label>
+                    @endif
+                    @endforeach
+                    {{-- <label class="container">Có nguồn gốc, chú thích rõ ràng, tuân thủ các quy định của pháp luật
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
                     </label>
                     <label class="container">Nội dung trích dẫn phù hợp, đáp ứng mục tiêu của giáo trình
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
-                    </label>
+                    </label> --}}
                     <div class="row">
                         <div class="col-sm-2">
                             <label class="container">Khác:
@@ -167,7 +197,17 @@
             <div class="row mt-3">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-10">
-                    <label class="container">Đào tạo đại học
+
+                    @foreach ($config as $item)
+                    @if ($item->key == "DTDSD")
+                        
+                    <label class="container">{{$item->value}}
+                        <input type="checkbox" checked="checked" name="DTDSD">
+                        <span class="checkmark"></span>
+                    </label>
+                    @endif
+                    @endforeach
+                    {{-- <label class="container">Đào tạo đại học
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
                     </label>
@@ -178,7 +218,7 @@
                     <label class="container">Tiến sĩ
                         <input type="checkbox" checked="checked">
                         <span class="checkmark"></span>
-                    </label>
+                    </label> --}}
                 </div>
             </div>
             <div class="row mt-3">
@@ -197,16 +237,20 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
                             checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
+                        <label class="form-check-label " for="flexRadioDefault2">
                             Đạt - Xuất bản - Có chỉnh sửa
                         </label>
+                        
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
                             checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault3">
                             Không đạt
                         </label>
+                    </div>
+                    <div class="col-sm-10 invisible text_editor">
+                        <textarea name="muc5" id="" cols="30" rows="10"></textarea>
                     </div>
                 </div>
             </div>
@@ -229,6 +273,47 @@
     </script>
     <script>
         CKEDITOR.replace('muc4');
+    </script>
+      <script>
+        CKEDITOR.replace('muc5');
+
+        const text_editor = document.querySelector('.text_editor');
+        const flexRadioDefault2 = document.querySelector('#flexRadioDefault2');
+
+        flexRadioDefault2.addEventListener('change', function(e){
+            if(this.checked){
+                console.log('cheked');
+                text_editor.classList.remove('invisible')
+            }else{  
+                console.log('abc');
+                text_editor.classList.add('invisible')
+
+            }
+        })
+        const flexRadioDefault1 = document.querySelector('#flexRadioDefault1');
+
+        flexRadioDefault1.addEventListener('change', function(e){
+            if(this.checked){
+                console.log('cheked');
+                text_editor.classList.add('invisible')
+            }else{  
+                console.log('abc');
+                text_editor.classList.remove('invisible')
+
+            }
+        })
+        const flexRadioDefault3 = document.querySelector('#flexRadioDefault3');
+
+        flexRadioDefault3.addEventListener('change', function(e){
+            if(this.checked){
+                console.log('cheked');
+                text_editor.classList.add('invisible')
+            }else{  
+                console.log('abc');
+                text_editor.classList.remove('invisible')
+
+            }
+        })
     </script>
     
 @endsection

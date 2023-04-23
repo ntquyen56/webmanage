@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Curriculum;
+use App\Models\dang_ki_bien_soan;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -43,7 +45,9 @@ class CurriculumController extends Controller
             $check =1;
             if(($checkStatus->count() > 0)) $check =0;
             // dd($checkStatus->count() > 0);
-            return view('admin.registration_list',compact('curriculums','check'));
+
+            $dkbs = dang_ki_bien_soan::where('id','<>',0)->first();
+            return view('admin.registration_list',compact('curriculums','check','dkbs'));
 
 
         }catch(\Exception $e){
@@ -60,6 +64,26 @@ class CurriculumController extends Controller
             Curriculum::where('id','<>',0)->update([
                 'dateStart'=>$req->dateStart,
                 'dateEnd'=>$req->dateEnd,
+
+            ]);
+
+
+            return redirect()->back();
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+
+        }
+    }
+
+
+    public function handle_update_status_dkbs(Request $req){
+        try{
+            if(Carbon::now()->gt($req->dateStart)) return redirect()->back()->with('msg','Ngày bắt đầu phải lớn hơn ngày hiện tại');
+            if(Carbon::create($req->dateStart)->gt($req->dateEnd)) return redirect()->back()->with('msg','Ngày bắt đầu phải nhỏ hơn ngày kêt thúc');
+
+            dang_ki_bien_soan::where('id','<>',0)->update([
+                'dateStartEditFile'=>$req->dateStart,
+                'dateEndEditFile'=>$req->dateEnd,
 
             ]);
 

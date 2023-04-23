@@ -24,7 +24,7 @@
                     @if ($gtdk_list->count() > 0)
                     @foreach ($gtdk_list as $key=>$item)
                         <tr>
-                            <td>{{ $key+1 }}</td>
+                            <td>{{ $item->id}}</td>
 
                             <td>{{ $item->ma_gt }}</td>
                             <td class="text-left">
@@ -38,7 +38,7 @@
                                 @endforeach
                             </td>
                             <td>{{date('d-m-Y H:i:s'),strtotime($item->dateNT) }}</td>
-                            <td>????</td>
+                            <td>{{$item->diadiem}}</td>
                             <td>
                                 <p>
                                     {{-- <a target="_blank" href="{{ $item->file_upload }}">{{ $item->file_name }}</a> --}}
@@ -90,7 +90,7 @@
 
                                     Số QĐ: <span style="color:blue; font-weight: 600">{{$item->statusNT}}</span>
                                 </p>
-                                <a href="{{$item->fileQD}}" style="color:blue; font-weight: 600">Xem ngay</a>
+                                <a href="{{$item->fileQD}}" target="_blank" style="color:blue; font-weight: 600">Xem ngay</a>
                             </td>
 
                             @endif

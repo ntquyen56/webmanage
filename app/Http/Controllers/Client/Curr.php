@@ -92,4 +92,14 @@ class Curr extends Controller
             return throw new($e->getMessage());
         }
     }
+
+    public function showCalendar(){
+        try{
+            $dkbsList = dang_ki_bien_soan::whereNotNull('statusNT')->whereNotNull('fileQD')->get();
+            // dd($dkbsList);
+            return view('calendar',compact('dkbsList'));
+        }catch(\Exception $e){
+            return throw new($e->getMessage());
+        }
+    }
 }

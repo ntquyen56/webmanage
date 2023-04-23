@@ -150,12 +150,12 @@
                                     Xem thêm</button>
                             </a>
                         </div>
-                        <div class="col-5 text-end mb-3">
+                        {{-- <div class="col-5 text-end mb-3">
                             <a href="{{ route('client.propose') }}">
                                 <button type="button" class="btn btn-success btn-sm btn-bs">
                                     Đề xuất biên soạn</button>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="col-1"></div>
                     </div>
                 </div>

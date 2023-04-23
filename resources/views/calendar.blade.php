@@ -28,22 +28,97 @@
                     </tr>
                 </thead>
                 <tbody class="txt-calendar">
+                    
+                    @foreach ($dkbsList as $item)
+
                     <tr>
                         <th scope="row" class="text-center txt-calendar">1</th>
-                        <td class="text-center">CT111</td>
-                        <td>Lập trình hướng đối tượng</td>
+                        <td class="text-center">{{$item->ma_gt ?? ""}}</td>
+                        <td>{{$item->ten_gt	 ?? ""}}</td>
+                        
                         <td>
-                            Nguyên Văn Anh<br>
-                            Nguyên Văn Annh Beee<br>
-                            Nguyên Văn Aaaa<br>
-                            Nguyên Văn A aaaaaa<br>
-                            Nguyên Văn A
+                            @if (!empty($item->dateNT))
+                                {{-- <p style="border-bottom:1px solid #ccc;padding:8px 0;">
+                                    {{ $item->dateNT }}
+                                </p> --}}
+                                 {{-- <p style="border-bottom:1px solid #ccc;padding:8px 0;">
+                                    {{ $item->diadiem ?? "" }}
+                                </p> --}}
+                                @if ($item->hdnts->count() > 0)
+                                    @foreach ($item->hdnts as $hdnt)
+                                    @php
+                                        $sub_role = "";
+                                        foreach($hdnt->user->roles_user as $role){
+
+                                            if($role->role_id == 4)
+
+                                                $sub_role = $role->sub_role;
+
+                                        }
+
+                                 @endphp
+                                        <p>{{ $hdnt->user->magv }} - {{ $hdnt->user->name }} -{{$sub_role}} </p>
+                                    @endforeach
+                                @endif
+                            @else
+                                <form action="{{ route('client.registerHDNTAndDateSubmit') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id_gtdk" value="{{ $item->id }}">
+                                    <select name="hdnt[]" multiple="multiple" id=""
+                                        class="tag_select2_choose">
+                                        @if ($allHDNT->count() > 0)
+                                            @foreach ($allHDNT as $gv)
+                                            @php
+                                                $sub_role = "";
+                                                foreach($gv->roles_user as $role){
+
+                                                    if($role->role_id == 4)
+
+                                                        $sub_role = $role->sub_role;
+
+                                                }
+
+                                             @endphp
+
+                                                <option value={{ $gv->id }}>{{ $gv->magv }} -
+                                                    {{ $gv->name }} - {{$sub_role}} </option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    <input type="datetime-local" name="dateNT" id="" class="mt-2">
+                                    <br>
+                                    <select name="diadiem" id="" class="mt-2" style="width: 50%;">
+                                        <option value="0">-----Chọn địa điểm-----</option>
+                                        @if ($allDiadiem->count() > 0)
+                                            @foreach ($allDiadiem as $diadiem)
+                                                <option value="{{$diadiem->id_dd}}">
+                                                    {{ $diadiem->phong }} - {{ $diadiem->khuvuc }}
+                                                </option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                    <br>
+                                    <button style="margin: 5% 37%;font-size: 15px;" type="submit">Đăng
+                                        ký</button>
+                                </form>
+                            @endif
+
                         </td>
-                        <td>Nguyễn Thanh Quyên</td>
-                        <td class="text-center">05/12/2022</td>
-                        <td class="text-center">05/05/2023</td>
-                        <td class="text-center">08g00 - P108, Trường CNTT & TT</td>
+                        <td class="text-left">
+                            @foreach ($item->users as $user)
+                                <p>{{ $user->magv }} - {{ $user->name }}</p>
+                            @endforeach
+                        </td>
+                        <td class="text-center">{{$item->created_at}}</td>
+                        <td class="text-center">{{$item->dateNT}}</td>
+                        <td class="text-center"> 
+                            <p style="border-bottom:1px solid #ccc;padding:8px 0;">
+                                {{ $item->dateNT }}
+                            </p>
+                            {{ $item->diadiem ?? "" }}</td>
                     </tr>
+                    @endforeach
+
                 </tbody>
             </table>
         </div>
