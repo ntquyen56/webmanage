@@ -29,6 +29,9 @@ use App\Http\Controllers\LevelController;
 // Client
 Route::prefix('/')->middleware('auth')->group(function () {
 
+
+
+    
     Route::get('/home', [HomeController::class,'pageHome'])->name("client");
     Route::get('/', [HomeController::class,'pageHome'])->name("client");
 
