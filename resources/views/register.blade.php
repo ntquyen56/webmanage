@@ -16,7 +16,7 @@
                     <h5>Đăng ký biên soạn giáo trình năm 2023</h5>
                 </div>
             </div>
-            @if(\Carbon\Carbon::now()->lt($allHocPhan[0]->dateStart)  || \Carbon\Carbon::now()->gt($allHocPhan[0]->dateEnd))
+            @if(\Carbon\Carbon::now()->lt($allGiaoTrinh[0]->dateStart)  || \Carbon\Carbon::now()->gt($allGiaoTrinh[0]->dateEnd))
                     <tr>
 
                         <td colspan="4">

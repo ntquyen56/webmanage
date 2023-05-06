@@ -29,20 +29,28 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>CT111</td>
-                <td class="text-left">Cấu trúc dữ liệu</td>
-                <td>
-                    <a href="#">Xem ngay</a>
-                </td>
-                <td>05/06/2023</td>
-                {{-- <td>
-                    <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"
-                            style="color: green; font-size: 25px;"></i></a> |
-                    <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
-                </td> --}}
-            </tr>
+            @if ($allGTXB->count() > 0)
+            @foreach ($allGTXB as $key=>$item)
+            @if (!str_contains($item->status, 
+            'Không đạt') && !empty($item->status))
+                
+                <tr>
+                    <th scope="row">{{$key+1}}</th>
+                    <td>{{$item->giaotrinh->ma_gt}}</td>
+                    <td>{{$item->giaotrinh->ten_gt}}</td>
+                    <td>
+                        <a href="{{$item->giaotrinh->file_upload}}">Xem ngay</a>
+                    </td>
+                    <td>05/06/2023</td>
+                    {{-- <td>
+                        <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"
+                                style="color: green; font-size: 25px;"></i></a> |
+                        <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
+                    </td> --}}
+                </tr>
+            @endif
+            @endforeach
+            @endif
         </tbody>
     </table>
 @endsection

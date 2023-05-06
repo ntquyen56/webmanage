@@ -52,7 +52,7 @@
 
                             {{-- <td>{{$item->created_at}}</td> --}}
                             <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                            @if (empty($item->status) && $item->status !=0)
+                            @if (is_null($item->status))
 
                             <td style="vertical-align: middle;">
                                 <form action="{{route('manage.hanle_browser_one')}}" method="POST">

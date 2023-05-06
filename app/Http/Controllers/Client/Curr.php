@@ -20,12 +20,14 @@ class Curr extends Controller
         try{
             $allKhoa = Faculty::all();
             $allHocPhan = Term::all();
+            $allGiaoTrinh = Curriculum::all();
+
             $allLoai = Type::all();
             $allGiangVien = User::where('group_id','<>',1)->where('id','<>',Auth::user()->id)->get();
 
 
 
-            return view('register',compact('allKhoa','allHocPhan','allLoai','allGiangVien'));
+            return view('register',compact('allKhoa','allHocPhan','allLoai','allGiangVien','allGiaoTrinh'));
         }catch(\Exception $e ){
             throw new($e->getMessage());
 

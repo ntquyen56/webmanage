@@ -377,7 +377,8 @@
                     @if ($item->key == "DNVKL")
                         
                     <div class="form-check">
-                        <input class="form-check-input" name="DNVKL" disabled {{checkChecked($data_danhgia['ketluan'],$item->value,count($dkbs->hdnts) -1,'kl') ? 'checked' :""}} value="{{$item->value}}" type="radio" name="flexRadioDefault" id="{{"flexRadioDefault2"}}">
+                        <input class="form-check-input" name="DNVKLL"  {{checkChecked($data_danhgia['ketluan'],$item->value,count($dkbs->hdnts) -1,'kl') ? 'checked' :""}} value="{{$item->value}}" type="radio" name="flexRadioDefault" disabled id="{{"flexRadioDefault2"}}">
+                        <input  class="invisible" name="DNVKL"  {{checkChecked($data_danhgia['ketluan'],$item->value,count($dkbs->hdnts) -1,'kl') ? 'checked' :""}} value="{{$item->value}}" type="radio">
                         <label class="form-check-label" >
                            {{$item->value}}
                         </label>

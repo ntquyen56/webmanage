@@ -241,7 +241,7 @@
                         <div class="col-sm-10">
                             <textarea disabled name="muckienthuc" id="" cols="30" rows="10"> 
                                 
-                                    {{$danhgia_thuky->nd_giaotrinh}}
+                                    {{$danhgia_thuky->kt_giaotrinh}}
                             </textarea>
                         </div>
                         <div class="col-sm-2"></div>

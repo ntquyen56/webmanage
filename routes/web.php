@@ -29,6 +29,9 @@ use App\Http\Controllers\LevelController;
 // Client
 Route::prefix('/')->middleware('auth')->group(function () {
 
+
+
+    
     Route::get('/home', [HomeController::class,'pageHome'])->name("client");
     Route::get('/', [HomeController::class,'pageHome'])->name("client");
 
@@ -168,9 +171,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
                 return view('admin.acceptance_document_list');
             })->name('acceptance_document_list');
 
-            Route::get ('/publish_list', function(){
-                return view('admin.publish_list');
-            })->name('publish_list');
+            Route::get ('/publish_list', [BrowserController::class,'show_publish_list'])->name('publish_list');
 
             Route::get ('/publish_curriculum_list', function(){
                 return view('admin.publish_curriculum_list');
