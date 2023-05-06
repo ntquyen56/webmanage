@@ -78,12 +78,12 @@ class CurriculumController extends Controller
 
     public function handle_update_status_dkbs(Request $req){
         try{
-            if(Carbon::now()->gt($req->dateStart)) return redirect()->back()->with('msg','Ngày bắt đầu phải lớn hơn ngày hiện tại');
-            if(Carbon::create($req->dateStart)->gt($req->dateEnd)) return redirect()->back()->with('msg','Ngày bắt đầu phải nhỏ hơn ngày kêt thúc');
+            if(Carbon::now()->gt($req->dateStartFile)) return redirect()->back()->with('msg','Ngày bắt đầu phải lớn hơn ngày hiện tại');
+            if(Carbon::create($req->dateStartFile)->gt($req->dateEndFile)) return redirect()->back()->with('msg','Ngày bắt đầu phải nhỏ hơn ngày kêt thúc');
 
             dang_ki_bien_soan::where('id','<>',0)->update([
-                'dateStartEditFile'=>$req->dateStart,
-                'dateEndEditFile'=>$req->dateEnd,
+                'dateStartEditFile'=>$req->dateStartFile,
+                'dateEndEditFile'=>$req->dateEndFile,
 
             ]);
 

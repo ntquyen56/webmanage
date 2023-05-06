@@ -151,16 +151,15 @@ class BrowserController extends Controller
                     $checKhongduyet++;
                 }
             }
+            $hdt = user_role::where('role_id',2)->get();
 
-
-
-            if($checkDaduyet > count($arr)/2){
+            if($checkDaduyet > count( $hdt)/2){
                 foreach($dkbs->users as $user){
                     $mailData['message'] = 'Giáo trình '.$dkbs->ten_gt.' đã được duyệt bởi HDT';
                     Mail::to($user->email)->send( new SendMail($user,$mailData));
                 }
             }
-            if($checKhongduyet > count($arr)/2){
+            if($checKhongduyet > count( $hdt)/2){
                 foreach($dkbs->users as $user){
                     $mailData['message'] = 'Giáo trình '.$dkbs->ten_gt.' đã bị từ chối bởi HDT';
                     Mail::to($user->email)->send( new SendMail($user,$mailData));
@@ -244,6 +243,11 @@ class BrowserController extends Controller
 
     public function upload_document(Request $req){
         try{
+            // dd(array_key_exists('file_upload', $req->file()));
+        // dd($req->hasFile('file_upload'));
+
+        // dd($req->file('file_upload'));
+
             $dataImage = $this->storageTraitUpload($req, 'file_upload', 'document');
             // dd($dataImage);
             $dkbs = dang_ki_bien_soan::where('id',$req->id_dk)->first();
@@ -328,7 +332,7 @@ class BrowserController extends Controller
             $dataImage = $this->storageTraitUpload($request, 'file_qd', 'document');
 
 
-            $gtdk->fileQD = $dataImage['file_path'];
+            $gtdk->fileQD = $dataImage['file_path'] ?? "";
 
             if(!empty($request->status )  && $request->status =='khongduyet'){
 
@@ -403,18 +407,18 @@ class BrowserController extends Controller
             $danhgia_nt->id_giaotrinh = $req->id_gt;
 
             $arr1 = $req->NDGT;
-            if(!empty($req->muc1)) array_push($arr1,$req->muc1);
+            if(!empty($req->muc1)) array_push($arr1,$req->muc1??"");
             $danhgia_nt->nd_giaotrinh = json_encode($arr1);
 
          
             $arr2 = $req->KTTGT;
 
-            if(!empty($req->muc2)) array_push($arr2,$req->muc2);
+            if(!empty($req->muc2)) array_push($arr2,$req->muc2??"");
             $danhgia_nt->kt_giaotrinh = json_encode($arr2);
 
             $arr3 = $req->NDDTD;
 
-            if(!empty($req->muc3)) array_push($arr3,$req->muc3);
+            if(!empty($req->muc3)) array_push($arr3,$req->muc3??"");
             $danhgia_nt->ndtd_giaotrinh = json_encode($arr3);
 
 
@@ -482,16 +486,9 @@ class BrowserController extends Controller
         }
 
         // dd($data_danhgia);
-        $danhgia_thuky = bienban_nt_thuky::where('id_thuky',Auth::user()->id)->first();
+        $danhgia_thuky = bienban_nt_thuky::where('id_thuky',Auth::user()->id)->where('id_giaotrinh',$id)->first();
         if(!empty($danhgia_thuky)) return view('admin.secretaried',compact('dkbs','config','danhgia_nt','data_danhgia','danhgia_thuky'));
-        $check = 0;
-        foreach (Auth::user()->roles_user as $role) {
-            if ($role->role_id == 4 && $role->sub_role == 'Thư kí') {
-                $check = 1;
-                break;
-            }
-        }
-        if($check == 0 ) return view('secretaried',compact('dkbs','config','danhgia_nt','data_danhgia','danhgia_thuky'));
+       
         return view('admin.secretary',compact('dkbs','config','danhgia_nt','data_danhgia'));
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
@@ -546,6 +543,8 @@ class BrowserController extends Controller
             $danhgia_thuky->ndtd_giaotrinh = $req->mucnoidung;
             $danhgia_thuky->ddcautruc_gt = $req->muc4;
             $danhgia_thuky->nd_ketluan = $req->muc5;
+            $danhgia_thuky->status = $req->DNVKL;
+
             
             $danhgia_thuky->save();
 
@@ -560,5 +559,10 @@ class BrowserController extends Controller
         }catch(\Exception $e){
             throw new \Exception($e->getMessage());
         }
+    }
+
+    public function show_publish_list(Request $req){
+        $allGTXB = bienban_nt_thuky::all();
+        return view('admin.publish_list',compact('allGTXB'));
     }
 }

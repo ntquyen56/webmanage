@@ -75,10 +75,10 @@
                 @csrf
                 <div class="row">
                     <div class="col-sm-2 txt-time text-right">Ngày bắt đầu chỉnh sửa file nộp:</div>
-                    <div class="col-sm-3"> <input type="datetime-local" name="dateStart" id=""
+                    <div class="col-sm-3"> <input type="datetime-local" name="dateStartFile" id=""
                             style="width: 100%;"></div>
                     <div class="col-sm-2 text-right txt-time">Ngày kết thúc chỉnh sửa file nộp:</div>
-                    <div class="col-sm-3 "><input type="datetime-local" name="dateEnd" id="" style="width: 100%;">
+                    <div class="col-sm-3 "><input type="datetime-local" name="dateEndFile" id="" style="width: 100%;">
                     </div>
                     <div class="col-sm-2"><button type="submit" class="text-center btn-hover"
                             style="border: none;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, 
