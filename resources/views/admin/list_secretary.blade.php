@@ -30,6 +30,8 @@
                 <th scope="col" class="text-center" style="vertical-align: middle; width: 15%;">Giáo trình</th>
                 <th scope="col" class="text-center" style="vertical-align: middle">Quyết định</th>
                 <th scope="col" class="text-center" style="vertical-align: middle">chi tiết</th>
+                <th scope="col" class="text-center" style="vertical-align: middle">Tải xuống</th>
+
             </tr>
         </thead>
         <tbody>
@@ -68,6 +70,13 @@
                             <a href="{{ route('manage.detail_secretary',$item->gtdk->id) }}"><i class="fa-solid fa-book-open-reader"
                                     style="color:blue; font-size: 25px;"></i></a>
                         </td>
+                        <td>
+                            <a href="{{route("manage.download_docx",$item->gtdk->id)}}">
+
+                                <button>Tải xuống</button>
+                            </a>
+                            </td>
+
 
                     </tr>
                 @endforeach

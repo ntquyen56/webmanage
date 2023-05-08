@@ -565,4 +565,43 @@ class BrowserController extends Controller
         $allGTXB = bienban_nt_thuky::all();
         return view('admin.publish_list',compact('allGTXB'));
     }
+
+
+    public function download_docx(Request $req){
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+
+        $section = $phpWord->addSection();
+
+
+        $description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+
+        $section->addImage("https://scontent.fvca1-3.fna.fbcdn.net/v/t39.30808-6/345835459_1656579448100908_1598480259446593011_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=e3f864&_nc_ohc=MH3_YapcTFAAX-m-rC_&_nc_ht=scontent.fvca1-3.fna&oh=00_AfDiq8XMQb8GspG6nH8I-yUcRUVVoi-ODYPi_zQhgvpc4g&oe=645D9C10");
+        $section->addText($description);
+        $fontStyleName = 'oneUserDefinedStyle';
+        $phpWord->addFontStyle(
+            $fontStyleName,
+            array('name' => 'Tahoma', 'size' => 25, 'color' => '1B2232', 'bold' => true)
+        );
+        $section->addText(
+            'The men',
+            $fontStyleName
+        );
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('helloWorld.docx'));
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+
+        }
+
+
+        return response()->download(storage_path('helloWorld.docx'));
+    }
 }
