@@ -218,6 +218,13 @@ Route::prefix('/')->middleware('auth')->group(function () {
             Route::get ('/acceptance', [BrowserController::class,'show_list_nt'])->name('acceptance');
             Route::get ('/secretary', [BrowserController::class,'show_list_nt_thuky'])->name('secretary');
             Route::get ('/detail_secretary/{id}', [BrowserController::class,'detail_secretary'])->name('detail_secretary');
+            
+            
+            
+            //download docx
+            Route::get ('/download_docx/{id}', [BrowserController::class,'download_docx'])->name('download_docx');
+
+
 
     });
 
