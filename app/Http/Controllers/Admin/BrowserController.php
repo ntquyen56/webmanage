@@ -568,6 +568,7 @@ class BrowserController extends Controller
 
 
     public function download_docx(Request $req){
+   
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
 

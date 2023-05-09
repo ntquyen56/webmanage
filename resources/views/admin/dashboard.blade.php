@@ -20,7 +20,7 @@
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Tổng người dùng</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            20
+                            {{$allUser}}
                         </div>
                     </div>
                     <div class="col-auto">
@@ -39,7 +39,8 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Tổng tài liệu</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">2000</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">                            {{$allHocPhan}}
+                        </div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
@@ -86,7 +87,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Tổng giáo trình</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"> {{$allDKBS}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-book fa-2x text-gray-300"></i>
@@ -103,7 +104,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                             Xuất bản</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">56</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{$allGiaoTrinhXB}}</div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-print fa-2x text-gray-300"></i>
