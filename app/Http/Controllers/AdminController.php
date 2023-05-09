@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use  App\Models\User;
+use  App\Models\Term;
+use  App\Models\dang_ki_bien_soan;
+use  App\Models\bienban_nt_thuky;
+
+
+
 use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
@@ -11,7 +17,14 @@ class AdminController extends Controller
         return view('layout.login');
     }
     public function show_dashboard(){
-        return view('layout.admin');
+        $allUser = count(User::all());
+        $allHocPhan = count(Term::all());
+        $allDKBS = count(dang_ki_bien_soan::all());
+        $allGiaoTrinhXB= count(bienban_nt_thuky::where('status','<>','Không đạt')->whereNotNull('status')->get());
+
+
+
+        return view('admin.dashboard',compact('allUser','allHocPhan','allGiaoTrinhXB','allDKBS'));
     }
 
 
