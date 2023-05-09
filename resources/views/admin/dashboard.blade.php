@@ -113,6 +113,45 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <table id="mytable" class="table table-bordered table-striped text-center mt-3" style="color: black; width: 90%">
+            <thead>
+                <tr class="text-uppercase" style="background-color: rgb(173, 205, 237)">
+                    <th scope="col" class="text-center">stt</th>
+                    <th scope="col" class="text-center">mã</th>
+                    <th scope="col" class="text-center">Giáo trình biên soạn</th>
+                    <th scope="col" class="text-center">Tác giả</th>
+                    <th scope="col" class="text-center">Ngày đăng ký</th>
+                    <th scope="col" class="text-center">Ngày nghiệm thu</th>
+                    <th scope="col" class="text-center">Năm xuất bản</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($dkbsList as $item)
 
+                <tr>
+                    <th scope="row" class="text-center txt-calendar">1</th>
+                    <td class="text-center">{{$item->ma_gt ?? ""}}</td>
+                    <td>{{$item->ten_gt	 ?? ""}}</td>
+                    
+                    
+                    <td class="text-left">
+                        @foreach ($item->users as $user)
+                            <p>{{ $user->magv }} - {{ $user->name }}</p>
+                        @endforeach
+                    </td>
+                    <td class="text-center">{{$item->created_at}}</td>
+                    <td class="text-center">{{$item->dateNT}}</td>
+                    <td class="text-center"> 
+                        {{-- <p style="border-bottom:1px solid #ccc;padding:8px 0;">
+                            {{ $item->dateNT }}
+                        </p>
+                        {{ $item->diadiem ?? "" }} --}}
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
