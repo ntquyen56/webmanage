@@ -22,9 +22,10 @@ class AdminController extends Controller
         $allDKBS = count(dang_ki_bien_soan::all());
         $allGiaoTrinhXB= count(bienban_nt_thuky::where('status','<>','Không đạt')->whereNotNull('status')->get());
 
+        $dkbsList = dang_ki_bien_soan::whereNotNull('statusNT')->whereNotNull('fileQD')->get();
 
 
-        return view('admin.dashboard',compact('allUser','allHocPhan','allGiaoTrinhXB','allDKBS'));
+        return view('admin.dashboard',compact('allUser','allHocPhan','allGiaoTrinhXB','allDKBS','dkbsList'));
     }
 
 
