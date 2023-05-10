@@ -49,7 +49,7 @@
                                 @endforeach
                             @endif
                         </td>
-                        <td>{{ date ('d-m-Y H:i:s'), strtotime($item->gtdk->dateNT) }}</td>
+                        <td>{{  ($item->gtdk->dateNT) }}</td>
                         <td>{{$item->gtdk->diadiem}}</td>
                         <td>
                             <p>
