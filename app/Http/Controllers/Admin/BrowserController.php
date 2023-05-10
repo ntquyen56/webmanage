@@ -407,18 +407,18 @@ class BrowserController extends Controller
             $danhgia_nt->id_giaotrinh = $req->id_gt;
 
             $arr1 = $req->NDGT;
-            if(!empty($req->muc1)) array_push($arr1,$req->muc1??"");
+            if(!empty($req->muc1)) array_push($arr1,$req->muc1?$req->muc1:"");
             $danhgia_nt->nd_giaotrinh = json_encode($arr1);
 
          
             $arr2 = $req->KTTGT;
 
-            if(!empty($req->muc2)) array_push($arr2,$req->muc2??"");
+            if(!empty($req->muc2)) array_push($arr2,$req->muc2?$req->muc2:"");
             $danhgia_nt->kt_giaotrinh = json_encode($arr2);
 
             $arr3 = $req->NDDTD;
 
-            if(!empty($req->muc3)) array_push($arr3,$req->muc3??"");
+            if(!empty($req->muc3)) array_push($arr3,$req->muc3?$req->muc3:"");
             $danhgia_nt->ndtd_giaotrinh = json_encode($arr3);
 
 

@@ -117,9 +117,7 @@ Route::prefix('/')->middleware('auth')->group(function () {
 
 
 
-            Route::get ('/', function(){
-                return view('admin.dashboard');
-            })->name("manager");
+            Route::get ('/', [AdminController::class, 'show_dashboard'])->name("manager");
 
             Route::get ('/dashboard',[AdminController::class, 'show_dashboard'] )->name('dashboard');
 
