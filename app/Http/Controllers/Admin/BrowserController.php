@@ -422,9 +422,9 @@ class BrowserController extends Controller
             $danhgia_nt->ndtd_giaotrinh = json_encode($arr3);
 
 
-            if(empty($req->muc4)) return redirect()->back()->with('msg','Noi dung dinh dang khong the trong!');
+            // if(empty($req->muc4)) return redirect()->back()->with('msg','Noi dung dinh dang khong the trong!');
 
-            $danhgia_nt->ddcautruc_gt = $req->muc4;
+            $danhgia_nt->ddcautruc_gt = $req->muc4 ? $req->muc4 :"" ;
 
             $danhgia_nt->dtsd = json_encode($req->DTDSD);
             
