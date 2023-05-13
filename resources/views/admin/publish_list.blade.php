@@ -24,7 +24,7 @@
                 <th scope="col" class="text-center">mã</th>
                 <th scope="col" class="text-center">tên giáo trình</th>
                 <th scope="col" class="text-center">Nội dung</th>
-                <th scope="col" class="text-center">Ngày xuất bản</th>
+                <th scope="col" class="text-center">Năm xuất bản</th>
                 {{-- <th scope="col">quản lý</th> --}}
             </tr>
         </thead>
@@ -41,7 +41,7 @@
                     <td>
                         <a href="{{$item->giaotrinh->file_upload}}">Xem ngay</a>
                     </td>
-                    <td>05/06/2023</td>
+                    <td>{{date_format(date_create($item->giaotrinh->dateNT),"Y")}}</td>
                     {{-- <td>
                         <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"
                                 style="color: green; font-size: 25px;"></i></a> |
