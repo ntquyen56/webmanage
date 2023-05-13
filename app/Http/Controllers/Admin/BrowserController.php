@@ -278,7 +278,7 @@ class BrowserController extends Controller
 
                 if(empty($gtdk)) return redirect()->back()->with('msg',"Giáo trình không tồn tại!");
                 $gtdk->dateNT = $date;
-                $gtdk->diadiem = $diadiem->phong.' - '.$diadiem->khuvuc;
+                $gtdk->diadiem = $diadiem->phong.' '.$diadiem->khuvuc;
 
                 $gtdk->save();
 
@@ -567,42 +567,50 @@ class BrowserController extends Controller
     }
 
 
-    public function download_docx(Request $req){
-   
-        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+    public function download_docx($id,Request $req){
+        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('qldapm.docx');
+
+        $dkbs = dang_ki_bien_soan::where('id',$id)->first();
+        $danhgia_nt =    danhgia_nt::where('id_giaotrinh',$id)->get();
+        // dd($danhgia_nt);
+        //  dd($dkbs->ten_gt);
+        $data_danhgia = [];
+        foreach($danhgia_nt as $item){
+            $data_danhgia['nd_giaotrinh'] = array_merge($data_danhgia['nd_giaotrinh'] ?? [], json_decode($item->nd_giaotrinh,true));
+            $data_danhgia['kt_giaotrinh'] = array_merge($data_danhgia['kt_giaotrinh'] ?? [], json_decode($item->kt_giaotrinh,true));
+            $data_danhgia['ndtd_giaotrinh'] = array_merge($data_danhgia['ndtd_giaotrinh'] ?? [], json_decode($item->ndtd_giaotrinh,true));
+            $data_danhgia['dtsd'] = array_merge($data_danhgia['dtsd'] ?? [], json_decode($item->dtsd,true));
+            $data_danhgia['ketluan'][] = $item->ketluan;
+            $data_danhgia['ddcautruc_gt'][] = $item->ddcautruc_gt;
+            $data_danhgia['nd_ketluan'][] = $item->nd_ketluan	;
 
 
-        $section = $phpWord->addSection();
-
-
-        $description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
-
-        $section->addImage("https://scontent.fvca1-3.fna.fbcdn.net/v/t39.30808-6/345835459_1656579448100908_1598480259446593011_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=e3f864&_nc_ohc=MH3_YapcTFAAX-m-rC_&_nc_ht=scontent.fvca1-3.fna&oh=00_AfDiq8XMQb8GspG6nH8I-yUcRUVVoi-ODYPi_zQhgvpc4g&oe=645D9C10");
-        $section->addText($description);
-        $fontStyleName = 'oneUserDefinedStyle';
-        $phpWord->addFontStyle(
-            $fontStyleName,
-            array('name' => 'Tahoma', 'size' => 25, 'color' => '1B2232', 'bold' => true)
-        );
-        $section->addText(
-            'The men',
-            $fontStyleName
-        );
-        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        try {
-            $objWriter->save(storage_path('helloWorld.docx'));
-        } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
-
+       
         }
+        $danhgia_thuky = bienban_nt_thuky::where('id_giaotrinh',$id)->first();
+
+        $templateProcessor->setValue('tengiaotrinh', $dkbs->ten_gt);
+        $templateProcessor->setValue('tenchubien', $dkbs->users[count($dkbs->users) - 1]->name);
+        // $templateProcessor->setValue('chucvichubien', $dkbs->users[count($dkbs->users) - 1]->role->name);
 
 
-        return response()->download(storage_path('helloWorld.docx'));
+        $templateProcessor->cloneBlock('thanhvien', count($dkbs->users)-1 , true, true);
+
+        $replacements = array(
+            array('tentv' => 'Batman', 'chuvitv' => 'Gotham City'),
+            array('tentv' => 'Superman', 'chuvitv' => 'Metropolis'),
+        );
+
+        $templateProcessor->cloneBlock('thanhvien', 0, true, false, $replacements);
+
+
+        $templateProcessor->setValue('diadiem', $dkbs->diadiem);
+        $templateProcessor->setValue('dateNT', $dkbs->dateNT);
+        $templateProcessor->setValue('statusNT', $dkbs->statusNT);
+        $templateProcessor->setValue('sothanhvienhd',count($dkbs->hdnts));
+
+
+        $templateProcessor->saveAs(storage_path('danhgia.docx'));
+        return response()->download(storage_path('danhgia.docx'));
     }
 }
