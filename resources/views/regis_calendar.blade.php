@@ -66,7 +66,7 @@
                                                     <p>{{ $hdnt->user->magv }} - {{ $hdnt->user->name }} -{{$sub_role}} </p>
                                                 @endforeach
                                             @endif
-                                        @else
+                                        @elseif(!empty($item->file_upload) && !empty($item->file_name))
                                             <form action="{{ route('client.registerHDNTAndDateSubmit') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id_gtdk" value="{{ $item->id }}">
