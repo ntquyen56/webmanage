@@ -72,16 +72,18 @@ class Curr extends Controller
             $newDKBS->loai_gt = $req->loaigt;
             $newDKBS->id_khoa = $req->khoa;
             $newDKBS->save();
+            if(count($allTacgia) > 0 ){
 
-            foreach($allTacgia as $matacgia){
-                $tacgia = User::where('magv',$matacgia)->first();
-
-                $newUserGt = new user_gtdk();
-
-                $newUserGt->user_id = $tacgia->id;
-
-                $newUserGt->giaotrinh_id = $newDKBS->id;
-                $newUserGt->save();
+                foreach($allTacgia as $matacgia){
+                    $tacgia = User::where('magv',$matacgia)->first();
+                    
+                    $newUserGt = new user_gtdk();
+                    
+                    $newUserGt->user_id = $tacgia->id;
+                    
+                    $newUserGt->giaotrinh_id = $newDKBS->id;
+                    $newUserGt->save();
+                }
             }
             $newUserGt = new user_gtdk();
             $newUserGt->user_id = Auth::user()->id;
