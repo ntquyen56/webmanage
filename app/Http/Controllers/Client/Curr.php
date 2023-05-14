@@ -72,7 +72,7 @@ class Curr extends Controller
             $newDKBS->loai_gt = $req->loaigt;
             $newDKBS->id_khoa = $req->khoa;
             $newDKBS->save();
-            if(count($allTacgia) > 0 ){
+            if(!empty($allTacgia) && count($allTacgia) > 0 ){
 
                 foreach($allTacgia as $matacgia){
                     $tacgia = User::where('magv',$matacgia)->first();
