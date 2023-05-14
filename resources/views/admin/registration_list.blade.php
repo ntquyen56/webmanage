@@ -119,10 +119,10 @@
                         </td>
                         <td>{{ date('d-m-Y'), strtotime($curriculum->created_at) }}</td>
                         <td>
-                            <a href="#"><i class="fa-sharp fa-regular fa-pen-to-square"
+                            <a href="{{route('manage.edit_curr',$curriculum->id)}}"><i class="fa-sharp fa-regular fa-pen-to-square"
                                     style="color: green; font-size: 25px;"></i></a> |
                             <a onclick="return confirm('Bạn có muốn xóa không?')"
-                                href="{{ URL::to('manage/delete_curr/' . $curriculum->id) }}">
+                                href="{{ route('manage.delete_gt', $curriculum->id) }}">
                                 <i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
                         </td>
                     </tr>

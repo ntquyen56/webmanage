@@ -103,6 +103,31 @@ class CurriculumController extends Controller
 
     }
 
+    public function edit_curr($id){
+        $curr = Curriculum::where('id',$id)->first();
+        if(empty($curr)) return redirect()->back();
+        return view('admin.edit_curr',compact('curr'));
+    }
+
+    public function handleEditCur(Request $req){
+        try{
+            // dd($req->magt);
+            $gt = Curriculum::where('ma_gt',$req->magt)->where('id','<>',$req->id_curr)->first();
+            if($gt) return redirect()->back()->with('msg','Mã giáo trình biên soạn này đã tồn tại!');
+
+            $gtold = Curriculum::where('ma_gt',$req->magt)->first();
+             $gtold->ma_gt = $req->magt;
+             $gtold->ten_gt = $req->tengt;
+             $gtold->save();
+
+
+             return redirect()->route('manage.registration_list');
+
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+    }
+
     public function delete_gt($id){
         Curriculum::find($id)->delete();
         return redirect()->back();

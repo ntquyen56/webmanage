@@ -25,7 +25,7 @@
                 <th scope="col" class="text-center">tên giáo trình</th>
                 <th scope="col" class="text-center">Nội dung</th>
                 <th scope="col" class="text-center">Năm xuất bản</th>
-                {{-- <th scope="col">quản lý</th> --}}
+                <th scope="col">Tải xuống</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +47,12 @@
                                 style="color: green; font-size: 25px;"></i></a> |
                         <a href="#"><i class="fa-sharp fa-solid fa-trash" style="color: red; font-size: 25px;"></i></a>
                     </td> --}}
+                    <td>
+                        <a href="{{route("manage.download_docx",$item->giaotrinh->id)}}">
+
+                            <button>Tải xuống</button>
+                        </a>
+                        </td>
                 </tr>
             @endif
             @endforeach
