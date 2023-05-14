@@ -627,7 +627,7 @@ class BrowserController extends Controller
     
                     $chucvichubien = $user->roles->count() > 0 ? $user->roles->name :"Giảng viên";
                 }else{
-                    $values[] = ['stttv'=>$key+1,'tentv' => $user->name, 'chucvitv' => $user->roles->count() > 0 ? $user->roles->name :"Giảng viên"];
+                    $values[] = ['stttv'=>$key+1,'tentv' => $user->name, 'chucvitv' => $user->roles->count() > 0 && !empty($user->roles->name) ? $user->roles->name :"Giảng viên"];
 
                 }
             }
@@ -789,7 +789,7 @@ class BrowserController extends Controller
             $templateProcessor->saveAs(storage_path('danhgia.docx'));
             return response()->download(storage_path('danhgia.docx'));
         }catch(\Exception $e){
-            throw new \Exception($e->getMessage());
+           dd($e);
         }
        
     }

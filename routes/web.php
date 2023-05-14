@@ -110,8 +110,11 @@ Route::prefix('/')->middleware('auth')->group(function () {
                     // Route::get('/delete_curr/{id}', [CurriculumController::class, 'delete_gt'])
                     // ->name('delete_curr');
             });
+            Route::post('handle_edit_curr', [CurriculumController::class, 'handleEditCur'])->name('handleEditCur');
 
-            Route::get('manage/delete_curr/{id}', [CurriculumController::class, 'delete_gt']);
+            Route::get('edit_curr/{id}', [CurriculumController::class, 'edit_curr'])->name('edit_curr');
+
+            Route::get('delete_curr/{id}', [CurriculumController::class, 'delete_gt'])->name('delete_gt');
         
             Route::post('/handle_update_status_dkbs',[CurriculumController::class,'handle_update_status_dkbs'])->name('handle_update_status_dkbs');
 
