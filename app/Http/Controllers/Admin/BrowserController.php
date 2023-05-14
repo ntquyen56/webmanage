@@ -565,52 +565,232 @@ class BrowserController extends Controller
         $allGTXB = bienban_nt_thuky::all();
         return view('admin.publish_list',compact('allGTXB'));
     }
-
+    function checkChecked($arr,$value,$count_hd,$kl = ""){
+  
+        $count = 0;
+        if(empty($kl)){
+      
+          foreach($arr as $item){
+            if($item == $value){
+              $count++;
+            }
+            
+          }
+        }else{
+          foreach($arr as $item){
+            if($item == $value ){
+              $count++;
+            }
+            
+          }
+        }
+        if($count > ($count_hd * 0.5)){
+          return true;
+        }
+      
+        return false;
+      }
 
     public function download_docx($id,Request $req){
-        $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('qldapm.docx');
+        try{
+            $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor('qldapm.docx');
 
-        $dkbs = dang_ki_bien_soan::where('id',$id)->first();
-        $danhgia_nt =    danhgia_nt::where('id_giaotrinh',$id)->get();
-        // dd($danhgia_nt);
-        //  dd($dkbs->ten_gt);
-        $data_danhgia = [];
-        foreach($danhgia_nt as $item){
-            $data_danhgia['nd_giaotrinh'] = array_merge($data_danhgia['nd_giaotrinh'] ?? [], json_decode($item->nd_giaotrinh,true));
-            $data_danhgia['kt_giaotrinh'] = array_merge($data_danhgia['kt_giaotrinh'] ?? [], json_decode($item->kt_giaotrinh,true));
-            $data_danhgia['ndtd_giaotrinh'] = array_merge($data_danhgia['ndtd_giaotrinh'] ?? [], json_decode($item->ndtd_giaotrinh,true));
-            $data_danhgia['dtsd'] = array_merge($data_danhgia['dtsd'] ?? [], json_decode($item->dtsd,true));
-            $data_danhgia['ketluan'][] = $item->ketluan;
-            $data_danhgia['ddcautruc_gt'][] = $item->ddcautruc_gt;
-            $data_danhgia['nd_ketluan'][] = $item->nd_ketluan	;
+            $dkbs = dang_ki_bien_soan::where('id',$id)->first();
+            $danhgia_nt =    danhgia_nt::where('id_giaotrinh',$id)->get();
+        $config = config::all();
+
+            // dd($danhgia_nt);
+            //  dd($dkbs->ten_gt);
+            $data_danhgia = [];
+            foreach($danhgia_nt as $item){
+                $data_danhgia['nd_giaotrinh'] = array_merge($data_danhgia['nd_giaotrinh'] ?? [], json_decode($item->nd_giaotrinh,true));
+                $data_danhgia['kt_giaotrinh'] = array_merge($data_danhgia['kt_giaotrinh'] ?? [], json_decode($item->kt_giaotrinh,true));
+                $data_danhgia['ndtd_giaotrinh'] = array_merge($data_danhgia['ndtd_giaotrinh'] ?? [], json_decode($item->ndtd_giaotrinh,true));
+                $data_danhgia['dtsd'] = array_merge($data_danhgia['dtsd'] ?? [], json_decode($item->dtsd,true));
+                $data_danhgia['ketluan'][] = $item->ketluan;
+                $data_danhgia['ddcautruc_gt'][] = $item->ddcautruc_gt;
+                $data_danhgia['nd_ketluan'][] = $item->nd_ketluan	;
+    
+    
+           
+            }
+            $danhgia_thuky = bienban_nt_thuky::where('id_giaotrinh',$id)->first();
+    
+            $templateProcessor->setValue('tengiaotrinh', $dkbs->ten_gt);
+            $templateProcessor->setValue('tenchubien', $dkbs->users[count($dkbs->users) - 1]->name);
+            $chucvichubien = "";
+            $values = [
+                
+            ];
+            foreach( $dkbs->users as $key=>$user){
+                if($key == (count($dkbs->users) - 1)){
+    
+                    $chucvichubien = $user->roles->count() > 0 ? $user->roles->name :"Giảng viên";
+                }else{
+                    $values[] = ['stttv'=>$key+1,'tentv' => $user->name, 'chucvitv' => $user->roles->count() > 0 ? $user->roles->name :"Giảng viên"];
+
+                }
+            }
+            $templateProcessor->setValue('chucvichubien', $chucvichubien);
+    
+            $templateProcessor->cloneRow('stttv', count($dkbs->users)-1);
+
+          
 
 
-       
+            $templateProcessor->cloneRowAndSetValues('tentv', $values);
+
+            //hd
+            $templateProcessor->cloneRow('stthd', count($dkbs->hdnts));
+            $valuesHD = [];
+            foreach ($dkbs->hdnts as $key=>$hdnt){
+                $chucvi="";
+                foreach ($hdnt->user->roles_user as $role)
+                {
+
+                    if ($role->role_id == 4){
+                        $chucvi = $role->sub_role;
+                    }
+                    
+                }
+             
+                    $valuesHD[] = ['stthd'=>$key+1,'tenhd' =>$hdnt->user->name, 'donvihd' => $hdnt->user->khoa->ten_khoa,"chucvihd"=>$chucvi];
+
+            }
+            $templateProcessor->cloneRowAndSetValues('tenhd', $valuesHD);
+
+            //end hd
+
+
+            //nd
+            $valuesND = [];
+            $count = 0;
+            foreach ($config as $key=>$item){
+                if ($item->key == "NDGT"){
+                    $count++;
+                    $valuesND[] = ['sttnd'=>$key+1,'tennd' =>$item->value, 'kqnd' => checkChecked($data_danhgia['nd_giaotrinh'],$item->value,count($dkbs->hdnts) -1) ? 'Thông qua' :"Chưa thông qua"];
+                }
+
+            }
+            $templateProcessor->cloneRow('sttnd', $count);
+
+            $templateProcessor->cloneRowAndSetValues('tennd', $valuesND);
+
+
+            $htmlND = '';
+            forEach($data_danhgia['nd_giaotrinh'] as $item) {
+
+                if(is_html($item)){
+                    $htmlND .= $item;
+                }
+                
+            }
+            $templateProcessor->setValue('chitietnd', $htmlND);
+                                    
+            //end nd
+
+
+            
+            //kt
+            $valuesKT = [];
+            $count = 0;
+            foreach ($config as $key=>$item){
+                if ($item->key == "KTTGT"){
+                    $count++;
+                    $valuesKT[] = ['sttkt'=>$key+1,'tenkt' =>$item->value, 'kqkt' => checkChecked($data_danhgia['kt_giaotrinh'],$item->value,count($dkbs->hdnts) -1) ? 'Thông qua' :"Chưa thông qua"];
+                }
+
+            }
+            $templateProcessor->cloneRow('sttkt', $count);
+
+            $templateProcessor->cloneRowAndSetValues('tenkt', $valuesKT);
+
+
+            $htmlKT = '';
+            forEach($data_danhgia['kt_giaotrinh'] as $item) {
+
+                if(is_html($item)){
+                    $htmlKT .= $item;
+                }
+                
+            }
+            $templateProcessor->setValue('chitietkt', $htmlKT);
+                                    
+            //endkt
+
+
+            //ndtd
+            $valuesNDTD = [];
+            $count = 0;
+            foreach ($config as $key=>$item){
+                if ($item->key == "NDDTD"){
+                    $count++;
+                    $valuesNDTD[] = ['sttndtd'=>$key+1,'tenndtd' =>$item->value, 'kqndtd' => checkChecked($data_danhgia['ndtd_giaotrinh'],$item->value,count($dkbs->hdnts) -1) ? 'Thông qua' :"Chưa thông qua"];
+                }
+
+            }
+            $templateProcessor->cloneRow('sttndtd', $count);
+
+            $templateProcessor->cloneRowAndSetValues('tenndtd', $valuesNDTD);
+
+
+            $htmlNDTD = '';
+            forEach($data_danhgia['ndtd_giaotrinh'] as $item) {
+
+                if(is_html($item)){
+                    $htmlNDTD .= $item;
+                }
+                
+            }
+            $templateProcessor->setValue('chitietndtd', $htmlNDTD);
+                                    
+            //end ndtd
+
+
+            //dtsd
+            $valuesDTSD = [];
+            $count = 0;
+            foreach ($config as $key=>$item){
+                if ($item->key == "DTDSD"){
+                    $count++;
+                    $valuesDTSD[] = ['sttdtdt'=>$key+1,'tendtdt' =>$item->value, 'kqdtdt' => checkChecked($data_danhgia['dtsd'],$item->value,count($dkbs->hdnts) -1) ? 'Thông qua' :"Chưa thông qua"];
+                }
+
+            }
+            $templateProcessor->cloneRow('sttdtdt', $count);
+
+            $templateProcessor->cloneRowAndSetValues('tendtdt', $valuesDTSD);
+
+
+            
+                                    
+            //end dtsd
+
+
+            $htmlddct = '';
+            forEach($data_danhgia['ddcautruc_gt'] as $item) {
+
+                if(is_html($item)){
+                    $htmlddct .= $item;
+                }
+                
+            }
+            $templateProcessor->setValue('ddct', $htmlddct);
+    
+            $templateProcessor->setValue('diadiem', $dkbs->diadiem);
+            $templateProcessor->setValue('dateNT', $dkbs->dateNT);
+            $templateProcessor->setValue('statusNT', $dkbs->statusNT);
+            $templateProcessor->setValue('sothanhvienhd',count($dkbs->hdnts));
+            $templateProcessor->setValue('sothanhviencomat',count($danhgia_nt) +1);
+            $templateProcessor->setValue('vangmat',count($dkbs->hdnts) - (count($danhgia_nt) +1));
+
+    
+    
+            $templateProcessor->saveAs(storage_path('danhgia.docx'));
+            return response()->download(storage_path('danhgia.docx'));
+        }catch(\Exception $e){
+            throw new \Exception($e->getMessage());
         }
-        $danhgia_thuky = bienban_nt_thuky::where('id_giaotrinh',$id)->first();
-
-        $templateProcessor->setValue('tengiaotrinh', $dkbs->ten_gt);
-        $templateProcessor->setValue('tenchubien', $dkbs->users[count($dkbs->users) - 1]->name);
-        // $templateProcessor->setValue('chucvichubien', $dkbs->users[count($dkbs->users) - 1]->role->name);
-
-
-        $templateProcessor->cloneBlock('thanhvien', count($dkbs->users)-1 , true, true);
-
-        $replacements = array(
-            array('tentv' => 'Batman', 'chuvitv' => 'Gotham City'),
-            array('tentv' => 'Superman', 'chuvitv' => 'Metropolis'),
-        );
-
-        $templateProcessor->cloneBlock('thanhvien', 0, true, false, $replacements);
-
-
-        $templateProcessor->setValue('diadiem', $dkbs->diadiem);
-        $templateProcessor->setValue('dateNT', $dkbs->dateNT);
-        $templateProcessor->setValue('statusNT', $dkbs->statusNT);
-        $templateProcessor->setValue('sothanhvienhd',count($dkbs->hdnts));
-
-
-        $templateProcessor->saveAs(storage_path('danhgia.docx'));
-        return response()->download(storage_path('danhgia.docx'));
+       
     }
 }
